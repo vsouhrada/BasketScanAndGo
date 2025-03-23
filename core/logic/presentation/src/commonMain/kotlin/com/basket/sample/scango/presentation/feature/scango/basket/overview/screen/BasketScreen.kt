@@ -43,10 +43,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import basketscanandgosample.presentation.generated.resources.Res
-import basketscanandgosample.presentation.generated.resources.facebook
-import basketscanandgosample.presentation.generated.resources.google
-import basketscanandgosample.presentation.generated.resources.ic_shopping_basket
+import basketscanandgo.presentation.generated.resources.Res
+import basketscanandgo.presentation.generated.resources.facebook
+import basketscanandgo.presentation.generated.resources.google
+import basketscanandgo.presentation.generated.resources.ic_shopping_basket
 import com.basket.core.common.designSystem.compose.component.Spacer_12dp
 import com.basket.core.common.designSystem.compose.component.Spacer_16dp
 import com.basket.core.common.designSystem.compose.screen.Screen

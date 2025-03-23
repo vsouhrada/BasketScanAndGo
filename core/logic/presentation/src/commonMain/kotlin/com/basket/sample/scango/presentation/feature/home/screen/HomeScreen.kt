@@ -16,8 +16,8 @@ import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import basketscanandgosample.presentation.generated.resources.Res
-import basketscanandgosample.presentation.generated.resources.main_home_special_for_you
+import basketscanandgo.presentation.generated.resources.Res
+import basketscanandgo.presentation.generated.resources.main_home_special_for_you
 import com.basket.core.common.designSystem.compose.component.Spacer_8dp
 import com.basket.core.common.designSystem.compose.screen.Screen
 import com.basket.core.common.designSystem.compose.theme.BasketTheme

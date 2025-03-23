@@ -19,9 +19,9 @@ import com.basket.core.common.designSystem.compose.theme.ColorPalette.IconColorG
 import com.basket.core.common.designSystem.compose.theme.DefaultTextFieldTheme
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
-import basketscanandgosample.designsystem.generated.resources.Res
-import basketscanandgosample.designsystem.generated.resources.ic_password_hide
-import basketscanandgosample.designsystem.generated.resources.ic_password_show
+import basketscanandgo.designsystem.generated.resources.Res
+import basketscanandgo.designsystem.generated.resources.ic_password_hide
+import basketscanandgo.designsystem.generated.resources.ic_password_show
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable

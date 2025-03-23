@@ -17,10 +17,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import basketscanandgosample.presentation.generated.resources.Res
-import basketscanandgosample.presentation.generated.resources.ic_shopping_basket
-import basketscanandgosample.presentation.generated.resources.main_scango_basket_create_button
-import basketscanandgosample.presentation.generated.resources.main_scango_basket_create_info
+import basketscanandgo.presentation.generated.resources.Res
+import basketscanandgo.presentation.generated.resources.ic_shopping_basket
+import basketscanandgo.presentation.generated.resources.main_scango_basket_create_button
+import basketscanandgo.presentation.generated.resources.main_scango_basket_create_info
 import com.basket.core.common.designSystem.compose.component.Spacer_16dp
 import com.basket.core.common.designSystem.compose.component.Spacer_32dp
 import com.basket.core.common.designSystem.compose.screen.Screen

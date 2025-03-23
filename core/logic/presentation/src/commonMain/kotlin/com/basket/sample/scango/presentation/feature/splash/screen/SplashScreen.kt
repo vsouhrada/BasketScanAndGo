@@ -10,9 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import basketscanandgosample.presentation.generated.resources.Res
-import basketscanandgosample.presentation.generated.resources.app_name
-import basketscanandgosample.presentation.generated.resources.header_linkedin_profile1
+import basketscanandgo.presentation.generated.resources.Res
+import basketscanandgo.presentation.generated.resources.app_name
+import basketscanandgo.presentation.generated.resources.header_linkedin_profile1
 import com.basket.core.common.designSystem.compose.screen.Screen
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.painterResource

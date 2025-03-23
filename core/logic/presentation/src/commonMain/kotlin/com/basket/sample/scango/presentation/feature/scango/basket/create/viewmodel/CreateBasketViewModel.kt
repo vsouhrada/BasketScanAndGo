@@ -1,7 +1,7 @@
 package com.basket.sample.scango.presentation.feature.scango.basket.create.viewmodel
 
-import basketscanandgosample.presentation.generated.resources.Res
-import basketscanandgosample.presentation.generated.resources.error_something_wrong
+import basketscanandgo.presentation.generated.resources.Res
+import basketscanandgo.presentation.generated.resources.error_something_wrong
 import com.basket.core.common.ktime.OffsetDateTime
 import com.basket.core.common.result.chain
 import com.basket.sample.scango.domain.feature.basket.active.SetActiveBasketRequest

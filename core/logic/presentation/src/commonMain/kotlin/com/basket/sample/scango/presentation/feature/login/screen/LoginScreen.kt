@@ -29,10 +29,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import basketscanandgosample.presentation.generated.resources.Res
-import basketscanandgosample.presentation.generated.resources.ic_shopping_basket
-import basketscanandgosample.presentation.generated.resources.main_home_title
-import basketscanandgosample.presentation.generated.resources.sign_in
+import basketscanandgo.presentation.generated.resources.Res
+import basketscanandgo.presentation.generated.resources.ic_shopping_basket
+import basketscanandgo.presentation.generated.resources.main_home_title
+import basketscanandgo.presentation.generated.resources.sign_in
 import com.basket.core.common.designSystem.compose.screen.Screen
 import com.basket.core.common.designSystem.compose.theme.baseGradientBackground
 import com.basket.core.common.designSystem.compose.theme.buttonGradientBackground

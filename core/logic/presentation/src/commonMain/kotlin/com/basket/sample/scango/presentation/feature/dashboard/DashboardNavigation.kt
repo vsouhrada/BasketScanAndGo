@@ -1,12 +1,12 @@
 package com.basket.sample.scango.presentation.feature.dashboard
 
-import basketscanandgosample.presentation.generated.resources.Res
-import basketscanandgosample.presentation.generated.resources.home
-import basketscanandgosample.presentation.generated.resources.home_border
-import basketscanandgosample.presentation.generated.resources.main_catalog_title
-import basketscanandgosample.presentation.generated.resources.main_home_title
-import basketscanandgosample.presentation.generated.resources.main_profile_title
-import basketscanandgosample.presentation.generated.resources.main_scango_title
+import basketscanandgo.presentation.generated.resources.Res
+import basketscanandgo.presentation.generated.resources.home
+import basketscanandgo.presentation.generated.resources.home_border
+import basketscanandgo.presentation.generated.resources.main_catalog_title
+import basketscanandgo.presentation.generated.resources.main_home_title
+import basketscanandgo.presentation.generated.resources.main_profile_title
+import basketscanandgo.presentation.generated.resources.main_scango_title
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 
