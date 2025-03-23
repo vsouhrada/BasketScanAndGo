@@ -10,7 +10,10 @@ data class User(
     val firstName: String,
     val lastName: String,
     val profilePictureUrl: String,
-    val password: String // In a real application, this should be hashed
+    // In a real application, this should be hashed
+    val password: String,
+    val salutation: String,
+    val languageId: String,
 )
 
 @Serializable
@@ -20,7 +23,9 @@ data class UserResponse(
     val email: String,
     val firstName: String,
     val lastName: String,
-    val profilePictureUrl: String
+    val profilePictureUrl: String,
+    val salutation: String,
+    val languageId: String,
     // Password is not included in the response
 )
 

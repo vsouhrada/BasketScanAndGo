@@ -1,7 +1,5 @@
 package com.basket.sample.scango.domain.common.model
 
-import com.basket.sample.scango.domain.feature.user.common.model.UserId
-
 typealias Id = Long
 typealias BasketId = String
 

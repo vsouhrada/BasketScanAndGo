@@ -55,7 +55,7 @@ fun Route.authRoutes() {
             val jwtIssuer = application.environment.config.propertyOrNull("jwt.issuer")?.getString() ?: "basket-server"
             val jwtAudience = application.environment.config.propertyOrNull("jwt.audience")?.getString() ?: "basket-client"
             
-            val userId = "user1" // In a real app, this would be extracted from the refresh token
+            val userId = "user3" // In a real app, this would be extracted from the refresh token
             val accessToken = generateJwtToken(userId, jwtSecret, jwtIssuer, jwtAudience)
             val refreshToken = UUID.randomUUID().toString() // In a real app, this would be stored and associated with the user
             

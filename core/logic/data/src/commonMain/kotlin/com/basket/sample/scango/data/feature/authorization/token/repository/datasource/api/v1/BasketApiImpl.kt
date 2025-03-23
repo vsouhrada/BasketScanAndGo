@@ -1,13 +1,14 @@
-package com.basket.sample.scango.data.feature.basket.repository.datasource.api
+package com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.v1
 
 import com.basket.core.common.result.Result
-import com.basket.sample.scango.data.feature.basket.repository.datasource.api.model.CreateBasketRequestDto
-import com.basket.sample.scango.data.feature.basket.repository.datasource.api.model.CreateBasketResponseDto
+import com.basket.sample.scango.data.core.api.rest.BaseApi
+import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.v1.dto.CreateBasketRequestDto
+import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.v1.dto.CreateBasketResponseDto
 import io.ktor.client.HttpClient
 
 class BasketApiImpl(
-    private val client: HttpClient,
-) : BasketApi {
+    override val client: HttpClient,
+) : BaseApi(client = client), BasketApi {
 
     /**
      * Creates a new basket based on the provided request data.

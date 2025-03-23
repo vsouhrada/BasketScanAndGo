@@ -1,6 +1,5 @@
 package com.basket.sample.scango.di
 
-import com.basket.sample.scango.data.common.api.providers.BasketApiServerPathProvider
 import com.basket.sample.scango.data.common.api.providers.BasketApiServerPathProviderImpl
 import com.basket.sample.scango.data.common.api.providers.ServerPathProvider
 import com.basket.sample.scango.data.common.api.providers.TokenAuthProvider
@@ -10,9 +9,10 @@ import com.basket.sample.scango.data.common.ktor.config.ApiConfig
 import com.basket.sample.scango.data.common.ktor.config.ApiLogLevel
 import com.basket.sample.scango.data.common.ktor.config.ApiLogger
 import com.basket.sample.scango.data.common.ktor.config.model.CustomHeaders
-import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.TokenApi
-import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.TokenApiImpl
+import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.v1.TokenApi
+import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.v1.TokenApiImpl
 import com.basket.sample.scango.presentation.core.platform.getPlatform
+import io.ktor.client.HttpClient
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
@@ -40,7 +40,7 @@ val networkModule = module {
 
     factoryOf(::TokenApiImpl) bind TokenApi::class
 
-    single {
+    single< HttpClient> {
         KtorClientFactory(
             tokenAuthProvider = get(),
             serverPathProvider = get(),

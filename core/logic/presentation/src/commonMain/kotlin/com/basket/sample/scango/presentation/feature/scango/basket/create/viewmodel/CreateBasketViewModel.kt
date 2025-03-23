@@ -4,11 +4,11 @@ import basketscanandgo.presentation.generated.resources.Res
 import basketscanandgo.presentation.generated.resources.error_something_wrong
 import com.basket.core.common.ktime.OffsetDateTime
 import com.basket.core.common.result.chain
+import com.basket.sample.scango.domain.common.model.User
 import com.basket.sample.scango.domain.feature.basket.active.SetActiveBasketRequest
 import com.basket.sample.scango.domain.feature.basket.active.SetActiveBasketUseCase
 import com.basket.sample.scango.domain.feature.basket.create.usecase.CreateBasketRequest
 import com.basket.sample.scango.domain.feature.basket.create.usecase.CreateBasketUseCase
-import com.basket.sample.scango.domain.feature.user.common.model.User
 import com.basket.sample.scango.domain.feature.user.getActiveUser.usecase.GetActiveUserUseCase
 import com.basket.sample.scango.presentation.core.viewmodel.BaseViewModel
 import com.basket.sample.scango.presentation.feature.scango.basket.create.screen.state.CreateBasketScreenActionState
@@ -95,7 +95,7 @@ class CreateBasketViewModel(
     }
 
     private fun buildCreateBasketRequest(user: User) = CreateBasketRequest(
-        customerId = user.userId,
+        customerId = user.id,
         sharedBasket = false,
         createdTimestampUTC = OffsetDateTime.now()
     )

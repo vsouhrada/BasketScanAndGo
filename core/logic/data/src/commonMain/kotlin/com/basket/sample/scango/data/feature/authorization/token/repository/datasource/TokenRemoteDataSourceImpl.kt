@@ -3,7 +3,7 @@ package com.basket.sample.scango.data.feature.authorization.token.repository.dat
 import com.basket.core.common.result.Result
 import com.basket.core.common.result.failure.FailureResult
 import com.basket.core.common.result.toSuccess
-import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.TokenApi
+import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.v1.TokenApi
 import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.mapper.toDomain
 import com.basket.sample.scango.domain.error.FetchTokenInfoError
 import com.basket.sample.scango.domain.feature.authorization.model.TokenInfo

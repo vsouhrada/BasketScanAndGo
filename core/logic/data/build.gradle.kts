@@ -21,15 +21,50 @@ kotlin {
             dependencies {
                 api(project(":domain"))
                 implementation(project(":klogger"))
-                implementation(libs.ktor.client.content.negotiation)
-                implementation(libs.ktor.serialization.json)
-                implementation(libs.ktor.serialization.xml)
-                implementation(libs.ktor.logging)
-                implementation(libs.ktor.client.auth)
-                implementation(libs.ktor.client.content.negotiation)
+                api(libs.ktor.client.core)
+                api(libs.ktor.client.content.negotiation)
+                api(libs.ktor.serialization.json)
+                api(libs.ktor.serialization.xml)
+                api(libs.ktor.logging)
+                api(libs.ktor.client.auth)
+                api(libs.ktor.client.content.negotiation)
+            }
+        }
+
+        androidMain {
+            dependencies {
+                api(libs.ktor.client.okhttp)
+            }
+        }
+
+        jvmMain {
+            dependencies {
+                api(libs.ktor.client.okhttp)
+            }
+        }
+
+        iosMain {
+            dependencies {
+                api(libs.ktor.client.ios)
+            }
+        }
+
+        jsMain {
+            dependencies {
+                implementation(libs.ktor.client.js)
+            }
+        }
+
+        wasmJsMain {
+            dependencies {
+                implementation(libs.ktor.client.fetch)
+            }
+        }
+
+        desktopMain {
+            dependencies {
+                api(libs.ktor.client.okhttp)
             }
         }
     }
 }
-
-

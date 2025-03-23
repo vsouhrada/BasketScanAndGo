@@ -6,7 +6,9 @@
     "firstName": "John",
     "lastName": "Doe",
     "profilePictureUrl": "https://randomuser.me/api/portraits/men/1.jpg",
-    "password": "123"
+    "password": "123",
+    "salutation": "Mr.",
+    "languageId": "en"
   },
   {
     "id": "user2",
@@ -15,15 +17,19 @@
     "firstName": "Jane",
     "lastName": "Doe",
     "profilePictureUrl": "https://randomuser.me/api/portraits/women/1.jpg",
-    "password": "123"
+    "password": "123",
+    "salutation": "Ms.",
+    "languageId": "en"
   },
   {
     "id": "user3",
     "username": "jsnow",
     "email": "jsnow@example.com",
     "firstName": "John",
-    "lastName": "Doe",
+    "lastName": "Snow",
     "profilePictureUrl": "https://randomuser.me/api/portraits/lego/5.jpg",
-    "password": "123"
+    "password": "123",
+    "salutation": "Mr.",
+    "languageId": "en"
   }
 ]

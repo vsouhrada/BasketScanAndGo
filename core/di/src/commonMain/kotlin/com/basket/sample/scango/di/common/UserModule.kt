@@ -5,7 +5,15 @@ import com.basket.sample.scango.data.feature.authorization.token.repository.data
 import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.TokenLocalDataSourceImpl
 import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.TokenRemoteDataSource
 import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.TokenRemoteDataSourceImpl
+import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.v1.UserApi
+import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.v1.UserApiImpl
 import com.basket.sample.scango.data.feature.user.common.repository.UserRepositoryImpl
+import com.basket.sample.scango.data.feature.user.common.repository.datasource.UserLocalDataSource
+import com.basket.sample.scango.data.feature.user.common.repository.datasource.UserLocalDataSourceImpl
+import com.basket.sample.scango.data.feature.user.common.repository.datasource.UserRemoteDataSource
+import com.basket.sample.scango.data.feature.user.common.repository.datasource.UserRemoteDataSourceImpl
+import com.basket.sample.scango.data.feature.user.common.repository.datasource.mapper.UserDtoToDoMapper
+import com.basket.sample.scango.data.feature.user.common.repository.datasource.mapper.UserDtoToDoMapperImpl
 import com.basket.sample.scango.domain.feature.authorization.repository.TokenRepository
 import com.basket.sample.scango.domain.feature.authorization.usecase.FetchTokenInfoUseCase
 import com.basket.sample.scango.domain.feature.authorization.usecase.FetchTokenUserInfoUseCaseImpl
@@ -36,4 +44,12 @@ val userModule = module {
 
     singleOf(::TokenRemoteDataSourceImpl) bind TokenRemoteDataSource::class
     singleOf(::TokenLocalDataSourceImpl) bind TokenLocalDataSource::class
+
+    singleOf(::UserLocalDataSourceImpl) bind UserLocalDataSource::class
+    singleOf(::UserRemoteDataSourceImpl) bind UserRemoteDataSource::class
+
+    singleOf(::UserApiImpl) bind UserApi::class
+
+    factoryOf(::UserDtoToDoMapperImpl) bind UserDtoToDoMapper::class
+
 }

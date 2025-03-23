@@ -1,7 +1,7 @@
 package com.basket.sample.scango.presentation.feature.login.screen.state
 
 import com.basket.core.common.designSystem.uikit.screen.UIState
-import com.basket.sample.scango.domain.feature.user.common.model.UserId
+import com.basket.sample.scango.domain.common.model.UserId
 import com.basket.sample.scango.presentation.feature.login.model.LoginVo
 
 data class LoginScreenState(

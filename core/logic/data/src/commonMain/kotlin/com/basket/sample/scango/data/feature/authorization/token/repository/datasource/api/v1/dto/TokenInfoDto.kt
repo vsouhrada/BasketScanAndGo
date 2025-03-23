@@ -1,4 +1,4 @@
-package com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.model.dto
+package com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.v1.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

@@ -3,8 +3,6 @@ package com.basket.server.routes
 import com.basket.server.models.User
 import com.basket.server.models.UserResponse
 import io.ktor.http.*
-import io.ktor.server.application.*
-import io.ktor.server.auth.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.serialization.json.Json
@@ -27,7 +25,9 @@ fun Route.userRoutes() {
                     email = user.email,
                     firstName = user.firstName,
                     lastName = user.lastName,
-                    profilePictureUrl = user.profilePictureUrl
+                    profilePictureUrl = user.profilePictureUrl,
+                    salutation = user.salutation,
+                    languageId = user.languageId,
                 )
             }
             
@@ -54,7 +54,9 @@ fun Route.userRoutes() {
                 email = user.email,
                 firstName = user.firstName,
                 lastName = user.lastName,
-                profilePictureUrl = user.profilePictureUrl
+                profilePictureUrl = user.profilePictureUrl,
+                salutation = user.salutation,
+                languageId = user.languageId,
             )
             
             // Return the user

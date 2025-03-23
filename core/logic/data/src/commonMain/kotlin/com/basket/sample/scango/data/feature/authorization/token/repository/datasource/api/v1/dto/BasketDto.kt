@@ -1,6 +1,6 @@
-package com.basket.sample.scango.data.feature.basket.repository.datasource.api.model
+package com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.v1.dto
 
-import com.basket.sample.scango.domain.feature.user.common.model.UserId
+import com.basket.sample.scango.domain.common.model.UserId
 import kotlinx.serialization.Serializable
 
 @Serializable

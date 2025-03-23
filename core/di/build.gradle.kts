@@ -27,7 +27,6 @@ kotlin {
                 implementation(project(":presentation"))
                 implementation(project(":ktime"))
                 implementation(project(":data"))
-                implementation(libs.ktor.client.core)
             }
         }
 

@@ -13,7 +13,7 @@ class TokenLocalDataSourceImpl : TokenLocalDataSource {
 
     override suspend fun getTokenInfo(): Result<TokenInfo, FailureResult<FetchTokenInfoError>> {
         return cachedTokenInfo.toSuccessIfNotNull {
-            FailureResult(UnexpectedError("No token found"))
+            FailureResult(UnexpectedError(message = "No token found"))
         }
     }
 
