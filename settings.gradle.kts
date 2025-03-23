@@ -64,3 +64,6 @@ project(":di").projectDir = file("core/di")
 
 include(":iosApp")
 project(":iosApp").projectDir = file("iosApp")
+
+include(":basket-server")
+project(":basket-server").projectDir = file("server/basket-server")

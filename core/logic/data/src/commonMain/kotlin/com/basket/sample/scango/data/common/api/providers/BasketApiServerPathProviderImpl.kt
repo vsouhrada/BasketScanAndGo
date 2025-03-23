@@ -6,8 +6,8 @@ class BasketApiServerPathProviderImpl : BasketApiServerPathProvider {
 
     override fun provideServerPath(): ServerPath {
         return ServerPath(
-            basePath = "https://basketshop.com:443/",
-            contextPath = "basket-service/rest/basket/v1/"
+            basePath = "http://localhost:8080",
+            contextPath = ""
         )
     }
 }

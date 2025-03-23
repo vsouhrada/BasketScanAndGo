@@ -1,0 +1,82 @@
+[
+  {
+    "id": "product1",
+    "name": "Coca-Cola",
+    "description": "Refreshing carbonated soft drink",
+    "price": 1.99,
+    "imageUrl": "https://example.com/images/coca-cola.jpg",
+    "category": "beverages",
+    "isSpecialOffer": true,
+    "discountPercentage": 10
+  },
+  {
+    "id": "product2",
+    "name": "Bread",
+    "description": "Fresh baked white bread",
+    "price": 2.49,
+    "imageUrl": "https://example.com/images/bread.jpg",
+    "category": "bakery",
+    "isSpecialOffer": false,
+    "discountPercentage": 0
+  },
+  {
+    "id": "product3",
+    "name": "Milk",
+    "description": "Fresh whole milk",
+    "price": 1.79,
+    "imageUrl": "https://example.com/images/milk.jpg",
+    "category": "dairy",
+    "isSpecialOffer": false,
+    "discountPercentage": 0
+  },
+  {
+    "id": "product4",
+    "name": "Apples",
+    "description": "Fresh red apples",
+    "price": 3.99,
+    "imageUrl": "https://example.com/images/apples.jpg",
+    "category": "fruits",
+    "isSpecialOffer": true,
+    "discountPercentage": 15
+  },
+  {
+    "id": "product5",
+    "name": "Chicken Breast",
+    "description": "Fresh boneless chicken breast",
+    "price": 5.99,
+    "imageUrl": "https://example.com/images/chicken.jpg",
+    "category": "meat",
+    "isSpecialOffer": false,
+    "discountPercentage": 0
+  },
+  {
+    "id": "product6",
+    "name": "Pasta",
+    "description": "Italian spaghetti pasta",
+    "price": 1.29,
+    "imageUrl": "https://example.com/images/pasta.jpg",
+    "category": "pantry",
+    "isSpecialOffer": false,
+    "discountPercentage": 0
+  },
+  {
+    "id": "product7",
+    "name": "Tomatoes",
+    "description": "Fresh red tomatoes",
+    "price": 2.99,
+    "imageUrl": "https://example.com/images/tomatoes.jpg",
+    "category": "vegetables",
+    "isSpecialOffer": false,
+    "discountPercentage": 0
+  },
+  {
+    "id": "product8",
+    "name": "Ice Cream",
+    "description": "Vanilla ice cream",
+    "price": 4.99,
+    "imageUrl": "https://example.com/images/ice-cream.jpg",
+    "category": "frozen",
+    "isSpecialOffer": true,
+    "discountPercentage": 20
+  }
+]

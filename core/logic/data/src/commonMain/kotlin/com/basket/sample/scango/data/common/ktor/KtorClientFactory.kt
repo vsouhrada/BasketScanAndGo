@@ -5,7 +5,15 @@ import com.basket.sample.scango.data.common.api.providers.TokenAuthProvider
 import com.basket.sample.scango.data.common.ktor.config.ApiConfig
 import com.basket.sample.scango.data.common.ktor.config.ApiLogLevel
 import com.basket.sample.scango.data.common.ktor.config.ApiLogger
+import com.basket.sample.scango.data.core.api.rest.exception.BasketRequestException
+import com.basket.sample.scango.data.core.api.rest.exception.BasketRequestTimeoutException
+import com.basket.sample.scango.data.core.api.rest.model.BasketRequestErrorData
 import io.ktor.client.HttpClient
+import io.ktor.client.network.sockets.ConnectTimeoutException
+import io.ktor.client.network.sockets.SocketTimeoutException
+import io.ktor.client.plugins.ClientRequestException
+import io.ktor.client.plugins.HttpRequestTimeoutException
+import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.auth.Auth
 import io.ktor.client.plugins.auth.authProviders
@@ -19,6 +27,7 @@ import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.logging.SIMPLE
+import io.ktor.client.statement.bodyAsText
 import io.ktor.http.HttpHeaders
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.util.appendIfNameAbsent
@@ -32,10 +41,33 @@ open class KtorClientFactory(
 ) {
     private var bearerTokenStorage: BearerTokens? = null
 
-    @OptIn(ExperimentalSerializationApi::class)
     fun build(apiConfig: ApiConfig) =
         HttpClient {
             expectSuccess = true
+
+            HttpResponseValidator {
+                handleResponseExceptionWithRequest { exception, _ ->
+                    when (exception) {
+                        is ClientRequestException -> { // Handle 4xx errors
+                            parseError(exception.response.bodyAsText())?.let {
+                                throw BasketRequestException(
+                                    errorCode = exception.response.status.value,
+                                    errorData = it,
+                                )
+                            }
+                        }
+
+                        is ConnectTimeoutException,
+                        is SocketTimeoutException,
+                        is HttpRequestTimeoutException,
+                            -> {
+                            throw BasketRequestTimeoutException(exception)
+                        }
+
+                        else -> return@handleResponseExceptionWithRequest
+                    }
+                }
+            }
 
             defaultRequest {
                 with(apiConfig) {
@@ -75,19 +107,7 @@ open class KtorClientFactory(
             }
 
             install(ContentNegotiation) {
-                json(
-                    Json {
-                        ignoreUnknownKeys = true
-                        prettyPrint = true
-                        isLenient = true
-                        explicitNulls = false
-                        encodeDefaults = true
-
-                        getSerializersModule()?.let { module ->
-                            serializersModule = module
-                        }
-                    },
-                )
+                json(jsonObject)
             }
 
             if (apiConfig.enableNetworkLogs) {
@@ -105,6 +125,28 @@ open class KtorClientFactory(
             }
 
         }
+
+    @OptIn(ExperimentalSerializationApi::class)
+    private val jsonObject =
+        Json {
+            ignoreUnknownKeys = true
+            prettyPrint = true
+            isLenient = true
+            explicitNulls = false
+            allowSpecialFloatingPointValues = true
+
+            getSerializersModule()?.let { module ->
+                serializersModule = module
+            }
+        }
+
+    private fun parseError(bodyText: String): BasketRequestErrorData? {
+        return try {
+            jsonObject.decodeFromString<BasketRequestErrorData>(bodyText)
+        } catch (ex: Exception) {
+            null
+        }
+    }
 
     /**
      * Resets the stored authentication tokens and clears the token from the HTTP client.
