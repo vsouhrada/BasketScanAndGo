@@ -7,9 +7,8 @@ import com.basket.sample.scango.domain.error.SaveActiveUserError
 import com.basket.sample.scango.domain.feature.user.common.repository.UserRepository
 
 class SaveActiveUserUseCaseImpl(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
 ) : SaveActiveUserUseCase() {
-
     override suspend fun doWork(params: SaveActiveUserRequest): Result<Unit, FailureResult<SaveActiveUserError>> {
         return userRepository.saveActiveUser(params.currentUser).toSuccess()
     }

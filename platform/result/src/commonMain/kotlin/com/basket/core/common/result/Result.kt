@@ -16,7 +16,6 @@ import kotlin.contracts.contract
  * @since 1.0.0
  */
 sealed class Result<out T, out E> {
-
     data class Success<T>(val data: T) : Result<T, Nothing>() {
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
@@ -27,11 +26,9 @@ sealed class Result<out T, out E> {
                 false
             }
         }
-
     }
 
     data class Failure<out E>(val error: E) : Result<Nothing, E>() {
-
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
             if (other !is Result<*, *>) return false
@@ -44,12 +41,9 @@ sealed class Result<out T, out E> {
     }
 
     companion object {
+        fun <T> success(data: T): Result<T, Nothing> = Success(data = data)
 
-        fun <T> success(data: T): Result<T, Nothing> =
-            Success(data = data)
-
-        fun <E> failure(error: E): Result<Nothing, E> =
-            Failure(error)
+        fun <E> failure(error: E): Result<Nothing, E> = Failure(error)
 
         /* fun <E> failure(
              errorResult: ErrorResult<E>,
@@ -68,7 +62,6 @@ sealed class Result<out T, out E> {
     override fun hashCode(): Int {
         return this::class.hashCode()
     }
-
 
     /*override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -190,7 +183,7 @@ sealed class Result<out T, out E> {
      * @return the results of applying the function
      * @since 1.0.0
      */
-    inline fun <C> fold(onSuccess: (T) -> C, onFailure: (E) -> C): C {
+    inline fun <C> fold(onSuccess: (T) -> C, onFailure: (E) -> C,): C {
         return when (this) {
             is Success -> onSuccess(data)
             is Failure -> onFailure(error)
@@ -246,10 +239,7 @@ sealed class Result<out T, out E> {
     /**
      * @since 0.2.0
      */
-    inline fun <S : Any, R> map(
-        transformSuccess: (T) -> S,
-        transformError: (E) -> R,
-    ): Result<S, R> {
+    inline fun <S : Any, R> map(transformSuccess: (T) -> S, transformError: (E) -> R,): Result<S, R> {
         return when (this) {
             is Success -> Success(data = transformSuccess(data))
             is Failure -> Failure(error = transformError(error))
@@ -271,9 +261,7 @@ sealed class Result<out T, out E> {
     /**
      * @since 0.2.0
      */
-    inline infix fun <R> mapFailure(
-        flatMapAction: (Failure<E>) -> Result<Nothing, R>,
-    ): Result<T, R> {
+    inline infix fun <R> mapFailure(flatMapAction: (Failure<E>) -> Result<Nothing, R>): Result<T, R> {
         return when (this) {
             is Success -> this
             is Failure -> flatMapAction(this)
@@ -293,9 +281,7 @@ sealed class Result<out T, out E> {
     /**
      * @since 0.2.0
      */
-    inline fun <S : Any, R> mapFull(
-        transform: (Result<T, E>) -> Result<S, R>,
-    ): Result<S, R> {
+    inline fun <S : Any, R> mapFull(transform: (Result<T, E>) -> Result<S, R>): Result<S, R> {
         return transform(this)
     }
 
@@ -312,7 +298,7 @@ sealed class Result<out T, out E> {
                 ), this.data as S
             )
 
- */
+     */
 }
 
 /**
@@ -321,11 +307,10 @@ sealed class Result<out T, out E> {
  * @param f The function to bind across [Success].
  * @since 1.0.0
  */
-inline fun <E, T, C> Result<T, E>.flatMap(f: (T) -> Result<C, E>): Result<C, E> =
-    when (this) {
-        is Success -> f(this.data)
-        is Result.Failure -> this
-    }
+inline fun <E, T, C> Result<T, E>.flatMap(f: (T) -> Result<C, E>): Result<C, E> = when (this) {
+    is Success -> f(this.data)
+    is Result.Failure -> this
+}
 
 /**
  * Chains an action on the success of the current Result. Used to call other functions on success of this [Result].
@@ -419,7 +404,7 @@ inline infix fun <T, E, S> Result<T, E>.chain(chainAction: (T) -> Result<S, E>):
 inline fun <T, E, S> Result<T, E>.chainIfPredicate(
     predicate: (T) -> Boolean,
     chainAction: (T) -> Result<S, E>,
-    default: (T) -> Result<S, E>
+    default: (T) -> Result<S, E>,
 ): Result<S, E> {
     return when (this) {
         is Success -> {

@@ -21,7 +21,6 @@ import kotlin.jvm.JvmStatic
  */
 @Serializable(with = OffsetDateTimeSerializers::class)
 public class OffsetDateTime private constructor(val dateTime: LocalDateTime, val offset: FixedOffsetTimeZone) {
-
     override fun toString(): String {
         return if (offset.offset.totalSeconds == 0) {
             "${dateTime}Z"
@@ -59,7 +58,6 @@ public class OffsetDateTime private constructor(val dateTime: LocalDateTime, val
     override fun hashCode() = dateTime.hashCode()
 
     companion object {
-
         private val zoneColonRegex by lazy {
             Regex(""".*[+\-][0-9]{2}:[0-9]{2}$""")
         }
@@ -73,14 +71,15 @@ public class OffsetDateTime private constructor(val dateTime: LocalDateTime, val
          */
         @JvmStatic
         public fun parse(string: String): OffsetDateTime = when {
-            string.contains('Z') -> OffsetDateTime(
-                LocalDateTime.parse(string.substringBefore('Z')),
-                FixedOffsetTimeZone(TimeZone.UTC.offsetAt(Instant.fromEpochMilliseconds(0)))
-            )
+            string.contains('Z') ->
+                OffsetDateTime(
+                    LocalDateTime.parse(string.substringBefore('Z')),
+                    FixedOffsetTimeZone(TimeZone.UTC.offsetAt(Instant.fromEpochMilliseconds(0))),
+                )
             string.contains('z') -> {
                 OffsetDateTime(
                     LocalDateTime.parse(string.substringBefore('z')),
-                    TimeZone.UTC.offsetAt(Instant.fromEpochMilliseconds(0)).asTimeZone()
+                    TimeZone.UTC.offsetAt(Instant.fromEpochMilliseconds(0)).asTimeZone(),
                 )
             }
             zoneColonRegex.containsMatchIn(string) -> {
@@ -90,7 +89,7 @@ public class OffsetDateTime private constructor(val dateTime: LocalDateTime, val
                 val offset = tz.offsetAt(instant)
                 OffsetDateTime(
                     dateTime,
-                    offset.asTimeZone()
+                    offset.asTimeZone(),
                 )
             }
             zoneRegex.containsMatchIn(string) -> {
@@ -100,13 +99,13 @@ public class OffsetDateTime private constructor(val dateTime: LocalDateTime, val
                 val offset = tz.offsetAt(instant)
                 OffsetDateTime(
                     dateTime,
-                    FixedOffsetTimeZone(offset)
+                    FixedOffsetTimeZone(offset),
                 )
             }
             string.contains('T') -> {
                 OffsetDateTime(
                     LocalDateTime.parse(string),
-                    TimeZone.UTC.offsetAt(Instant.fromEpochMilliseconds(0)).asTimeZone()
+                    TimeZone.UTC.offsetAt(Instant.fromEpochMilliseconds(0)).asTimeZone(),
                 )
                 // throw IllegalArgumentException("Date \"$string\" ISO 8601 compatible - Missing TimeZone info!!!")
             }
@@ -117,16 +116,16 @@ public class OffsetDateTime private constructor(val dateTime: LocalDateTime, val
          * Creates an [OffsetDateTime] from an [Instant] in a given [TimeZone] ([TimeZone.UTC] by default).
          */
         @JvmStatic
-        fun ofInstant(instant: Instant, offset: TimeZone = TimeZone.UTC): OffsetDateTime = OffsetDateTime(
+        fun ofInstant(instant: Instant, offset: TimeZone = TimeZone.UTC,): OffsetDateTime = OffsetDateTime(
             instant.toLocalDateTime(offset),
-            offset.offsetAt(instant).asTimeZone()
+            offset.offsetAt(instant).asTimeZone(),
         )
 
         /**
          *
          */
         @JvmStatic
-        fun of(dateTime: LocalDateTime, offset: FixedOffsetTimeZone): OffsetDateTime = OffsetDateTime(dateTime, offset)
+        fun of(dateTime: LocalDateTime, offset: FixedOffsetTimeZone,): OffsetDateTime = OffsetDateTime(dateTime, offset)
 
         @JvmStatic
         @JvmOverloads

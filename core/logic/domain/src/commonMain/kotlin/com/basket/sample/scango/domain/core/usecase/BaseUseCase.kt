@@ -13,7 +13,6 @@ import kotlin.native.ObjCName
  * @since 1.0.0
  */
 abstract class BaseUseCase<out T : Any, in Params> {
-
     /**
      * Executes appropriate implementation of [BaseUseCase],
      * @param params Set of input parameters

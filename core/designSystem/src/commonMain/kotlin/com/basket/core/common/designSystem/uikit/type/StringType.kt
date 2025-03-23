@@ -5,9 +5,8 @@ package com.basket.core.common.designSystem.uikit.type
  */
 data class StringType(
     val value: String,
-    override val fieldConfiguration: StringFieldConfig = StringFieldConfig()
+    override val fieldConfiguration: StringFieldConfig = StringFieldConfig(),
 ) : FieldType<StringFieldConfig> {
-
     override fun toString(): String {
         return value
     }

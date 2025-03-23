@@ -11,7 +11,6 @@ data class CreateBasketScreenState(
 ) : UIState<CreateBasketVo, CreateBasketScreenErrorState>()
 
 sealed class CreateBasketScreenErrorState {
-
     data class UnexpectedError(
         val title: StringResource,
         val message: String,

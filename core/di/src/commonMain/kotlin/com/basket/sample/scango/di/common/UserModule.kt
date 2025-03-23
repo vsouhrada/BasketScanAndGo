@@ -29,27 +29,27 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
-val userModule = module {
+val userModule =
+    module {
 
-    factoryOf(::GetUserUseCaseImpl) bind GetUserUseCase::class
+        factoryOf(::GetUserUseCaseImpl) bind GetUserUseCase::class
 
-    factoryOf(::GetActiveUserUseCaseImpl) bind GetActiveUserUseCase::class
+        factoryOf(::GetActiveUserUseCaseImpl) bind GetActiveUserUseCase::class
 
-    factoryOf(::SaveActiveUserUseCaseImpl) bind SaveActiveUserUseCase::class
+        factoryOf(::SaveActiveUserUseCaseImpl) bind SaveActiveUserUseCase::class
 
-    factoryOf(::FetchTokenUserInfoUseCaseImpl) bind FetchTokenInfoUseCase::class
+        factoryOf(::FetchTokenUserInfoUseCaseImpl) bind FetchTokenInfoUseCase::class
 
-    singleOf(::UserRepositoryImpl) bind UserRepository::class
-    singleOf(::TokenRepositoryImpl) bind TokenRepository::class
+        singleOf(::UserRepositoryImpl) bind UserRepository::class
+        singleOf(::TokenRepositoryImpl) bind TokenRepository::class
 
-    singleOf(::TokenRemoteDataSourceImpl) bind TokenRemoteDataSource::class
-    singleOf(::TokenLocalDataSourceImpl) bind TokenLocalDataSource::class
+        singleOf(::TokenRemoteDataSourceImpl) bind TokenRemoteDataSource::class
+        singleOf(::TokenLocalDataSourceImpl) bind TokenLocalDataSource::class
 
-    singleOf(::UserLocalDataSourceImpl) bind UserLocalDataSource::class
-    singleOf(::UserRemoteDataSourceImpl) bind UserRemoteDataSource::class
+        singleOf(::UserLocalDataSourceImpl) bind UserLocalDataSource::class
+        singleOf(::UserRemoteDataSourceImpl) bind UserRemoteDataSource::class
 
-    singleOf(::UserApiImpl) bind UserApi::class
+        singleOf(::UserApiImpl) bind UserApi::class
 
-    factoryOf(::UserDtoToDoMapperImpl) bind UserDtoToDoMapper::class
-
-}
+        factoryOf(::UserDtoToDoMapperImpl) bind UserDtoToDoMapper::class
+    }

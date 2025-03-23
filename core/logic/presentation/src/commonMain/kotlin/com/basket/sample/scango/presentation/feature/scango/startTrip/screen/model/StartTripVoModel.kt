@@ -5,4 +5,4 @@ import com.basket.core.common.designSystem.uikit.widget.Field
 
 data class StartTripVo(
     val infoText: Field<String>,
-): DataModel()
+) : DataModel()

@@ -4,7 +4,8 @@ import com.basket.sample.scango.presentation.feature.scango.startTrip.viewmodel.
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
-val startTripModule = module {
+val startTripModule =
+    module {
 
-    viewModelOf(::StartTripViewModel)
-}
+        viewModelOf(::StartTripViewModel)
+    }

@@ -32,11 +32,11 @@ data class UserResponse(
 @Serializable
 data class LoginRequest(
     val username: String,
-    val password: String
+    val password: String,
 )
 
 @Serializable
 data class TokenResponse(
     val accessToken: String,
-    val refreshToken: String
+    val refreshToken: String,
 )

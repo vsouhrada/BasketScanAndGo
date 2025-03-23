@@ -6,7 +6,7 @@ import com.basket.sample.scango.domain.common.model.UserId
 
 data class LoginVo(
     val email: Field<String>,
-    val password: Field<String>
+    val password: Field<String>,
 ) : DataModel()
 
 data class UserCredentials(

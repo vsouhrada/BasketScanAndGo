@@ -8,7 +8,6 @@ import com.basket.sample.scango.domain.error.GetActiveUserError
 import com.basket.sample.scango.domain.error.GetUserError
 
 interface UserRepository {
-
     fun saveActiveUser(currentUser: User)
 
     fun getLoggedUser(): Result<User, FailureResult<GetActiveUserError>>

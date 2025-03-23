@@ -1,7 +1,6 @@
 package com.basket.core.common.designSystem.uikit.screen
 
 abstract class UIState<T : DataModel, E> {
-
     open val isLoading: Boolean = false
     open val data: T? = null
     open val error: E? = null

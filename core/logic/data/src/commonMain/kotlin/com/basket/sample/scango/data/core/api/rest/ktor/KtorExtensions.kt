@@ -32,21 +32,20 @@ suspend inline fun <reified DTO : Any> networkCall(
 fun Throwable.toFailureErrorResult(): Result<Nothing, ErrorResult<ErrorDto>> {
     return Result.failure(
         error =
-            when (this) {
-                is BasketRequestException -> this.toError()
-                is BasketRequestTimeoutException -> this.toError()
+        when (this) {
+            is BasketRequestException -> this.toError()
+            is BasketRequestTimeoutException -> this.toError()
 
-                else -> {
-                    ErrorResult(
-                        error =
-                            ErrorDto(
-                                problem = null,
-                            ),
-                        throwable = this,
-                        message = this.message,
-                    )
-                }
-            },
+            else -> {
+                ErrorResult(
+                    error =
+                    ErrorDto(
+                        problem = null,
+                    ),
+                    throwable = this,
+                    message = this.message,
+                )
+            }
+        },
     )
 }
-

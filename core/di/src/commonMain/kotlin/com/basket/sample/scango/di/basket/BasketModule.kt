@@ -19,14 +19,15 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
-val basketModule = module {
+val basketModule =
+    module {
 
-    singleOf(::BasketRepositoryImpl) bind BasketRepository::class
-    singleOf(::BasketLocalDataSourceImpl) bind BasketLocalDataSource::class
-    singleOf(::BasketRemoteDataSourceImpl) bind BasketRemoteDataSource::class
+        singleOf(::BasketRepositoryImpl) bind BasketRepository::class
+        singleOf(::BasketLocalDataSourceImpl) bind BasketLocalDataSource::class
+        singleOf(::BasketRemoteDataSourceImpl) bind BasketRemoteDataSource::class
 
-    factoryOf(::SetActiveBasketUseCaseImpl) bind SetActiveBasketUseCase::class
-    factoryOf(::GetActiveBasketUseCaseImpl) bind GetActiveBasketUseCase::class
-    factoryOf(::ObserveActiveBasketUseCaseImpl) bind ObserveActiveBasketUseCase::class
-    factoryOf(::CreateBasketUseCaseImpl) bind CreateBasketUseCase::class
-}
+        factoryOf(::SetActiveBasketUseCaseImpl) bind SetActiveBasketUseCase::class
+        factoryOf(::GetActiveBasketUseCaseImpl) bind GetActiveBasketUseCase::class
+        factoryOf(::ObserveActiveBasketUseCaseImpl) bind ObserveActiveBasketUseCase::class
+        factoryOf(::CreateBasketUseCaseImpl) bind CreateBasketUseCase::class
+    }

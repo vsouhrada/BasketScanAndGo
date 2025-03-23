@@ -7,9 +7,7 @@ import com.basket.sample.scango.domain.feature.basket.create.usecase.CreateBaske
 import com.basket.sample.scango.domain.feature.basket.create.usecase.CreateBasketResponse
 
 interface BasketRemoteDataSource {
-
     suspend fun createBasket(
         request: CreateBasketRequest
     ): Result<CreateBasketResponse, FailureResult<CreateBasketError>>
-
 }

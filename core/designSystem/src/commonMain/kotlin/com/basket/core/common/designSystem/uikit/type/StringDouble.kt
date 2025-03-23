@@ -3,9 +3,8 @@ package com.basket.core.common.designSystem.uikit.type
 data class StringDouble(
     val value: String,
     override val fieldConfiguration: DoubleFieldConfig =
-        DoubleFieldConfig(afterDecimal = 2, beforeDecimal = null)
+        DoubleFieldConfig(afterDecimal = 2, beforeDecimal = null),
 ) : FieldType<DoubleFieldConfig> {
-
     fun getDoubleOrNull() = value.toDoubleOrNull()
 
     fun getDouble() = value.toDouble()

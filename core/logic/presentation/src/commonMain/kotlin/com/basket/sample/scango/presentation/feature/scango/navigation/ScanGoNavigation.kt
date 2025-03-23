@@ -8,7 +8,6 @@ sealed class ScanGoNavigation(
     override val route: String,
     // override val arguments: List<@Contextual NamedNavArgument>
 ) : ScreenNavigation {
-
     @Serializable
     data object StartTrip : ScanGoNavigation(route = "StartTrip")
 

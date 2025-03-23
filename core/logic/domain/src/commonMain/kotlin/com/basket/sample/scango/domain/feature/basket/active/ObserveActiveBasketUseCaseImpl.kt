@@ -9,9 +9,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class ObserveActiveBasketUseCaseImpl(
-    private val basketRepository: BasketRepository
+    private val basketRepository: BasketRepository,
 ) : ObserveActiveBasketUseCase() {
-
     override suspend fun doWork(
         params: Unit
     ): Flow<Result<ObserveActiveBasketResponse, FailureResult<ObserveActiveBasketError>>> {

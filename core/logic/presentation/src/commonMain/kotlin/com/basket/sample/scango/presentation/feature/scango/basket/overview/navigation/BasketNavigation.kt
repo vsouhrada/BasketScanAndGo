@@ -4,7 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 sealed interface BasketNavigation {
-
     @Serializable
     data object BasketOverview : BasketNavigation
 }

@@ -2,9 +2,11 @@ package com.basket.server.plugins
 
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
-import io.ktor.server.application.*
-import io.ktor.server.auth.*
-import io.ktor.server.auth.jwt.*
+import io.ktor.server.application.Application
+import io.ktor.server.application.install
+import io.ktor.server.auth.Authentication
+import io.ktor.server.auth.jwt.JWTPrincipal
+import io.ktor.server.auth.jwt.jwt
 
 fun Application.configureSecurity() {
     // JWT configuration
@@ -21,19 +23,21 @@ fun Application.configureSecurity() {
                     .require(Algorithm.HMAC256(jwtSecret))
                     .withAudience(jwtAudience)
                     .withIssuer(jwtIssuer)
-                    .build()
+                    .build(),
             )
             validate { credential ->
                 if (credential.payload.audience.contains(jwtAudience)) {
                     JWTPrincipal(credential.payload)
-                } else null
+                } else {
+                    null
+                }
             }
         }
     }
 }
 
 // Helper function to generate JWT token
-fun generateJwtToken(userId: String, jwtSecret: String, jwtIssuer: String, jwtAudience: String): String {
+fun generateJwtToken(userId: String, jwtSecret: String, jwtIssuer: String, jwtAudience: String,): String {
     return JWT.create()
         .withAudience(jwtAudience)
         .withIssuer(jwtIssuer)

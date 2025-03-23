@@ -52,9 +52,8 @@ class LoginScreen(
     val actionState: SharedFlow<LoginScreenActionState>,
     val navigateToDashboard: () -> Unit,
     val navigateToRegister: () -> Unit,
-    val navigateToSplash: () -> Unit
+    val navigateToSplash: () -> Unit,
 ) : Screen {
-
     @Composable
     override fun Render() {
         LaunchedEffect(Unit) {
@@ -67,71 +66,77 @@ class LoginScreen(
 
         Scaffold(
             content = { paddingValues ->
-                RenderData(
-
-                )
-            }
+                RenderData()
+            },
         )
     }
 
     @Composable
     private fun RenderData() {
         Surface(modifier = Modifier.fillMaxSize()) {
-            val inputValueID = remember {
-                mutableStateOf(state.value.data?.email?.value ?: "")
-            }
-            val inputValuePass = remember {
-                mutableStateOf("")
-            }
+            val inputValueID =
+                remember {
+                    mutableStateOf(state.value.data?.email?.value ?: "")
+                }
+            val inputValuePass =
+                remember {
+                    mutableStateOf("")
+                }
             Column(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Box(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .fillMaxWidth()
                         .fillMaxHeight(0.3f)
                         .clip(
-                            shape = RoundedCornerShape(
+                            shape =
+                            RoundedCornerShape(
                                 bottomStart = 25.dp,
-                                bottomEnd = 25.dp
-                            )
+                                bottomEnd = 25.dp,
+                            ),
                         )
                         .background(
-                            brush = baseGradientBackground()
+                            brush = baseGradientBackground(),
                         ),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     Image(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .fillMaxSize(0.6f)
                             .offset(y = ((-20).dp)),
                         painter = painterResource(resource = Res.drawable.ic_shopping_basket),
                         contentDescription = "backgroundContentDescription",
-                        contentScale = ContentScale.Fit
+                        contentScale = ContentScale.Fit,
                     )
                 }
                 Column(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .offset(y = -20.dp)
-                        .width(290.dp).requiredHeight(360.dp)
+                        .width(290.dp).requiredHeight(360.dp),
                 ) {
                     Card(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .width(290.dp),
                         shape = RoundedCornerShape(25.dp),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 15.dp)
+                        elevation = CardDefaults.cardElevation(defaultElevation = 15.dp),
                     ) {
                         Column(
-                            modifier = Modifier
+                            modifier =
+                            Modifier
                                 .padding(horizontal = 30.dp)
                                 .padding(top = 30.dp, bottom = 50.dp),
-                            horizontalAlignment = Alignment.CenterHorizontally
+                            horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
                             Text(
                                 text = stringResource(Res.string.main_home_title),
                                 style = MaterialTheme.typography.titleMedium,
-                                modifier = Modifier.padding(bottom = 16.dp)
+                                modifier = Modifier.padding(bottom = 16.dp),
                             )
                             CustomInputField(inputValue = inputValueID, type = "uid")
                             CustomInputField(inputValue = inputValuePass, type = "password")
@@ -142,15 +147,16 @@ class LoginScreen(
                         modifier = Modifier.offset(y = (-24).dp).align(Alignment.CenterHorizontally),
                         text = stringResource(Res.string.sign_in),
                         textColor = Color.White,
-                        gradient = buttonGradientBackground()
+                        gradient = buttonGradientBackground(),
                     ) {
                         onSendEvent(
                             LoginScreenEvent.AuthorizeUser(
-                                userCredentials = UserCredentials(
+                                userCredentials =
+                                UserCredentials(
                                     userId = inputValueID.value,
-                                    password = inputValuePass.value
-                                )
-                            )
+                                    password = inputValuePass.value,
+                                ),
+                            ),
                         )
                     }
                 }

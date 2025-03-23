@@ -13,5 +13,5 @@ data class CreateBasketRequestDto(
 
 @Serializable
 data class CreateBasketResponseDto(
-    val basket: BasketDto
+    val basket: BasketDto,
 )

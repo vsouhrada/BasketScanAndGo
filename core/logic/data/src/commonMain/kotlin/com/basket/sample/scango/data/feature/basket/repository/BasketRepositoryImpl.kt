@@ -21,7 +21,6 @@ class BasketRepositoryImpl(
     private val basketLocalDataSource: BasketLocalDataSource,
     private val basketRemoteDataSource: BasketRemoteDataSource,
 ) : BasketRepository {
-
     override suspend fun createBasket(
         request: CreateBasketRequest
     ): Result<CreateBasketResponse, FailureResult<CreateBasketError>> {
@@ -32,7 +31,9 @@ class BasketRepositoryImpl(
         return basketLocalDataSource.observeActiveBasket()
     }
 
-    override suspend fun setActiveBasket(request: SetActiveBasketRequest): Result<SetActiveBasketResponse, FailureResult<SetActiveBasketError>> {
+    override suspend fun setActiveBasket(
+        request: SetActiveBasketRequest,
+    ): Result<SetActiveBasketResponse, FailureResult<SetActiveBasketError>> {
         return basketLocalDataSource.setActiveBasket(basket = request.basket).chainResult {
             SetActiveBasketResponse(basket = it)
         }

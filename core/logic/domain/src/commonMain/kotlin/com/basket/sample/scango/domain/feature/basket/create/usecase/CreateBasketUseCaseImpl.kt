@@ -8,7 +8,6 @@ import com.basket.sample.scango.domain.feature.basket.common.repository.BasketRe
 class CreateBasketUseCaseImpl(
     private val basketRepository: BasketRepository,
 ) : CreateBasketUseCase() {
-
     override suspend fun doWork(
         params: CreateBasketRequest
     ): Result<CreateBasketResponse, FailureResult<CreateBasketError>> {

@@ -11,7 +11,6 @@ import kotlin.native.ObjCName
  * Use cases are the entry points to the domain layer.
  */
 abstract class ObservableUseCaseNoParams<out T : Any, E : Error> : ObservableUseCase<T, E, Unit>() {
-
     @ObjCName(name = "callAsFunction")
     suspend operator fun invoke() = super.invoke(Unit)
 }

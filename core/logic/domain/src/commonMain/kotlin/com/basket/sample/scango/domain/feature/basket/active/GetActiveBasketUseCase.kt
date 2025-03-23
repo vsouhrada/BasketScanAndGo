@@ -5,7 +5,7 @@ import com.basket.sample.scango.domain.core.usecase.UseCaseNoParams
 import com.basket.sample.scango.domain.error.GetActiveBasketError
 
 data class GetActiveBasketResponse(
-    val basket: Basket
+    val basket: Basket,
 )
 
 abstract class GetActiveBasketUseCase : UseCaseNoParams<GetActiveBasketResponse, GetActiveBasketError>()

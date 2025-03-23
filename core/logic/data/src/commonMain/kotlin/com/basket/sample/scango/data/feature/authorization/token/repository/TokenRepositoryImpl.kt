@@ -13,9 +13,8 @@ import kotlinx.coroutines.withContext
 
 class TokenRepositoryImpl(
     private val tokenLocalDataSource: TokenLocalDataSource,
-    private val tokenRemoteDataSource: TokenRemoteDataSource
+    private val tokenRemoteDataSource: TokenRemoteDataSource,
 ) : TokenRepository {
-
     private val logger = getKLogger { }
 
     override suspend fun refreshAccessToken(): Result<TokenInfo, FailureResult<FetchTokenInfoError>> {

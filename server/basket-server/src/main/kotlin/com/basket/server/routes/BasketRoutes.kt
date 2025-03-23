@@ -1,15 +1,20 @@
 package com.basket.server.routes
 
-import com.basket.server.models.*
+import com.basket.server.models.AddItemRequest
+import com.basket.server.models.Basket
+import com.basket.server.models.BasketItem
+import com.basket.server.models.CreateBasketRequest
+import com.basket.server.models.CreateBasketResponse
+import com.basket.server.models.Product
 import com.basket.server.plugins.ErrorResponse
-import io.ktor.http.*
-import io.ktor.server.application.*
-import io.ktor.server.auth.*
-import io.ktor.server.auth.jwt.*
-import io.ktor.server.request.*
-import io.ktor.server.response.*
-import io.ktor.server.routing.*
-import java.util.*
+import io.ktor.http.HttpStatusCode
+import io.ktor.server.request.receive
+import io.ktor.server.response.respond
+import io.ktor.server.routing.Route
+import io.ktor.server.routing.get
+import io.ktor.server.routing.post
+import io.ktor.server.routing.route
+import java.util.UUID
 import java.util.concurrent.ConcurrentHashMap
 
 // In-memory storage for baskets (in a real app, this would be a database)
@@ -25,11 +30,12 @@ fun Route.basketRoutes() {
             val basketId = UUID.randomUUID().toString()
 
             // Create the basket
-            val basket = Basket(
-                id = basketId,
-                customerId = request.customerId,
-                sharedBasket = request.sharedBasket
-            )
+            val basket =
+                Basket(
+                    id = basketId,
+                    customerId = request.customerId,
+                    sharedBasket = request.sharedBasket,
+                )
 
             // Store the basket
             baskets[basketId] = basket
@@ -37,7 +43,7 @@ fun Route.basketRoutes() {
             // Return the created basket
             call.respond(
                 HttpStatusCode.Created,
-                CreateBasketResponse(basket = basket)
+                CreateBasketResponse(basket = basket),
             )
         }
 
@@ -47,10 +53,11 @@ fun Route.basketRoutes() {
                 call.parameters["id"] ?: return@get call.respond(HttpStatusCode.BadRequest, "Missing basket ID")
 
             // Find the basket
-            val basket = baskets[basketId] ?: return@get call.respond(
-                HttpStatusCode.NotFound,
-                ErrorResponse(status = HttpStatusCode.NotFound.value, message = "Basket not found")
-            )
+            val basket =
+                baskets[basketId] ?: return@get call.respond(
+                    HttpStatusCode.NotFound,
+                    ErrorResponse(status = HttpStatusCode.NotFound.value, message = "Basket not found"),
+                )
 
             // Return the basket
             call.respond(HttpStatusCode.OK, basket)
@@ -71,17 +78,19 @@ fun Route.basketRoutes() {
             val products = kotlinx.serialization.json.Json.decodeFromString<List<Product>>(productsJson)
 
             // Find the product
-            val product = products.find { it.id == request.productId } ?: return@post call.respond(
-                HttpStatusCode.NotFound,
-                "Product not found"
-            )
+            val product =
+                products.find { it.id == request.productId } ?: return@post call.respond(
+                    HttpStatusCode.NotFound,
+                    "Product not found",
+                )
 
             // Create the basket item
-            val basketItem = BasketItem(
-                productId = request.productId,
-                quantity = request.quantity,
-                price = product.price
-            )
+            val basketItem =
+                BasketItem(
+                    productId = request.productId,
+                    quantity = request.quantity,
+                    price = product.price,
+                )
 
             // Add the item to the basket
             val updatedItems = basket.items.toMutableList()

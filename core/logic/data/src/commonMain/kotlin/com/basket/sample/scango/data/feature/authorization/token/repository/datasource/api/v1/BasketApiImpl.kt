@@ -9,7 +9,6 @@ import io.ktor.client.HttpClient
 class BasketApiImpl(
     override val client: HttpClient,
 ) : BaseApi(client = client), BasketApi {
-
     /**
      * Creates a new basket based on the provided request data.
      *

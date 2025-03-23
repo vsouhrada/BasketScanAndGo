@@ -4,7 +4,6 @@ import com.basket.core.common.result.Result
 import com.basket.core.common.result.failure.Error
 import com.basket.core.common.result.failure.FailureResult
 
-
 /**
  * Abstract class for a Use Case (Interactor in terms of Clean Architecture).
  * This class represents an execution unit for different use cases (this means any use case

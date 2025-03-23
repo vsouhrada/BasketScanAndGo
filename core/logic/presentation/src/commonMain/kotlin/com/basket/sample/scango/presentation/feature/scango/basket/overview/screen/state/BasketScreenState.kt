@@ -6,13 +6,12 @@ import com.basket.sample.scango.presentation.feature.scango.basket.overview.scre
 data class BasketScreenState(
     override val data: BasketVo? = null,
     override val isLoading: Boolean = false,
-    override val error: BasketScreenErrorState? = null
+    override val error: BasketScreenErrorState? = null,
 ) : UIState<BasketVo, BasketScreenErrorState>()
 
 sealed class BasketScreenErrorState {
-
     data class UnexpectedError(
         val title: String,
-        val message: String
+        val message: String,
     ) : BasketScreenErrorState()
 }

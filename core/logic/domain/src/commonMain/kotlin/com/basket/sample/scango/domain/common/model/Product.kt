@@ -8,5 +8,5 @@ data class Product(
     val imageUrl: String,
     val category: String,
     val isSpecialOffer: Boolean = false,
-    val discountPercentage: Int = 0
+    val discountPercentage: Int = 0,
 )

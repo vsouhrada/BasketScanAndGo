@@ -15,22 +15,21 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
-
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun SimpleImageButton(image: DrawableResource, onClick: () -> Unit = {}) {
+fun SimpleImageButton(image: DrawableResource, onClick: () -> Unit = {},) {
     Button(
         modifier = Modifier.size(70.dp),
         onClick = onClick,
         colors = DefaultImageButtonTheme(),
         border = BorderStroke(1.dp, BorderColor),
         elevation = ButtonDefaults.buttonElevation(0.dp),
-        shape = CircleShape
+        shape = CircleShape,
     ) {
         Image(
             painterResource(image),
             contentDescription = null,
-            modifier = Modifier.size(70.dp)
+            modifier = Modifier.size(70.dp),
         )
     }
 }

@@ -16,33 +16,31 @@ sealed class DashboardNavigation(
     val selectedIcon: DrawableResource,
     val unSelectedIcon: DrawableResource,
 ) {
-
     data object Overview : DashboardNavigation(
         route = "Home",
         title = Res.string.main_home_title,
         selectedIcon = Res.drawable.home,
-        unSelectedIcon = Res.drawable.home_border
+        unSelectedIcon = Res.drawable.home_border,
     )
 
     data object Catalog : DashboardNavigation(
         route = "Catalog",
         title = Res.string.main_catalog_title,
         selectedIcon = Res.drawable.home,
-        unSelectedIcon = Res.drawable.home_border
+        unSelectedIcon = Res.drawable.home_border,
     )
 
     data object ScanGo : DashboardNavigation(
         route = "ScanGo",
         title = Res.string.main_scango_title,
         selectedIcon = Res.drawable.home,
-        unSelectedIcon = Res.drawable.home_border
+        unSelectedIcon = Res.drawable.home_border,
     )
 
     data object Profile : DashboardNavigation(
         route = "Profile",
         title = Res.string.main_profile_title,
         selectedIcon = Res.drawable.home,
-        unSelectedIcon = Res.drawable.home_border
+        unSelectedIcon = Res.drawable.home_border,
     )
 }
-

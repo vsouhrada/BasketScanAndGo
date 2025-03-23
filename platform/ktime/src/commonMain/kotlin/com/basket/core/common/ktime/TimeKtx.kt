@@ -30,9 +30,10 @@ import kotlinx.datetime.toLocalDateTime
 import kotlin.jvm.JvmName
 
 fun LocalDateTime.formatddMMYY(timeZone: TimeZone? = null): String {
-    val dateTime = timeZone?.let {
-        this.toInstant(UtcOffset.ZERO).toLocalDateTime(it)
-    } ?: this
+    val dateTime =
+        timeZone?.let {
+            this.toInstant(UtcOffset.ZERO).toLocalDateTime(it)
+        } ?: this
     val day = dateTime.dayOfMonth.toString().padStart(2, '0')
     val month = dateTime.monthNumber.toString().padStart(2, '0')
     val year = dateTime.year.toString().takeLast(2)
@@ -44,26 +45,30 @@ fun LocalDateTime.formatFullDayWithYear(
     startWithYear: Boolean = false,
     delimiter: String = "-",
     useFullYear: Boolean = false,
-    timeZone: TimeZone? = null
+    timeZone: TimeZone? = null,
 ): String {
-    val dateTime = timeZone?.let {
-        this.toInstant(UtcOffset.ZERO).toLocalDateTime(it)
-    } ?: this
-    val day = dateTime.dayOfMonth.toString().also {
-        if (useLeadingZeros) {
-            it.padStart(2, '0')
+    val dateTime =
+        timeZone?.let {
+            this.toInstant(UtcOffset.ZERO).toLocalDateTime(it)
+        } ?: this
+    val day =
+        dateTime.dayOfMonth.toString().also {
+            if (useLeadingZeros) {
+                it.padStart(2, '0')
+            }
         }
-    }
-    val month = dateTime.monthNumber.toString().also {
-        if (useLeadingZeros) {
-            it.padStart(2, '0')
+    val month =
+        dateTime.monthNumber.toString().also {
+            if (useLeadingZeros) {
+                it.padStart(2, '0')
+            }
         }
-    }
-    val year = dateTime.year.toString().also {
-        if (!useFullYear) {
-            it.takeLast(2)
+    val year =
+        dateTime.year.toString().also {
+            if (!useFullYear) {
+                it.takeLast(2)
+            }
         }
-    }
 
     return if (startWithYear) {
         "$year$delimiter$month$delimiter$day"
@@ -76,23 +81,26 @@ fun LocalDate.formatFullDayWithYear(
     useLeadingZeros: Boolean = false,
     startWithYear: Boolean = false,
     delimiter: String = ".",
-    useFullYear: Boolean = false
+    useFullYear: Boolean = false,
 ): String {
-    val day = this.dayOfMonth.toString().also {
-        if (useLeadingZeros) {
-            it.padStart(2, '0')
+    val day =
+        this.dayOfMonth.toString().also {
+            if (useLeadingZeros) {
+                it.padStart(2, '0')
+            }
         }
-    }
-    val month = this.monthNumber.toString().also {
-        if (useLeadingZeros) {
-            it.padStart(2, '0')
+    val month =
+        this.monthNumber.toString().also {
+            if (useLeadingZeros) {
+                it.padStart(2, '0')
+            }
         }
-    }
-    val year = this.year.toString().also {
-        if (!useFullYear) {
-            it.takeLast(2)
+    val year =
+        this.year.toString().also {
+            if (!useFullYear) {
+                it.takeLast(2)
+            }
         }
-    }
 
     return if (startWithYear) {
         "$year$delimiter$month$delimiter$day"
@@ -102,9 +110,10 @@ fun LocalDate.formatFullDayWithYear(
 }
 
 fun LocalDateTime.formatYYYYeMMeDDTHHiMMiSS(timeZone: TimeZone? = null): String {
-    val dateTime = timeZone?.let {
-        this.toInstant(UtcOffset.ZERO).toLocalDateTime(it)
-    } ?: this
+    val dateTime =
+        timeZone?.let {
+            this.toInstant(UtcOffset.ZERO).toLocalDateTime(it)
+        } ?: this
     return "${dateTime.year}-" +
         "${dateTime.monthNumber.toString().padStart(2, '0')}-" +
         "${dateTime.dayOfMonth.toString().padStart(2, '0')}T" +
@@ -114,9 +123,10 @@ fun LocalDateTime.formatYYYYeMMeDDTHHiMMiSS(timeZone: TimeZone? = null): String 
 }
 
 fun LocalDateTime.formatHHiMMiSS(timeZone: TimeZone? = null): String {
-    val dateTime = timeZone?.let {
-        this.toInstant(UtcOffset.ZERO).toLocalDateTime(it)
-    } ?: this
+    val dateTime =
+        timeZone?.let {
+            this.toInstant(UtcOffset.ZERO).toLocalDateTime(it)
+        } ?: this
 
     return "${dateTime.hour.toString().padStart(2, '0')}:" +
         "${dateTime.minute.toString().padStart(2, '0')}:" +
@@ -130,17 +140,19 @@ fun LocalTime.formatHHiMMiSS(): String {
 }
 
 fun LocalDateTime.formatYYYYeMMeDDTHHiMMiSSoSSS(timeZone: TimeZone? = null): String {
-    val dateTime = timeZone?.let {
-        this.toInstant(UtcOffset.ZERO).toLocalDateTime(it)
-    } ?: this
+    val dateTime =
+        timeZone?.let {
+            this.toInstant(UtcOffset.ZERO).toLocalDateTime(it)
+        } ?: this
     return "${dateTime.formatYYYYeMMeDDTHHiMMiSS()}." +
         (dateTime.nanosecond / 1000000.0).toInt().toString().padStart(3, '0')
 }
 
 fun LocalDateTime.formatYYYYeMMeDDTHHiMMiSSoSSSZ(timeZone: TimeZone? = null): String {
-    val dateTime = timeZone?.let {
-        this.toInstant(UtcOffset.ZERO).toLocalDateTime(it)
-    } ?: this
+    val dateTime =
+        timeZone?.let {
+            this.toInstant(UtcOffset.ZERO).toLocalDateTime(it)
+        } ?: this
 
     return "${dateTime.formatYYYYeMMeDDTHHiMMiSSoSSS()}Z"
 }
@@ -171,11 +183,11 @@ fun LocalDate.toEpochMilliseconds(timeZone: TimeZone = TimeZone.currentSystemDef
     return atTime(now.time).toInstant(timeZone).toEpochMilliseconds()
 }
 
-fun parseYYYYeMMeDDTHHiMMiSSoSSS(string: String, timeZone: TimeZone): OffsetDateTime {
+fun parseYYYYeMMeDDTHHiMMiSSoSSS(string: String, timeZone: TimeZone,): OffsetDateTime {
     val localDateTime = string.toLocalDateTime()
     return OffsetDateTime.of(
         dateTime = string.toLocalDateTime(),
-        offset = getOffset(instant = localDateTime.toInstant(timeZone), timeZone = timeZone)
+        offset = getOffset(instant = localDateTime.toInstant(timeZone), timeZone = timeZone),
     )
 }
 
@@ -183,19 +195,18 @@ fun parseYYYYeMMeDDTHHiMMiSSoSSSZ(string: String): OffsetDateTime {
     return OffsetDateTime.parse(string = string)
 }
 
-fun parseFromEpochMillis(epochMillis: Long, timeZone: TimeZone): OffsetDateTime {
+fun parseFromEpochMillis(epochMillis: Long, timeZone: TimeZone,): OffsetDateTime {
     val instant = Instant.fromEpochMilliseconds(epochMillis)
     return OffsetDateTime.ofInstant(
         instant = instant,
-        offset = getOffset(instant = instant, timeZone = timeZone)
+        offset = getOffset(instant = instant, timeZone = timeZone),
     )
 }
 
-fun convertMillisToLocalDate(millis: Long) =
-    Instant.fromEpochMilliseconds(millis).toLocalDateTime(
-        TimeZone.currentSystemDefault()
-    ).date
+fun convertMillisToLocalDate(millis: Long) = Instant.fromEpochMilliseconds(millis).toLocalDateTime(
+    TimeZone.currentSystemDefault(),
+).date
 
-private fun getOffset(instant: Instant, timeZone: TimeZone): FixedOffsetTimeZone {
+private fun getOffset(instant: Instant, timeZone: TimeZone,): FixedOffsetTimeZone {
     return timeZone.offsetAt(instant).asTimeZone()
 }

@@ -14,7 +14,6 @@ class UserRepositoryImpl(
     private val localDataSource: UserLocalDataSource,
     private val remoteDataSource: UserRemoteDataSource,
 ) : UserRepository {
-
     override fun saveActiveUser(currentUser: User) {
         return localDataSource.saveActiveUser(currentUser)
     }

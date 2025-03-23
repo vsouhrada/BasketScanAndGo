@@ -7,9 +7,8 @@ import com.basket.sample.scango.presentation.feature.scango.basket.overview.scre
 import kotlinx.coroutines.flow.update
 
 class BasketViewModel : BaseViewModel<BasketScreenState, BasketScreenEvent, BasketScreenActionState>(
-    initialState = BasketScreenState()
+    initialState = BasketScreenState(),
 ) {
-
     override fun sendScreenEvent(event: BasketScreenEvent) {
         when (event) {
             is BasketScreenEvent.SetActiveBasket -> {

@@ -10,9 +10,8 @@ import kotlinx.coroutines.launch
 
 class StartTripViewModel :
     BaseViewModel<StartTripScreenState, StartTripScreenEvent, StartTripActionState>(
-        initialState = StartTripScreenState()
+        initialState = StartTripScreenState(),
     ) {
-
     override fun sendScreenEvent(event: StartTripScreenEvent) {
         when (event) {
             StartTripScreenEvent.OnBeginShoppingEvent -> {

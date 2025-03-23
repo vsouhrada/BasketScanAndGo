@@ -1,11 +1,8 @@
 package com.basket.sample.scango.data.common.api.providers
 
 import com.basket.sample.scango.domain.feature.authorization.model.TokenInfo
-import com.basket.sample.scango.domain.feature.authorization.usecase.FetchTokenInfoUseCase
-import com.basket.core.common.result.Result
 
 class TokenAuthProviderImpl(/*private val fetchTokenInfo: FetchTokenInfoUseCase*/) : TokenAuthProvider {
-
     override suspend fun getAccessToken(): TokenInfo {
         return getTokenInfo()
     }

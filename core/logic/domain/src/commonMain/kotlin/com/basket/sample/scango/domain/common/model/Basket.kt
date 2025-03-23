@@ -9,7 +9,7 @@ data class Basket(
     val sharedBasket: Boolean,
     val items: List<BasketItem> = emptyList(),
     val totalItems: Int = items.sumOf { it.quantity },
-    val totalPrice: Double = items.sumOf { it.totalPrice }
+    val totalPrice: Double = items.sumOf { it.totalPrice },
 )
 
 data class BasketItem(
@@ -18,4 +18,3 @@ data class BasketItem(
     val quantity: Int,
     val totalPrice: Double = product.price * quantity,
 )
-

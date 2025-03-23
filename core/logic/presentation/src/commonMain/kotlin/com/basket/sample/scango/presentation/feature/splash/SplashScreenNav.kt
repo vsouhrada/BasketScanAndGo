@@ -10,7 +10,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.basket.sample.scango.presentation.feature.login.screen.LoginScreen
 import com.basket.sample.scango.presentation.feature.login.viewmodel.LoginViewModel
-import com.basket.sample.scango.presentation.feature.splash.SplashNavigation
 import com.basket.sample.scango.presentation.feature.splash.screen.SplashScreen
 import org.koin.compose.koinInject
 
@@ -21,27 +20,28 @@ fun SplashScreenNav(navigateToMain: () -> Unit) {
     NavHost(
         startDestination = SplashNavigation.Splash.route,
         navController = navigator,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         composable(route = SplashNavigation.Splash.route) {
             SplashScreen(
                 navigateToDashboard = navigateToMain,
                 navigateToLogin = {
                     navigator.navigate(SplashNavigation.Login.route)
-                }
+                },
             ).Render()
         }
         composable(route = SplashNavigation.Login.route) {
             val viewModel: LoginViewModel = koinInject()
             LoginScreen(
-                state = viewModel.state.collectAsStateWithLifecycle(
-                    lifecycleOwner = LocalLifecycleOwner.current
+                state =
+                viewModel.state.collectAsStateWithLifecycle(
+                    lifecycleOwner = LocalLifecycleOwner.current,
                 ),
                 onSendEvent = viewModel::sendScreenEvent,
                 actionState = viewModel.actionState,
                 navigateToDashboard = navigateToMain,
                 navigateToRegister = { navigator.navigate(SplashNavigation.Register.route) },
-                navigateToSplash = { navigator.popBackStack() }
+                navigateToSplash = { navigator.popBackStack() },
             ).Render()
         }
     }

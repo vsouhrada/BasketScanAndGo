@@ -29,7 +29,7 @@ fun App() {
                 NavHost(
                     navController = navigator,
                     startDestination = AppNavigation.Splash.route,
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize(),
                 ) {
                     composable(route = AppNavigation.Splash.route) {
                         SplashScreenNav(navigateToMain = {
@@ -45,7 +45,6 @@ fun App() {
                     }
                 }
             }
-
         }
         /*MaterialTheme {
             var showContent by remember { mutableStateOf(false) }

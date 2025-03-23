@@ -23,13 +23,14 @@ fun ScanGoNavGraph() {
     NavHost(
         startDestination = ScanGoNavigation.StartTrip,
         navController = navigator,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         composable<ScanGoNavigation.StartTrip> { backStackEntry ->
             val viewModel: StartTripViewModel = koinInject()
             StartTripScreen(
-                state = viewModel.state.collectAsStateWithLifecycle(
-                    lifecycleOwner = LocalLifecycleOwner.current
+                state =
+                viewModel.state.collectAsStateWithLifecycle(
+                    lifecycleOwner = LocalLifecycleOwner.current,
                 ),
                 onSendEvent = viewModel::sendScreenEvent,
                 actionState = viewModel.actionState,
@@ -38,20 +39,22 @@ fun ScanGoNavGraph() {
                         null -> navigator.navigate(ScanGoNavigation.CreateBasket)
                         else -> navigator.navigate(ScanGoNavigation.BasketOverview)
                     }
-                }
+                },
             ).Render()
         }
 
         composable<ScanGoNavigation.CreateBasket> {
             val viewModel: CreateBasketViewModel = koinInject()
             CreateBasketScreen(
-                state = viewModel.state.collectAsStateWithLifecycle(
-                    lifecycleOwner = LocalLifecycleOwner.current
+                state =
+                viewModel.state.collectAsStateWithLifecycle(
+                    lifecycleOwner = LocalLifecycleOwner.current,
                 ),
                 onSendScreenEvent = viewModel::sendScreenEvent,
                 actionState = viewModel.actionState,
                 onNavigateToBasketOverview = { basketId ->
-                    navigator.navigate(ScanGoNavigation.BasketOverview(basketId))}
+                    navigator.navigate(ScanGoNavigation.BasketOverview(basketId))
+                },
             ).Render()
         }
 

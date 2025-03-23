@@ -6,6 +6,5 @@ import com.basket.sample.scango.domain.error.FetchTokenInfoError
 import com.basket.sample.scango.domain.feature.authorization.model.TokenInfo
 
 interface TokenRepository {
-
     suspend fun refreshAccessToken(): Result<TokenInfo, FailureResult<FetchTokenInfoError>>
 }

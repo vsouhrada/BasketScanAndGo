@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.update
 
 class HomeViewModel :
     BaseViewModel<HomeScreenState, HomeScreenEvent, HomeScreenActionState>(initialState = HomeScreenState()) {
-
     override fun sendScreenEvent(event: HomeScreenEvent) {
         TODO("Not yet implemented")
     }

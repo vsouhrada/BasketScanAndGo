@@ -7,5 +7,5 @@ data class Coupon(
     val discountPercentage: Int,
     val imageUrl: String,
     val expiryDate: String,
-    val isUsed: Boolean = false
+    val isUsed: Boolean = false,
 )

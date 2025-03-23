@@ -10,9 +10,8 @@ data class HomeScreenState(
 ) : UIState<HomeVo, HomeScreenErrorState>()
 
 sealed class HomeScreenErrorState {
-
     data class UnexpectedError(
         val title: String,
-        val message: String
+        val message: String,
     ) : HomeScreenErrorState()
 }

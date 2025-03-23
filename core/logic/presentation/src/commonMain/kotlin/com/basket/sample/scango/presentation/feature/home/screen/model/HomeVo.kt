@@ -4,7 +4,7 @@ import com.basket.core.common.designSystem.uikit.screen.DataModel
 import com.basket.core.common.designSystem.uikit.widget.Field
 
 data class HomeVo(
-    val storeOverview: StoreOverviewVo
+    val storeOverview: StoreOverviewVo,
 ) : DataModel()
 
 data class StoreOverviewVo(

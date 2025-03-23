@@ -15,5 +15,5 @@ import kotlinx.coroutines.flow.Flow
  * @author vsouhrada
  * @since 1.0.0
  */
-abstract class  ObservableUseCase<out T : Any, E : Error, in Params> :
+abstract class ObservableUseCase<out T : Any, E : Error, in Params> :
     BaseUseCase<Flow<Result<T, FailureResult<E>>>, Params>()

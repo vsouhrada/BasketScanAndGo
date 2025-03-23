@@ -8,31 +8,29 @@ import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
 
 object DateUtils {
-
-    fun getOffsetDateTime(entryDate: LocalDate, entryTime: LocalTime) =
-        OffsetDateTime.ofInstant(
-            instant = LocalDateTime(
-                entryDate,
-                entryTime
-            ).toInstant(timeZone = TimeZone.currentSystemDefault())
-        )
+    fun getOffsetDateTime(entryDate: LocalDate, entryTime: LocalTime,) = OffsetDateTime.ofInstant(
+        instant =
+        LocalDateTime(
+            entryDate,
+            entryTime,
+        ).toInstant(timeZone = TimeZone.currentSystemDefault()),
+    )
 
     fun currentDate() = OffsetDateTime.now(offset = TimeZone.currentSystemDefault()).dateTime.date
 
     fun currentTime() = OffsetDateTime.now(offset = TimeZone.currentSystemDefault()).dateTime.time
 
-    fun formatDate(date: LocalDate, withYear: Boolean): String {
+    fun formatDate(date: LocalDate, withYear: Boolean,): String {
         return date.formatFullDayWithYear(delimiter = ". ", useFullYear = withYear)
     }
 
-    fun formatFromToDate(dateFrom: LocalDate, dateTo: LocalDate): String {
+    fun formatFromToDate(dateFrom: LocalDate, dateTo: LocalDate,): String {
         return "${formatDate(dateFrom, dateFrom.year != dateTo.year)} - ${formatDate(dateTo, true)}"
     }
 
     fun OffsetDateTime.withLocalTimeZone() = atZoneSameInstant(TimeZone.currentSystemDefault())
 
-    fun LocalDateTime.asUTC() =
-        toInstant(TimeZone.currentSystemDefault()).toLocalDateTime(TimeZone.UTC)
+    fun LocalDateTime.asUTC() = toInstant(TimeZone.currentSystemDefault()).toLocalDateTime(TimeZone.UTC)
 
     fun formatSecondsToHHmm(seconds: Int): String {
         val hours = seconds / 3600

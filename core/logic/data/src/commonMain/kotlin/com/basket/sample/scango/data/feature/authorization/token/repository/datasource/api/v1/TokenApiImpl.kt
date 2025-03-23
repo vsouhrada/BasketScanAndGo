@@ -17,24 +17,26 @@ import io.ktor.http.path
 class TokenApiImpl(
     private val client: HttpClient,
 ) : TokenApi {
-
     override suspend fun refreshToken(): Result<TokenInfoDto, FailureResult<FetchTokenInfoError>> {
         // TODO add username and password as property for refreshing token!!!
         return try {
-            val response = client.submitForm(
-                formParameters = Parameters.build {
-                    append("username", "jsnow")
-                    append("password", "123")
-                    append("grant_type", "password")
-                }
-            ) {
-                url {
-                    encodedPath = encodedPath.let { startingPath ->
-                        path("/auth/login")
-                        "$startingPath${encodedPath.substring(1)}"
+            val response =
+                client.submitForm(
+                    formParameters =
+                    Parameters.build {
+                        append("username", "jsnow")
+                        append("password", "123")
+                        append("grant_type", "password")
+                    },
+                ) {
+                    url {
+                        encodedPath =
+                            encodedPath.let { startingPath ->
+                                path("/auth/login")
+                                "$startingPath${encodedPath.substring(1)}"
+                            }
                     }
                 }
-            }
             response.body<TokenInfoDto>().toSuccess()
         } catch (e: Throwable) {
             e.toFailure(UnexpectedError(message = "Refresh token failure!"))

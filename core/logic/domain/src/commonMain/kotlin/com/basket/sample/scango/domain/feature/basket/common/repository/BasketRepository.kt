@@ -15,7 +15,6 @@ import com.basket.sample.scango.domain.feature.basket.create.usecase.CreateBaske
 import kotlinx.coroutines.flow.Flow
 
 interface BasketRepository {
-
     suspend fun createBasket(
         request: CreateBasketRequest
     ): Result<CreateBasketResponse, FailureResult<CreateBasketError>>

@@ -10,16 +10,16 @@ data class UndefinedFieldConfig(val maxContentLength: Int? = null) : FieldConfig
 data class DoubleFieldConfig(
     val beforeDecimal: Int? = null,
     val afterDecimal: Int = 2,
-    val maxValue: Double = Double.MAX_VALUE
+    val maxValue: Double = Double.MAX_VALUE,
 ) : FieldConfiguration
 
 data class IntFieldConfig(
     val maxDigits: Int? = null,
-    val maxValue: Int = Int.MAX_VALUE
+    val maxValue: Int = Int.MAX_VALUE,
 ) : FieldConfiguration
 
 data class StringFieldConfig(val maxContentLength: Int? = null) : FieldConfiguration
 
 data class TimeFieldConfig(
-    val format: String = "HH:mm"
+    val format: String = "HH:mm",
 ) : FieldConfiguration

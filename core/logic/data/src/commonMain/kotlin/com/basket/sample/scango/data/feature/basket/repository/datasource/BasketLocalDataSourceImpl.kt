@@ -17,7 +17,6 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.withContext
 
 class BasketLocalDataSourceImpl : BasketLocalDataSource {
-
     private val basketFlowCache: MutableStateFlow<Basket?> = MutableStateFlow(null)
 
     override suspend fun observeActiveBasket(): Flow<Result<Basket, FailureResult<ObserveActiveBasketError>>> {

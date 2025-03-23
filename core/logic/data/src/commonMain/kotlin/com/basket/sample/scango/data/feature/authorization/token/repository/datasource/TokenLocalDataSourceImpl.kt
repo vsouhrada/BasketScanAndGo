@@ -8,7 +8,6 @@ import com.basket.sample.scango.domain.error.UnexpectedError
 import com.basket.sample.scango.domain.feature.authorization.model.TokenInfo
 
 class TokenLocalDataSourceImpl : TokenLocalDataSource {
-
     private var cachedTokenInfo: TokenInfo? = null
 
     override suspend fun getTokenInfo(): Result<TokenInfo, FailureResult<FetchTokenInfoError>> {

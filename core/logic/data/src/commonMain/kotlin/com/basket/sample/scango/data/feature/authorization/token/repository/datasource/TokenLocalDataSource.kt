@@ -6,7 +6,6 @@ import com.basket.sample.scango.domain.error.FetchTokenInfoError
 import com.basket.sample.scango.domain.feature.authorization.model.TokenInfo
 
 interface TokenLocalDataSource {
-
     suspend fun getTokenInfo(): Result<TokenInfo, FailureResult<FetchTokenInfoError>>
 
     suspend fun setTokenInfo(tokenInfo: TokenInfo)

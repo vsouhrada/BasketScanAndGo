@@ -18,9 +18,8 @@ open class FailureResult<out E : Error>(
     val timestamp: OffsetDateTime = OffsetDateTime.now(),
     val throwable: Throwable? = null,
     val diagnosticMessage: String? = null,
-    val additionalData: MutableMap<String, Any> = mutableMapOf()
+    val additionalData: MutableMap<String, Any> = mutableMapOf(),
 ) {
-
     /**
      * @since 1.0.0
      */
@@ -30,7 +29,7 @@ open class FailureResult<out E : Error>(
             timestamp = timestamp,
             throwable = throwable,
             diagnosticMessage = diagnosticMessage,
-            additionalData = additionalData
+            additionalData = additionalData,
         )
     }
 
@@ -66,14 +65,12 @@ open class FailureResult<out E : Error>(
  * Converts [Exception] to [Result.Failure] with a specific [error]
  * @since 1.0.0
  */
-fun <E : Error> Exception.toFailure(
-    error: E
-): Result<Nothing, FailureResult<E>> {
+fun <E : Error> Exception.toFailure(error: E): Result<Nothing, FailureResult<E>> {
     return Result.failure(
         FailureResult(
             error = error,
-            throwable = this
-        )
+            throwable = this,
+        ),
     )
 }
 
@@ -81,14 +78,12 @@ fun <E : Error> Exception.toFailure(
  * Converts [Throwable] to [Result.Failure] with a specific [error]
  * @since 1.0.0
  */
-fun <E : Error> Throwable.toFailure(
-    error: E
-): Result<Nothing, FailureResult<E>> {
+fun <E : Error> Throwable.toFailure(error: E): Result<Nothing, FailureResult<E>> {
     return Result.failure(
         FailureResult(
             error = error,
-            throwable = this
-        )
+            throwable = this,
+        ),
     )
 }
 
@@ -96,10 +91,8 @@ fun <E : Error> Throwable.toFailure(
  * It creates [Result.Failure] with a specific [error]
  * @since 1.0.0
  */
-fun <E : Error> createFailureResult(
-    error: E
-): Result<Nothing, FailureResult<E>> {
+fun <E : Error> createFailureResult(error: E): Result<Nothing, FailureResult<E>> {
     return Result.failure(
-        FailureResult(error = error)
+        FailureResult(error = error),
     )
 }

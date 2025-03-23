@@ -21,7 +21,6 @@ class UserRemoteDataSourceImpl(
     private val dtoMapper: UserDtoToDoMapper,
     private val ioDispatcher: CoroutineDispatcher,
 ) : UserRemoteDataSource {
-
     override suspend fun getUserById(userId: UserId): Result<User, FailureResult<GetUserError>> {
         return withContext(ioDispatcher) {
             when (val response = userApi.getUserById(userId)) {
@@ -33,11 +32,13 @@ class UserRemoteDataSourceImpl(
                     }
                 }
 
-                is Result.Failure -> response.toFailureResult(
-                    error = UserNotFound(
-                        problem = response.error.error.problem.toDomain(),
+                is Result.Failure ->
+                    response.toFailureResult(
+                        error =
+                        UserNotFound(
+                            problem = response.error.error.problem.toDomain(),
+                        ),
                     )
-                )
             }
         }
     }

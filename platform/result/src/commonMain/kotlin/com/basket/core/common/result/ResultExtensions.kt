@@ -15,7 +15,7 @@ import com.basket.core.common.result.failure.FailureResult
 inline fun <T : Any, E> T?.toSuccessIfNotNull(error: () -> E): Result<T, E> {
     return toSuccessIfPredicate(
         error = error,
-        predicate = { this != null }
+        predicate = { this != null },
     )
 }
 
@@ -28,10 +28,7 @@ inline fun <T : Any, E> T?.toSuccessIfNotNull(error: () -> E): Result<T, E> {
  * @return [Result] with [T] calling object
  * @since 0.1.0
  */
-inline fun <T : Any, E> T?.toSuccessIfPredicate(
-    predicate: (T?) -> Boolean,
-    error: () -> E
-): Result<T, E> {
+inline fun <T : Any, E> T?.toSuccessIfPredicate(predicate: (T?) -> Boolean, error: () -> E,): Result<T, E> {
     return if (this != null && predicate(this)) {
         this.toSuccess()
     } else {
@@ -142,15 +139,16 @@ inline fun <T1 : Any?, T2 : Any, T3 : Any, T4 : Any, R : Any> Result<T1, *>.comb
  */
 inline fun <T, E : Error, S, F : Error> Result<T, FailureResult<E>>.chain(
     noinline failureResult: (error: E) -> F,
-    chainAction: (T) -> Result<S, FailureResult<F>>
+    chainAction: (T) -> Result<S, FailureResult<F>>,
 ): Result<S, FailureResult<F>> {
     return when (this) {
         is Result.Success -> chainAction(this.data)
-        is Result.Failure -> Result.Failure(
-            this.error.mapError {
-                failureResult(this.error.error)
-            }
-        )
+        is Result.Failure ->
+            Result.Failure(
+                this.error.mapError {
+                    failureResult(this.error.error)
+                },
+            )
     }
 }
 
@@ -163,7 +161,7 @@ inline fun <T, E : Error, S, F : Error> Result<T, FailureResult<E>>.chainIfPredi
     noinline failureResult: (error: E) -> F,
     predicate: (T) -> Boolean,
     chainAction: (T) -> Result<S, FailureResult<F>>,
-    default: (T) -> Result<S, FailureResult<F>>
+    default: (T) -> Result<S, FailureResult<F>>,
 ): Result<S, FailureResult<F>> {
     return when (this) {
         is Result.Success -> {
@@ -174,11 +172,12 @@ inline fun <T, E : Error, S, F : Error> Result<T, FailureResult<E>>.chainIfPredi
             }
         }
 
-        is Result.Failure -> Result.Failure(
-            this.error.mapError {
-                failureResult(this.error.error)
-            }
-        )
+        is Result.Failure ->
+            Result.Failure(
+                this.error.mapError {
+                    failureResult(this.error.error)
+                },
+            )
     }
 }
 
@@ -189,16 +188,16 @@ inline fun <T, E : Error, S, F : Error> Result<T, FailureResult<E>>.chainIfPredi
  */
 inline fun <E : Error, T, C, F : Error> Result<T, FailureResult<E>>.flatMap(
     noinline failureResult: (error: E) -> F,
-    f: (T) -> Result<C, FailureResult<F>>
-): Result<C, FailureResult<F>> =
-    when (this) {
-        is Result.Success -> f(this.data)
-        is Result.Failure -> Result.Failure(
+    f: (T) -> Result<C, FailureResult<F>>,
+): Result<C, FailureResult<F>> = when (this) {
+    is Result.Success -> f(this.data)
+    is Result.Failure ->
+        Result.Failure(
             this.error.mapError {
                 failureResult(this.error.error)
-            }
+            },
         )
-    }
+}
 
 /**
  * Same as [map] function in the [Result] class, but adds [failureResult] for error mapping.
@@ -207,7 +206,7 @@ inline fun <E : Error, T, C, F : Error> Result<T, FailureResult<E>>.flatMap(
  */
 inline fun <C, T, E : Error, F : Error> Result<T, FailureResult<E>>.map(
     noinline failureResult: (error: E) -> F,
-    mapAction: (T) -> C
+    mapAction: (T) -> C,
 ): Result<C, FailureResult<F>> = flatMap(failureResult) { Result.Success(mapAction(it)) }
 
 /**
@@ -217,7 +216,7 @@ inline fun <C, T, E : Error, F : Error> Result<T, FailureResult<E>>.map(
  */
 inline fun <S, T, E : Error, F : Error> Result<T, FailureResult<E>>.chainResult(
     noinline failureResult: (error: E) -> F,
-    flatMapAction: (T) -> S
+    flatMapAction: (T) -> S,
 ): Result<S, FailureResult<F>> {
     return map(failureResult, flatMapAction)
 }
@@ -230,14 +229,15 @@ inline fun <S, T, E : Error, F : Error> Result<T, FailureResult<E>>.chainResult(
  * @since 1.2.0
  */
 inline fun <T, E : Error, F : Error> Result<T, FailureResult<E>>.mapFailureResultError(
-    noinline mapErrors: (error: E) -> F
+    noinline mapErrors: (error: E) -> F,
 ): Result<T, FailureResult<F>> {
     return when (this) {
         is Result.Success -> this
-        is Result.Failure -> Result.Failure(
-            this.error.mapError {
-                mapErrors(it)
-            }
-        )
+        is Result.Failure ->
+            Result.Failure(
+                this.error.mapError {
+                    mapErrors(it)
+                },
+            )
     }
 }

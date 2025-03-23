@@ -6,7 +6,7 @@ package com.basket.core.common.result
  */
 suspend fun <T : Any, E> callSafe(
     call: suspend () -> Result<T, E>,
-    onError: (Throwable) -> Result<Nothing, E>
+    onError: (Throwable) -> Result<Nothing, E>,
 ): Result<T, E> {
     return try {
         call()

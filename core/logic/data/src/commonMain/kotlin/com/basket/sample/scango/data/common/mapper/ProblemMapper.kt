@@ -8,15 +8,13 @@ import com.basket.sample.scango.data.core.api.rest.model.ErrorDto
 import com.basket.sample.scango.data.core.api.rest.model.ProblemDto
 import com.basket.sample.scango.domain.common.model.Problem
 
-fun <E : Error> Result.Failure<ErrorResult<ErrorDto>>.toFailureResult(
-    error: E
-): Result<Nothing, FailureResult<E>> {
+fun <E : Error> Result.Failure<ErrorResult<ErrorDto>>.toFailureResult(error: E): Result<Nothing, FailureResult<E>> {
     return Result.failure(
         FailureResult(
             error = error,
             diagnosticMessage = this.error.message,
-            throwable = this.error.throwable
-        )
+            throwable = this.error.throwable,
+        ),
     )
 }
 

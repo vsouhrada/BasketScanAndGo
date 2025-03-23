@@ -31,7 +31,6 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun DashboardScreenNav(logout: () -> Unit) {
-
     val navBottomBarController = rememberNavController()
     // ChangeStatusBarColors(Color.White)
     Scaffold(bottomBar = {
@@ -41,7 +40,7 @@ fun DashboardScreenNav(logout: () -> Unit) {
             NavHost(
                 startDestination = DashboardNavigation.Overview.route,
                 navController = navBottomBarController,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
             ) {
                 composable(route = DashboardNavigation.Overview.route) {
                     HomeScreenNav(logout = logout)
@@ -60,36 +59,33 @@ fun DashboardScreenNav(logout: () -> Unit) {
     }
 }
 
-
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun BottomNavigationUI(
-    navController: NavController,
-) {
-
+fun BottomNavigationUI(navController: NavController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
     Card(
         modifier = Modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(10.dp),
-        shape = RoundedCornerShape(
+        shape =
+        RoundedCornerShape(
             topStart = 16.dp,
-            topEnd = 16.dp
-        )
+            topEnd = 16.dp,
+        ),
     ) {
         NavigationBar(
             containerColor = MaterialTheme.colorScheme.background,
             contentColor = MaterialTheme.colorScheme.background,
-            tonalElevation = 8.dp
+            tonalElevation = 8.dp,
         ) {
-
-            val items = listOf(
-                DashboardNavigation.Overview,
-                DashboardNavigation.Catalog,
-                DashboardNavigation.ScanGo,
-                DashboardNavigation.Profile,
-            )
+            val items =
+                listOf(
+                    DashboardNavigation.Overview,
+                    DashboardNavigation.Catalog,
+                    DashboardNavigation.ScanGo,
+                    DashboardNavigation.Profile,
+                )
             items.forEach {
                 val titleText = stringResource(it.title)
                 NavigationBarItem(
@@ -98,8 +94,10 @@ fun BottomNavigationUI(
                     selected = it.route == currentRoute,
                     icon = {
                         Icon(
-                            painter = painterResource(if (it.route == currentRoute) it.selectedIcon else it.unSelectedIcon),
-                            contentDescription = titleText
+                            painter = painterResource(
+                                if (it.route == currentRoute) it.selectedIcon else it.unSelectedIcon
+                            ),
+                            contentDescription = titleText,
                         )
                     },
                     onClick = {
@@ -114,7 +112,8 @@ fun BottomNavigationUI(
                                 restoreState = true
                             }
                         }
-                    })
+                    },
+                )
             }
         }
     }

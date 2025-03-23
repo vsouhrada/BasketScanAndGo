@@ -7,13 +7,11 @@ data class StartTripScreenState(
     override val data: StartTripVo? = null,
     override val isLoading: Boolean = false,
     override val error: StartTripScreenErrorState? = null,
-) : UIState<StartTripVo, StartTripScreenErrorState>() {
-}
+) : UIState<StartTripVo, StartTripScreenErrorState>()
 
 sealed class StartTripScreenErrorState {
-
     data class UnexpectedError(
         val title: String,
-        val message: String
+        val message: String,
     ) : StartTripScreenErrorState()
 }

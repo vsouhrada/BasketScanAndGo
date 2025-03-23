@@ -7,7 +7,7 @@ kotlin {
     listOf(
         iosX64(),
         iosArm64(),
-        iosSimulatorArm64()
+        iosSimulatorArm64(),
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "presentation"
@@ -19,7 +19,6 @@ kotlin {
 
         commonTest {
             dependencies {
-
             }
         }
         commonMain {
@@ -32,13 +31,10 @@ kotlin {
 
         androidMain {
             dependencies {
-
-
             }
         }
         iosMain {
             dependencies {
-
             }
         }
 
@@ -51,5 +47,3 @@ kotlin {
         }
     }
 }
-
-

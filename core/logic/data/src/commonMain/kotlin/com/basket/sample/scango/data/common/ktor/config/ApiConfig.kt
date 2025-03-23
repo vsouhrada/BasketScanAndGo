@@ -42,10 +42,7 @@ data class ApiConfig(
      * @return A new [ApiConfig] instance with the updated headers.
      * @since 1.6.0
      */
-    fun withHeader(
-        key: String,
-        value: String,
-    ): ApiConfig {
+    fun withHeader(key: String, value: String,): ApiConfig {
         customHeaders.withHeader(key, value)
         return this
     }

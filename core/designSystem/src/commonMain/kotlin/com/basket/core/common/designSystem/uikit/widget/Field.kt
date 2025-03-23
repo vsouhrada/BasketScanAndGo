@@ -3,7 +3,6 @@ package com.basket.core.common.designSystem.uikit.widget
 import com.basket.core.common.designSystem.uikit.type.StringType
 
 sealed class Visibility {
-
     object Visible : Visibility()
 
     object Invisible : Visibility()
@@ -38,7 +37,6 @@ data class Field<T : Any?>(
     override val placeholder: String? = null,
     override val isValueProtected: Boolean = false,
 ) : BaseField<T> {
-
     /* override val fieldTypeConfiguration: FieldTypeConfiguration
          get() = when (value is FieldType) {
              true -> value.fieldTypeConfiguration
@@ -59,7 +57,6 @@ data class LabelField<T : Any>(
     override val placeholder: String? = null,
     override val isValueProtected: Boolean = false,
 ) : BaseField<T> {
-
     /*override val fieldTypeConfiguration: FieldTypeConfiguration
         get() = when (value is FieldType) {
             true -> value.fieldTypeConfiguration
@@ -80,7 +77,6 @@ data class StringField(
     override val placeholder: String? = null,
     override val isValueProtected: Boolean = false,
 ) : BaseField<StringType> {
-
     /* override val fieldTypeConfiguration: FieldTypeConfiguration = FieldTypeConfiguration.StringTypeConfig(
          contentLength = maxContentLength
      )*/
@@ -89,7 +85,6 @@ data class StringField(
 data class ErrorFieldState(val message: String)
 
 sealed class FieldColor {
-
     object None : FieldColor()
 
     object Red : FieldColor()
@@ -101,12 +96,11 @@ sealed class FieldColor {
     data class Hex(val hexCode: String) : FieldColor()
 }
 
-inline fun <T : Any> T?.visibleIfPredicate(predicate: (T?) -> Boolean) =
-    if (this != null && predicate(this)) {
-        Visibility.Visible
-    } else {
-        Visibility.Gone
-    }
+inline fun <T : Any> T?.visibleIfPredicate(predicate: (T?) -> Boolean) = if (this != null && predicate(this)) {
+    Visibility.Visible
+} else {
+    Visibility.Gone
+}
 
 fun <T : Any> T?.visibleIfNotNull() = if (this != null) {
     Visibility.Visible

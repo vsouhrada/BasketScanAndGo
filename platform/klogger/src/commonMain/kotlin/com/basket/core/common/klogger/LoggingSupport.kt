@@ -21,10 +21,7 @@ object LoggingSupport {
      * @param logger logger instance from calling class
      * @param t cause
      */
-    fun multiplexExpected(
-        logger: KLogger,
-        t: Throwable,
-    ) {
+    fun multiplexExpected(logger: KLogger, t: Throwable,) {
         multiplexExpected(logger, t, t.message)
     }
 
@@ -35,11 +32,7 @@ object LoggingSupport {
      * @param t cause
      * @param message message to be logged directly, any object with toString
      */
-    fun multiplexExpected(
-        logger: KLogger,
-        t: Throwable?,
-        message: Any?,
-    ) {
+    fun multiplexExpected(logger: KLogger, t: Throwable?, message: Any?,) {
         info(logger, message)
         t?.let {
             debug(logger, it.stackTraceToString())
@@ -53,11 +46,7 @@ object LoggingSupport {
      * @param t cause
      * @param message message to be logged directly, any object with toString
      */
-    fun multiplex(
-        logger: KLogger,
-        t: Throwable,
-        message: Any?,
-    ) {
+    fun multiplex(logger: KLogger, t: Throwable, message: Any?,) {
         info(logger, message)
         debug(logger, t.stackTraceToString())
         error(logger, t)
@@ -69,10 +58,7 @@ object LoggingSupport {
      * @param logger logger instance from calling class
      * @param t cause
      */
-    fun multiplex(
-        logger: KLogger,
-        t: Throwable,
-    ) {
+    fun multiplex(logger: KLogger, t: Throwable,) {
         multiplex(logger, t, t.message)
     }
 
@@ -82,10 +68,7 @@ object LoggingSupport {
      * @param logger logger instance from calling class
      * @param message message to be logged directly, any object with toString
      */
-    fun info(
-        logger: KLogger,
-        message: Any?,
-    ) {
+    fun info(logger: KLogger, message: Any?,) {
         val s = simplyAppendMessage(logger, message)
         logger.info { sanitizeLogMessage(s) }
     }
@@ -96,10 +79,7 @@ object LoggingSupport {
      * @param logger logger instance from calling class
      * @param messages messages that will be concatenated to the resulting log message, any object with toString
      */
-    fun info(
-        logger: KLogger,
-        vararg messages: Any?,
-    ) {
+    fun info(logger: KLogger, vararg messages: Any?,) {
         info(logger, null, *messages)
     }
 
@@ -110,11 +90,7 @@ object LoggingSupport {
      * @param t cause
      * @param messages messages that will be concatenated to the resulting log message, any object with toString
      */
-    fun info(
-        logger: KLogger,
-        t: Throwable?,
-        vararg messages: Any?,
-    ) {
+    fun info(logger: KLogger, t: Throwable?, vararg messages: Any?,) {
         val s = simplyAppendMessages(logger, messages)
         logger.info(t) { sanitizeLogMessage(s) }
     }
@@ -125,10 +101,7 @@ object LoggingSupport {
      * @param logger logger instance from calling class
      * @param message message to be logged directly, any object with toString
      */
-    fun debug(
-        logger: KLogger,
-        message: Any?,
-    ) {
+    fun debug(logger: KLogger, message: Any?,) {
         val s = simplyAppendMessage(logger, message)
         logger.debug { sanitizeLogMessage(s) }
     }
@@ -139,10 +112,7 @@ object LoggingSupport {
      * @param logger logger instance from calling class
      * @param messages messages that will be concatenated to the resulting log message, any object with toString
      */
-    fun debug(
-        logger: KLogger,
-        vararg messages: Any?,
-    ) {
+    fun debug(logger: KLogger, vararg messages: Any?,) {
         debug(logger, null, *messages)
     }
 
@@ -153,11 +123,7 @@ object LoggingSupport {
      * @param t cause
      * @param messages messages that will be concatenated to the resulting log message, any object with toString
      */
-    fun debug(
-        logger: KLogger,
-        t: Throwable?,
-        vararg messages: Any?,
-    ) {
+    fun debug(logger: KLogger, t: Throwable?, vararg messages: Any?,) {
         val s = simplyAppendMessages(logger, messages)
         logger.debug(t) { sanitizeLogMessage(s) }
     }
@@ -168,10 +134,7 @@ object LoggingSupport {
      * @param logger logger instance from calling class
      * @param message message to be logged directly, any object with toString
      */
-    fun trace(
-        logger: KLogger,
-        message: Any?,
-    ) {
+    fun trace(logger: KLogger, message: Any?,) {
         val s = simplyAppendMessage(logger, message)
         logger.trace { sanitizeLogMessage(s) }
     }
@@ -182,10 +145,7 @@ object LoggingSupport {
      * @param logger logger instance from calling class
      * @param messages messages that will be concatenated to the resulting log message, any object with toString
      */
-    fun trace(
-        logger: KLogger,
-        vararg messages: Any?,
-    ) {
+    fun trace(logger: KLogger, vararg messages: Any?,) {
         trace(logger, null, *messages)
     }
 
@@ -196,11 +156,7 @@ object LoggingSupport {
      * @param t cause
      * @param messages messages that will be concatenated to the resulting log message, any object with toString
      */
-    fun trace(
-        logger: KLogger,
-        t: Throwable?,
-        vararg messages: Any?,
-    ) {
+    fun trace(logger: KLogger, t: Throwable?, vararg messages: Any?,) {
         val s = simplyAppendMessages(logger, messages)
         logger.trace(t) { sanitizeLogMessage(s) }
     }
@@ -211,10 +167,7 @@ object LoggingSupport {
      * @param logger logger instance from calling class
      * @param throwable the throwable
      */
-    fun error(
-        logger: KLogger,
-        throwable: Throwable,
-    ) {
+    fun error(logger: KLogger, throwable: Throwable,) {
         val s = simplyAppendMessage(logger, throwable.message)
         logger.error { sanitizeLogMessage(s) }
     }
@@ -225,10 +178,7 @@ object LoggingSupport {
      * @param logger logger instance from calling class
      * @param message message to be logged directly, any object (beside throwable) with toString
      */
-    fun error(
-        logger: KLogger,
-        message: Any?,
-    ) {
+    fun error(logger: KLogger, message: Any?,) {
         val s = simplyAppendMessage(logger, message)
         logger.error { sanitizeLogMessage(s) }
     }
@@ -240,11 +190,7 @@ object LoggingSupport {
      * @param t the t
      * @param message message to be logged directly, any object with toString
      */
-    fun error(
-        logger: KLogger,
-        t: Throwable?,
-        message: Any?,
-    ) {
+    fun error(logger: KLogger, t: Throwable?, message: Any?,) {
         logger.error(t) { message.toString() }
     }
 
@@ -254,10 +200,7 @@ object LoggingSupport {
      * @param logger logger instance from calling class
      * @param messages messages that will be concatenated to the resulting log message, any object with toString
      */
-    fun error(
-        logger: KLogger,
-        vararg messages: Any?,
-    ) {
+    fun error(logger: KLogger, vararg messages: Any?,) {
         error(logger, null, *messages)
     }
 
@@ -268,11 +211,7 @@ object LoggingSupport {
      * @param t cause
      * @param messages messages that will be concatenated to the resulting log message, any object with toString
      */
-    fun error(
-        logger: KLogger,
-        t: Throwable?,
-        vararg messages: Any?,
-    ) {
+    fun error(logger: KLogger, t: Throwable?, vararg messages: Any?,) {
         val s = simplyAppendMessages(logger, messages)
         logger.error(t) { sanitizeLogMessage(s) }
     }
@@ -283,10 +222,7 @@ object LoggingSupport {
      * @param logger logger instance from calling class
      * @param message message to be logged directly, any object with toString
      */
-    fun warn(
-        logger: KLogger,
-        message: Any?,
-    ) {
+    fun warn(logger: KLogger, message: Any?,) {
         val s = simplyAppendMessage(logger, message)
         logger.warn { sanitizeLogMessage(s) }
     }
@@ -297,10 +233,7 @@ object LoggingSupport {
      * @param logger logger instance from calling class
      * @param messages messages that will be concatenated to the resulting log message, any object with toString
      */
-    fun warn(
-        logger: KLogger,
-        vararg messages: Any?,
-    ) {
+    fun warn(logger: KLogger, vararg messages: Any?,) {
         warn(logger, null, *messages)
     }
 
@@ -311,19 +244,12 @@ object LoggingSupport {
      * @param t cause
      * @param messages messages that will be concatenated to the resulting log message, any object with toString
      */
-    fun warn(
-        logger: KLogger,
-        t: Throwable?,
-        vararg messages: Any?,
-    ) {
+    fun warn(logger: KLogger, t: Throwable?, vararg messages: Any?,) {
         val s = simplyAppendMessages(logger, messages)
         logger.warn(t) { sanitizeLogMessage(s) }
     }
 
-    private fun simplyAppendMessage(
-        logger: KLogger,
-        message: Any?,
-    ): String {
+    private fun simplyAppendMessage(logger: KLogger, message: Any?,): String {
         var sb = StringBuilder()
         simplyAppend(sb, message, false, 0)
         if (checkIsPasswordString(logger, sb)) {
@@ -338,10 +264,7 @@ object LoggingSupport {
      * @param messages
      * @return appended string
      */
-    private fun simplyAppendMessages(
-        logger: KLogger,
-        vararg messages: Any?,
-    ): String {
+    private fun simplyAppendMessages(logger: KLogger, vararg messages: Any?,): String {
         var sb = StringBuilder()
         for (message in messages) {
             simplyAppend(sb, message, false, 0)
@@ -352,12 +275,7 @@ object LoggingSupport {
         return sb.toString()
     }
 
-    private fun simplyAppend(
-        sb: StringBuilder,
-        message: Any?,
-        logNull: Boolean,
-        depth: Int,
-    ) {
+    private fun simplyAppend(sb: StringBuilder, message: Any?, logNull: Boolean, depth: Int,) {
         var depth = depth
         if (message != null) {
             if (!isArray(message)) {
@@ -419,10 +337,7 @@ object LoggingSupport {
             message is CharArray
     }
 
-    private fun simplyAppend(
-        sb: StringBuilder,
-        message: Any?,
-    ) {
+    private fun simplyAppend(sb: StringBuilder, message: Any?,) {
         when (message) {
             is ByteArray -> simplyAppend(sb, message.toTypedArray())
             is ShortArray -> simplyAppend(sb, message.toTypedArray())
@@ -436,10 +351,7 @@ object LoggingSupport {
         }
     }
 
-    private fun simplyAppend(
-        sb: StringBuilder,
-        loggedArray: Array<*>,
-    ) {
+    private fun simplyAppend(sb: StringBuilder, loggedArray: Array<*>,) {
         sb.append('[')
         var i = 0
         while (i < loggedArray.size && i < MAX_ARRAY_LENGTH_LOGGED) {
@@ -453,10 +365,7 @@ object LoggingSupport {
         sb.append(']')
     }
 
-    private fun checkIsPasswordString(
-        logger: KLogger,
-        sb: StringBuilder,
-    ): Boolean {
+    private fun checkIsPasswordString(logger: KLogger, sb: StringBuilder,): Boolean {
         // filter only in "production mode"
         if (!filterPasswords || logger.isTraceEnabled()) {
             return false
@@ -477,10 +386,7 @@ object LoggingSupport {
      * @param method The name of the method
      * @return The current system time (useful to measure durations)
      */
-    fun logEnter(
-        logger: KLogger,
-        method: String,
-    ): Long {
+    fun logEnter(logger: KLogger, method: String,): Long {
         return if (logger.isTraceEnabled()) {
             logger.trace { "entering $method" }
             currentTimeMillis()
@@ -497,11 +403,7 @@ object LoggingSupport {
      * @param args The arguments.
      * @return The current system time (useful to measure durations)
      */
-    fun logEnter(
-        logger: KLogger,
-        method: String?,
-        vararg args: Any?,
-    ): Long {
+    fun logEnter(logger: KLogger, method: String?, vararg args: Any?,): Long {
         return if (logger.isTraceEnabled()) {
             logger.trace {
                 val depth = 0
@@ -528,11 +430,7 @@ object LoggingSupport {
      * @param method The name of the method
      * @param start Start execution time of the method
      */
-    fun logLeave(
-        logger: KLogger,
-        method: String,
-        start: Long,
-    ) {
+    fun logLeave(logger: KLogger, method: String, start: Long,) {
         val duration: Long = currentTimeMillis() - start
         logger.trace { "leaving $method after $duration ms" }
     }
@@ -547,12 +445,7 @@ object LoggingSupport {
      * @param result The method result.
      * @return The result
      </T> */
-    fun <T> logLeave(
-        logger: KLogger,
-        method: String,
-        start: Long,
-        result: T,
-    ): T {
+    fun <T> logLeave(logger: KLogger, method: String, start: Long, result: T,): T {
         val duration: Long = currentTimeMillis() - start
         logger.trace { "leaving $method after $duration ms" }
         return result
@@ -565,11 +458,7 @@ object LoggingSupport {
      * @param isInfo the is info
      * @param message the message
      */
-    fun debugOrInfo(
-        logger: KLogger,
-        isInfo: Boolean,
-        message: String?,
-    ) {
+    fun debugOrInfo(logger: KLogger, isInfo: Boolean, message: String?,) {
         if (isInfo) {
             logger.info { sanitizeLogMessage(message) }
         } else {

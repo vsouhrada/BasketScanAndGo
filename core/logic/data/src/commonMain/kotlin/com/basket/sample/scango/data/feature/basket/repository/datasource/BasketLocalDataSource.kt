@@ -9,7 +9,6 @@ import com.basket.sample.scango.domain.error.SetActiveBasketError
 import kotlinx.coroutines.flow.Flow
 
 interface BasketLocalDataSource {
-
     suspend fun observeActiveBasket(): Flow<Result<Basket, FailureResult<ObserveActiveBasketError>>>
 
     suspend fun setActiveBasket(basket: Basket): Result<Basket, FailureResult<SetActiveBasketError>>

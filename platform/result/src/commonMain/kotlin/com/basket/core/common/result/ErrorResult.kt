@@ -3,9 +3,8 @@ package com.basket.core.common.result
 open class ErrorResult<E>(
     open val error: E,
     override val message: String? = null,
-    override val throwable: Throwable? = null
+    override val throwable: Throwable? = null,
 ) : ErrorResultApi {
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is ErrorResult<*>) return false
@@ -30,7 +29,6 @@ open class ErrorResult<E>(
 }
 
 interface ErrorResultApi {
-
     val message: String?
     val throwable: Throwable?
 }

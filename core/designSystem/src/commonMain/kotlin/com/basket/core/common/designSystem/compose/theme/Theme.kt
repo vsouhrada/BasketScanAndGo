@@ -16,21 +16,21 @@ import com.basket.core.common.designSystem.compose.theme.ColorPalette.PrimaryVar
 import com.basket.core.common.designSystem.compose.theme.ColorPalette.TextFieldColor
 import com.basket.core.common.designSystem.compose.theme.ColorPalette.lightSurface
 
+private val darkColorPalette =
+    darkColorScheme(
+        primary = PrimaryColor,
+        primaryContainer = PrimaryVariantColor,
+        secondary = AccentColor,
+    )
 
-private val darkColorPalette = darkColorScheme(
-    primary = PrimaryColor,
-    primaryContainer = PrimaryVariantColor,
-    secondary = AccentColor,
-)
-
-private val lightColorPalette = lightColorScheme(
-    primary = PrimaryColor,
-    primaryContainer = PrimaryVariantColor,
-    secondary = AccentColor,
-    background = Color.White,
-    surfaceVariant = Color.White,
-    surface = lightSurface,
-
+private val lightColorPalette =
+    lightColorScheme(
+        primary = PrimaryColor,
+        primaryContainer = PrimaryVariantColor,
+        secondary = AccentColor,
+        background = Color.White,
+        surfaceVariant = Color.White,
+        surface = lightSurface,
     /* Other default colors to override
     background = Color.White,
     surface = Color.White,
@@ -38,25 +38,23 @@ private val lightColorPalette = lightColorScheme(
     onSecondary = Color.Black,
     onBackground = Color.Black,
     onSurface = Color.Black,
-    */
-)
+     */
+    )
 
 @Composable
-fun BasketTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
-) {
-    val colors = if (darkTheme) {
-        darkColorPalette
-    } else {
-        lightColorPalette
-    }
+fun BasketTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit,) {
+    val colors =
+        if (darkTheme) {
+            darkColorPalette
+        } else {
+            lightColorPalette
+        }
 
     MaterialTheme(
         colorScheme = lightColorPalette,
         typography = BasketTypography(),
         shapes = shapes,
-        content = content
+        content = content,
     )
 }
 
@@ -87,7 +85,7 @@ fun DefaultImageButtonTheme() = buttonColors(
     containerColor = MaterialTheme.colorScheme.background,
     contentColor = MaterialTheme.colorScheme.primary,
     // disabledBackgroundColor = MaterialTheme.colorScheme.background,
-    disabledContentColor = MaterialTheme.colorScheme.primary
+    disabledContentColor = MaterialTheme.colorScheme.primary,
 )
 
 @Composable
@@ -95,14 +93,14 @@ fun DefaultButtonTheme() = buttonColors(
     containerColor = MaterialTheme.colorScheme.primary,
     contentColor = MaterialTheme.colorScheme.background,
     // disabledBackgroundColor = MaterialTheme.colorScheme.background,
-    disabledContentColor = MaterialTheme.colorScheme.primary
+    disabledContentColor = MaterialTheme.colorScheme.primary,
 )
 
 @Composable
 fun DefaultButtonWithBorderPrimaryTheme() = buttonColors(
     containerColor = MaterialTheme.colorScheme.background,
     contentColor = MaterialTheme.colorScheme.primary,
-    disabledContainerColor =  MaterialTheme.colorScheme.background,
+    disabledContainerColor = MaterialTheme.colorScheme.background,
     // disabledBackgroundColor = MaterialTheme.colorScheme.background,
-    disabledContentColor = MaterialTheme.colorScheme.primary
+    disabledContentColor = MaterialTheme.colorScheme.primary,
 )

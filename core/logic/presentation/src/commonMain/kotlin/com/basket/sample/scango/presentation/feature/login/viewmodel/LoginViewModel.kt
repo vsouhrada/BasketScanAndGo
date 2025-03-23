@@ -14,15 +14,14 @@ import com.basket.sample.scango.presentation.feature.login.screen.state.LoginScr
 import com.basket.sample.scango.presentation.feature.login.screen.state.LoginScreenErrorState
 import com.basket.sample.scango.presentation.feature.login.screen.state.LoginScreenEvent
 import com.basket.sample.scango.presentation.feature.login.screen.state.LoginScreenState
-import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.coroutines.cancellation.CancellationException
 
 class LoginViewModel(
     private val getUser: GetUserUseCase,
     private val saveActiveUser: SaveActiveUserUseCase,
 ) : BaseViewModel<LoginScreenState, LoginScreenEvent, LoginScreenActionState>(initialState = LoginScreenState()) {
-
     private val logger = getKLogger { }
 
     override fun clearErrorState() {
@@ -36,10 +35,10 @@ class LoginViewModel(
     @Throws(CancellationException::class)
     override fun sendScreenEvent(event: LoginScreenEvent) {
         when (event) {
-            is LoginScreenEvent.AuthorizeUser -> viewModelScope.launch {
-                authorizeUser(event.userCredentials)
-
-            }
+            is LoginScreenEvent.AuthorizeUser ->
+                viewModelScope.launch {
+                    authorizeUser(event.userCredentials)
+                }
 
             LoginScreenEvent.RegisterNewUser -> TODO()
         }
@@ -51,14 +50,16 @@ class LoginViewModel(
             emitLoadingState(isLoading = true)
 
             getUser(
-                params = GetUserRequest(
+                params =
+                GetUserRequest(
                     userId = userCredentials.userId,
-                )
+                ),
             ).chain { getUserResponse ->
                 saveActiveUser(
-                    params = SaveActiveUserRequest(
+                    params =
+                    SaveActiveUserRequest(
                         currentUser = getUserResponse.user,
-                    )
+                    ),
                 ).onSuccess { saveActiveUserResponse ->
                     logger.logDebug { "Successfully saved activeUser=$saveActiveUser" }
                     emitScreenAction(LoginScreenActionState.UserAuthorized)
@@ -66,7 +67,7 @@ class LoginViewModel(
             }.onFailure {
                 logger.error { "Failed to send authorization to user=${userCredentials.userId}, failure: $it" }
                 emitErrorState(
-                    errorState = LoginScreenErrorState.InvalidUserCredentials(userId = userCredentials.userId)
+                    errorState = LoginScreenErrorState.InvalidUserCredentials(userId = userCredentials.userId),
                 )
             }
         }

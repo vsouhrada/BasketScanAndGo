@@ -5,5 +5,5 @@ import com.basket.sample.scango.domain.feature.authorization.model.TokenInfo
 
 fun TokenInfoDto.toDomain() = TokenInfo(
     accessToken = accessToken,
-    refreshToken = refreshToken
+    refreshToken = refreshToken,
 )

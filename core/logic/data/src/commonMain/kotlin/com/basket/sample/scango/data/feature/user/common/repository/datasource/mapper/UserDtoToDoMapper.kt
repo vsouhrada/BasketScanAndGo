@@ -4,6 +4,5 @@ import com.basket.sample.scango.data.feature.authorization.token.repository.data
 import com.basket.sample.scango.domain.common.model.User
 
 interface UserDtoToDoMapper {
-
     fun mapUserDto(dto: UserDto): User
 }

@@ -7,7 +7,6 @@ import com.basket.sample.scango.domain.common.model.User
 import com.basket.sample.scango.domain.error.GetActiveUserError
 
 class UserLocalDataSourceImpl : UserLocalDataSource {
-
     private lateinit var currentUser: User // TODO just for test
 
     override fun saveActiveUser(currentUser: User) {

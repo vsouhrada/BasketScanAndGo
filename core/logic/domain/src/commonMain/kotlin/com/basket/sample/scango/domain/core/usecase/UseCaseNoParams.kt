@@ -12,7 +12,6 @@ import kotlin.native.ObjCName
  * @author vsouhrada
  */
 abstract class UseCaseNoParams<out T : Any, E : Error> : UseCase<T, E, Unit>() {
-
     @ObjCName(name = "callAsFunction")
     suspend operator fun invoke() = super.invoke(Unit)
 }

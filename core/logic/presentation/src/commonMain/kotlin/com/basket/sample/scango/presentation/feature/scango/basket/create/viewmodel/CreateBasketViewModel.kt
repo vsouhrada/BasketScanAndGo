@@ -21,9 +21,8 @@ class CreateBasketViewModel(
     private val getActiveUser: GetActiveUserUseCase,
     private val setActiveBasket: SetActiveBasketUseCase,
 ) : BaseViewModel<CreateBasketScreenState, CreateBasketScreenEvent, CreateBasketScreenActionState>(
-    initialState = CreateBasketScreenState()
+    initialState = CreateBasketScreenState(),
 ) {
-
     override fun sendScreenEvent(event: CreateBasketScreenEvent) {
         when (event) {
             CreateBasketScreenEvent.CreateBasketEvent -> {
@@ -42,61 +41,57 @@ class CreateBasketViewModel(
 
     private fun createNewBasket() {
         launch {
-            getActiveUser()
-                .onFailure { error ->
+            getActiveUser().onFailure { error ->
 
+                updateState { prevState ->
+                    prevState.copy(
+                        error =
+                        CreateBasketScreenErrorState.UnexpectedError(
+                            title = Res.string.error_something_wrong,
+                            message = "Failed to get active user: ${error.error}",
+                        ),
+                    )
+                }
+            }.chain { userResponse ->
+                createBasket(
+                    params = buildCreateBasketRequest(user = userResponse.currentUser),
+                ).onFailure { error ->
                     updateState { prevState ->
                         prevState.copy(
-                            error = CreateBasketScreenErrorState.UnexpectedError(
+                            error =
+                            CreateBasketScreenErrorState.UnexpectedError(
                                 title = Res.string.error_something_wrong,
-                                message = "Failed to get active user: ${error.error}"
-                            )
+                                message = "Failed to create basket: ${error.error}",
+                            ),
                         )
                     }
-
-                }
-                .chain { userResponse ->
-                    createBasket(
-                        params = buildCreateBasketRequest(user = userResponse.currentUser)
-                    )
-                        .onFailure { error ->
-                            updateState { prevState ->
-                                prevState.copy(
-                                    error = CreateBasketScreenErrorState.UnexpectedError(
-                                        title = Res.string.error_something_wrong,
-                                        message = "Failed to create basket: ${error.error}"
-                                    )
-                                )
-                            }
-                        }
-                        .chain { createBasketResponse ->
-                            setActiveBasket(
-                                params = SetActiveBasketRequest(
-                                    basket = createBasketResponse.basket,
-                                )
+                }.chain { createBasketResponse ->
+                    setActiveBasket(
+                        params =
+                        SetActiveBasketRequest(
+                            basket = createBasketResponse.basket,
+                        ),
+                    ).onSuccess { activeBasket ->
+                        emitScreenAction(CreateBasketScreenActionState.BasketCreated(basketId = activeBasket.basket.id))
+                    }.onFailure { error ->
+                        updateState { prevState ->
+                            prevState.copy(
+                                error =
+                                CreateBasketScreenErrorState.UnexpectedError(
+                                    title = Res.string.error_something_wrong,
+                                    message = "Failed to set active basket: ${error.error}",
+                                ),
                             )
-                                .onSuccess { activeBasket ->
-                                    emitScreenAction(CreateBasketScreenActionState.BasketCreated(basketId = activeBasket.basket.id))
-                                }
-                                .onFailure { error ->
-                                    updateState { prevState ->
-                                        prevState.copy(
-                                            error =
-                                                CreateBasketScreenErrorState.UnexpectedError(
-                                                    title = Res.string.error_something_wrong,
-                                                    message = "Failed to set active basket: ${error.error}"
-                                                )
-                                        )
-                                    }
-                                }
                         }
+                    }
                 }
+            }
         }
     }
 
     private fun buildCreateBasketRequest(user: User) = CreateBasketRequest(
         customerId = user.id,
         sharedBasket = false,
-        createdTimestampUTC = OffsetDateTime.now()
+        createdTimestampUTC = OffsetDateTime.now(),
     )
 }

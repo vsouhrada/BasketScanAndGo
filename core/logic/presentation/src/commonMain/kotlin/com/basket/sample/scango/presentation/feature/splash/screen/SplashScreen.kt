@@ -22,7 +22,6 @@ class SplashScreen(
     val navigateToDashboard: () -> Unit,
     val navigateToLogin: () -> Unit,
 ) : Screen {
-
     @Composable
     override fun Render() {
         LaunchedEffect(Unit/*state.navigateToMain*/) {
@@ -37,25 +36,25 @@ class SplashScreen(
 
         Column(
             Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             AnimatedVisibility(true) {
                 Column(
                     Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     // Make the Image fill the width of the parent
                     Image(
                         painter = painterResource(Res.drawable.header_linkedin_profile1),
                         contentDescription = null,
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .fillMaxWidth() // Make the image full-width
-                            .aspectRatio(2.5f) // Optional: Adjust aspect ratio for better layout
+                            .aspectRatio(2.5f), // Optional: Adjust aspect ratio for better layout
                     )
                     Text(stringResource(Res.string.app_name))
                 }
             }
         }
-
     }
 }

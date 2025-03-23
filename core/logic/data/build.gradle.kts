@@ -7,7 +7,7 @@ kotlin {
     listOf(
         iosX64(),
         iosArm64(),
-        iosSimulatorArm64()
+        iosSimulatorArm64(),
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "data"
@@ -51,13 +51,13 @@ kotlin {
 
         jsMain {
             dependencies {
-                implementation(libs.ktor.client.js)
+                implementation(libs.ktor.client.js.js)
             }
         }
 
         wasmJsMain {
             dependencies {
-                implementation(libs.ktor.client.fetch)
+                implementation(libs.ktor.client.js.wasm)
             }
         }
 

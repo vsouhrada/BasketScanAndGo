@@ -10,15 +10,14 @@ class BasketRequestException(
     val errorData: BasketRequestErrorData,
 ) : Exception()
 
-fun BasketRequestException.toError() =
-    ErrorResult(
-        error =
-            ErrorDto(
-                problem =
-                    ProblemDto(
-                        code = errorData.code,
-                        message = errorData.message ?: message ?: "",
-                    ),
-            ),
-        throwable = this,
-    )
+fun BasketRequestException.toError() = ErrorResult(
+    error =
+    ErrorDto(
+        problem =
+        ProblemDto(
+            code = errorData.code,
+            message = errorData.message ?: message ?: "",
+        ),
+    ),
+    throwable = this,
+)

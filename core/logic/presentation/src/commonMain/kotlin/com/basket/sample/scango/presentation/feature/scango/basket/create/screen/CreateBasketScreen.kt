@@ -37,7 +37,6 @@ class CreateBasketScreen(
     val onSendScreenEvent: (CreateBasketScreenEvent) -> Unit,
     val onNavigateToBasketOverview: (String) -> Unit,
 ) : Screen {
-
     @Composable
     override fun Render() {
         LaunchedEffect(Unit) {
@@ -51,18 +50,19 @@ class CreateBasketScreen(
         }
 
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxSize()
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
         ) {
             // Big Icon
             Icon(
                 painter = painterResource(Res.drawable.ic_shopping_basket), // Replace with your actual icon
                 contentDescription = "Shopping Icon",
                 tint = Color.Unspecified,
-                modifier = Modifier.size(120.dp)
+                modifier = Modifier.size(120.dp),
             )
 
             Spacer_16dp()
@@ -72,7 +72,7 @@ class CreateBasketScreen(
                 text = stringResource(Res.string.main_scango_basket_create_info),
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center,
-                maxLines = 2
+                maxLines = 2,
             )
 
             Spacer_32dp()

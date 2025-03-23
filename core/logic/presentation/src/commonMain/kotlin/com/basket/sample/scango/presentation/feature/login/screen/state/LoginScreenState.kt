@@ -11,13 +11,12 @@ data class LoginScreenState(
 ) : UIState<LoginVo, LoginScreenErrorState>()
 
 sealed class LoginScreenErrorState {
-
     data class UnexpectedError(
         val title: String,
-        val message: String
+        val message: String,
     ) : LoginScreenErrorState()
 
     data class InvalidUserCredentials(
-        val userId: UserId
+        val userId: UserId,
     ) : LoginScreenErrorState()
 }

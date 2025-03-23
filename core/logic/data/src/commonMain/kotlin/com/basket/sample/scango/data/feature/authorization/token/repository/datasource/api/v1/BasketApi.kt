@@ -5,6 +5,5 @@ import com.basket.sample.scango.data.feature.authorization.token.repository.data
 import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.v1.dto.CreateBasketResponseDto
 
 interface BasketApi {
-
     suspend fun createBasket(request: CreateBasketRequestDto): Result<CreateBasketResponseDto, Throwable>
 }

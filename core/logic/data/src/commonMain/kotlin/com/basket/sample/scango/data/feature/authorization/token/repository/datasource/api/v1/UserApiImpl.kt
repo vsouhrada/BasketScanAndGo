@@ -15,7 +15,6 @@ import io.ktor.http.path
 class UserApiImpl(
     override val client: HttpClient,
 ) : BaseApi(client), UserApi {
-
     override suspend fun getUserById(userId: UserId): Result<UserDto, ErrorResult<ErrorDto>> {
         return networkCall {
             client.get {

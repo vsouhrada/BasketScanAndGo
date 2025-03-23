@@ -3,9 +3,8 @@ package com.basket.core.common.designSystem.uikit.type
 // TODO under development
 internal data class StringTime(
     val value: String,
-    override val fieldConfiguration: TimeFieldConfig = TimeFieldConfig()
+    override val fieldConfiguration: TimeFieldConfig = TimeFieldConfig(),
 ) : FieldType<TimeFieldConfig> {
-
     /*fun getLocalTimeOrNull() = value.toDoubleOrNull()
 
     fun getLocalTime() = value.toDouble()

@@ -43,7 +43,6 @@ project(":result").projectDir = file("platform/result")
 include(":klogger")
 project(":klogger").projectDir = file("platform/klogger")
 
-
 include(":presentation")
 project(":presentation").projectDir = file("core/logic/presentation")
 
@@ -59,8 +58,8 @@ project(":designSystem").projectDir = file("core/designSystem")
 include(":di")
 project(":di").projectDir = file("core/di")
 
-//include(":androidApp")
-//include(":shared")
+// include(":androidApp")
+// include(":shared")
 
 include(":iosApp")
 project(":iosApp").projectDir = file("iosApp")

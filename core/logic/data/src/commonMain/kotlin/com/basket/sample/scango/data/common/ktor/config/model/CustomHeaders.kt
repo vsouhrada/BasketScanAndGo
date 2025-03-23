@@ -45,10 +45,7 @@ data class CustomHeaders(var headers: Map<String, String> = emptyMap()) {
      * @param value The value of the HTTP header.
      * @return A new instance of [CustomHeaders] with the updated headers map.
      */
-    fun withHeader(
-        key: String,
-        value: String,
-    ): CustomHeaders {
+    fun withHeader(key: String, value: String,): CustomHeaders {
         headers = headers + (key to value)
         return this
     }

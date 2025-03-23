@@ -4,7 +4,8 @@ import com.basket.sample.scango.presentation.feature.login.viewmodel.LoginViewMo
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
-val loginModule = module {
+val loginModule =
+    module {
 
-    viewModelOf(::LoginViewModel)
-}
+        viewModelOf(::LoginViewModel)
+    }

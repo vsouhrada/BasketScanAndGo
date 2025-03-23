@@ -6,7 +6,6 @@ sealed class SplashNavigation(
     override val route: String,
 //    override val arguments: List<NamedNavArgument>
 ) : ScreenNavigation {
-
     data object Splash : SplashNavigation(route = "Splash")
 
     data object Login : SplashNavigation(route = "Login")

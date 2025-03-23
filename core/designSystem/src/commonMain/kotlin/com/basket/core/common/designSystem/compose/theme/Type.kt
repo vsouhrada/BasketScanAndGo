@@ -9,88 +9,103 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun BasketTypography() = Typography(
-    displayLarge = TextStyle(
+    displayLarge =
+    TextStyle(
         fontWeight = FontWeight.W400,
         fontSize = 57.sp,
         lineHeight = 64.sp,
-        letterSpacing = (-0.25).sp
+        letterSpacing = (-0.25).sp,
     ),
-    displayMedium = TextStyle(
+    displayMedium =
+    TextStyle(
         fontWeight = FontWeight.W400,
         fontSize = 45.sp,
-        lineHeight = 52.sp
+        lineHeight = 52.sp,
     ),
-    displaySmall = TextStyle(
+    displaySmall =
+    TextStyle(
         fontWeight = FontWeight.W400,
         fontSize = 36.sp,
-        lineHeight = 44.sp
+        lineHeight = 44.sp,
     ),
-    headlineLarge = TextStyle(
+    headlineLarge =
+    TextStyle(
         fontWeight = FontWeight.W400,
         fontSize = 32.sp,
-        lineHeight = 40.sp
+        lineHeight = 40.sp,
     ),
-    headlineMedium = TextStyle(
+    headlineMedium =
+    TextStyle(
         fontWeight = FontWeight.W400,
         fontSize = 28.sp,
-        lineHeight = 36.sp
+        lineHeight = 36.sp,
     ),
-    headlineSmall = TextStyle(
+    headlineSmall =
+    TextStyle(
         fontWeight = FontWeight.W400,
         fontSize = 24.sp,
-        lineHeight = 32.sp
+        lineHeight = 32.sp,
     ),
-    titleLarge = TextStyle(
+    titleLarge =
+    TextStyle(
         fontWeight = FontWeight.W700,
         fontSize = 22.sp,
-        lineHeight = 28.sp
+        lineHeight = 28.sp,
     ),
-    titleMedium = TextStyle(
+    titleMedium =
+    TextStyle(
         fontWeight = FontWeight.W700,
         fontSize = 16.sp,
         lineHeight = 24.sp,
-        letterSpacing = 0.1.sp
+        letterSpacing = 0.1.sp,
     ),
-    titleSmall = TextStyle(
+    titleSmall =
+    TextStyle(
         fontWeight = FontWeight.W500,
         fontSize = 14.sp,
         lineHeight = 20.sp,
-        letterSpacing = 0.1.sp
+        letterSpacing = 0.1.sp,
     ),
-    bodyLarge = TextStyle(
+    bodyLarge =
+    TextStyle(
         fontWeight = FontWeight.W400,
         fontSize = 16.sp,
         lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
+        letterSpacing = 0.5.sp,
     ),
-    bodyMedium = TextStyle(
+    bodyMedium =
+    TextStyle(
         fontWeight = FontWeight.W400,
         fontSize = 14.sp,
         lineHeight = 20.sp,
-        letterSpacing = 0.25.sp
+        letterSpacing = 0.25.sp,
     ),
-    bodySmall = TextStyle(
+    bodySmall =
+    TextStyle(
         fontWeight = FontWeight.W400,
         fontSize = 12.sp,
         lineHeight = 16.sp,
-        letterSpacing = 0.4.sp
+        letterSpacing = 0.4.sp,
     ),
-    labelLarge = TextStyle(
+    labelLarge =
+    TextStyle(
         fontWeight = FontWeight.W400,
         fontSize = 14.sp,
         lineHeight = 20.sp,
-        letterSpacing = 0.1.sp
+        letterSpacing = 0.1.sp,
     ),
-    labelMedium = TextStyle(
+    labelMedium =
+    TextStyle(
         fontWeight = FontWeight.W400,
         fontSize = 12.sp,
         lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
+        letterSpacing = 0.5.sp,
     ),
-    labelSmall = TextStyle(
+    labelSmall =
+    TextStyle(
         fontFamily = FontFamily.Monospace,
         fontWeight = FontWeight.W500,
         fontSize = 10.sp,
-        lineHeight = 16.sp
-    )
+        lineHeight = 16.sp,
+    ),
 )

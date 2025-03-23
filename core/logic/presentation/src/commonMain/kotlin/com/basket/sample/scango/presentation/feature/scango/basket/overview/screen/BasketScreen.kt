@@ -63,7 +63,6 @@ class BasketScreen(
     val onSendEvent: (BasketScreenEvent) -> Unit,
     val onNavigateToCheckout: () -> Unit,
 ) : Screen {
-
     @Composable
     override fun Render() {
         LaunchedEffect(Unit) {
@@ -87,13 +86,14 @@ class BasketScreen(
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun BasketScreen() {
-        val basketItems = remember {
-            mutableStateListOf(
-                BasketItem("Apple", Res.drawable.facebook, 1.99, 1),
-                BasketItem("Banana", Res.drawable.google, 0.99, 2),
-                BasketItem("Orange", Res.drawable.ic_shopping_basket, 2.49, 1)
-            )
-        }
+        val basketItems =
+            remember {
+                mutableStateListOf(
+                    BasketItem("Apple", Res.drawable.facebook, 1.99, 1),
+                    BasketItem("Banana", Res.drawable.google, 0.99, 2),
+                    BasketItem("Orange", Res.drawable.ic_shopping_basket, 2.49, 1),
+                )
+            }
 
         val totalPrice = remember { mutableFloatStateOf(calculateTotal(basketItems)) }
         val searchText = remember { mutableStateOf("") }
@@ -105,7 +105,7 @@ class BasketScreen(
 
         Column(
             modifier = Modifier.fillMaxSize().padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             // App Bar
             TopAppBar(title = { Text("My Basket") })
@@ -117,12 +117,12 @@ class BasketScreen(
                 modifier = Modifier.fillMaxWidth().widthIn(max = 600.dp),
                 shape = MaterialTheme.shapes.medium,
                 elevation = CardDefaults.cardElevation(6.dp),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
             ) {
                 Row(
                     modifier = Modifier.padding(16.dp),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Text("Total Price", fontSize = 20.sp, fontWeight = FontWeight.Bold)
 
@@ -130,10 +130,9 @@ class BasketScreen(
                         targetState = totalPrice.floatValue,
                         transitionSpec = {
                             slideInVertically() + fadeIn() togetherWith slideOutVertically() + fadeOut()
-                        }
+                        },
                     ) { price ->
                         Text("$price", fontSize = 22.sp, fontWeight = FontWeight.Bold)
-
                     }
                 }
             }
@@ -143,7 +142,7 @@ class BasketScreen(
             // Basket Item List
             LazyColumn(
                 modifier = Modifier.fillMaxWidth().weight(1f).widthIn(max = 600.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+                verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 items(basketItems) { item ->
                     BasketItemCard(item) { updatedItem ->
@@ -160,13 +159,13 @@ class BasketScreen(
             // Search Area
             Row(
                 modifier = Modifier.fillMaxWidth().widthIn(max = 600.dp),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 OutlinedTextField(
                     value = searchText.value,
                     onValueChange = { searchText.value = it },
                     label = { Text("Enter Item ID") },
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
                 )
 
                 Spacer_12dp()
@@ -179,7 +178,7 @@ class BasketScreen(
                             basketItems.add(newItem)
                             searchText.value = ""
                         }
-                    }
+                    },
                 ) {
                     Icon(imageVector = Icons.Default.Add, contentDescription = "Add Item")
                 }
@@ -188,20 +187,20 @@ class BasketScreen(
     }
 
     @Composable
-    fun BasketItemCard(item: BasketItem, onQuantityChange: (BasketItem) -> Unit) {
+    fun BasketItemCard(item: BasketItem, onQuantityChange: (BasketItem) -> Unit,) {
         Card(
             modifier = Modifier.fillMaxWidth(),
             shape = MaterialTheme.shapes.medium,
-            elevation = CardDefaults.cardElevation(4.dp)
+            elevation = CardDefaults.cardElevation(4.dp),
         ) {
             Row(
                 modifier = Modifier.padding(16.dp),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Image(
                     painter = painterResource(item.image),
                     contentDescription = item.name,
-                    modifier = Modifier.size(64.dp)
+                    modifier = Modifier.size(64.dp),
                 )
 
                 Spacer_12dp()
@@ -211,7 +210,7 @@ class BasketScreen(
                     Text(
                         text = "$${item.price}",
                         fontSize = 16.sp,
-                        color = MaterialTheme.colorScheme.secondary
+                        color = MaterialTheme.colorScheme.secondary,
                     )
                 }
 
@@ -225,14 +224,14 @@ class BasketScreen(
                     }) {
                         Icon(
                             imageVector = Icons.Default.Remove,
-                            contentDescription = "Decrease Quantity"
+                            contentDescription = "Decrease Quantity",
                         )
                     }
 
                     Text(
                         text = "${item.quantity}",
                         fontSize = 18.sp,
-                        modifier = Modifier.padding(horizontal = 8.dp)
+                        modifier = Modifier.padding(horizontal = 8.dp),
                     )
 
                     IconButton(onClick = {
@@ -240,7 +239,7 @@ class BasketScreen(
                     }) {
                         Icon(
                             imageVector = Icons.Default.Add,
-                            contentDescription = "Increase Quantity"
+                            contentDescription = "Increase Quantity",
                         )
                     }
                 }
@@ -251,5 +250,4 @@ class BasketScreen(
     fun calculateTotal(items: List<BasketItem>): Float {
         return items.sumOf { it.price * it.quantity }.toFloat()
     }
-
 }

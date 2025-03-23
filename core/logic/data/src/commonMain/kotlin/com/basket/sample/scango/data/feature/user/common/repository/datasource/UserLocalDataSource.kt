@@ -6,7 +6,6 @@ import com.basket.sample.scango.domain.common.model.User
 import com.basket.sample.scango.domain.error.GetActiveUserError
 
 interface UserLocalDataSource {
-
     fun saveActiveUser(currentUser: User)
 
     fun getLoggedUser(): Result<User, FailureResult<GetActiveUserError>>

@@ -4,7 +4,6 @@ import com.basket.core.common.result.failure.Error
 import com.basket.sample.scango.domain.common.model.Problem
 
 interface BasketBaseError : Error {
-
     val problem: Problem?
     val message: String
 
@@ -15,7 +14,8 @@ interface BasketBaseError : Error {
     }
 }
 
-sealed interface BasketClientCommonError : Error,
+sealed interface BasketClientCommonError :
+    Error,
     GetActiveUserError,
     GetUserError,
     SaveActiveUserError,
@@ -27,7 +27,7 @@ sealed interface BasketClientCommonError : Error,
 
 data class UnexpectedError(
     override val problem: Problem? = null,
-    override val message: String = "Unexpected Error in the Process"
+    override val message: String = "Unexpected Error in the Process",
 ) : BasketClientCommonError
 
 data class MissingRequiredDataError(
@@ -41,5 +41,5 @@ data object ActiveBasketNotFound :
 
 fun createMissingRequiredDataError(problem: Problem? = null) = MissingRequiredDataError(
     message = "Missing a Required Data",
-    problem = problem
+    problem = problem,
 )

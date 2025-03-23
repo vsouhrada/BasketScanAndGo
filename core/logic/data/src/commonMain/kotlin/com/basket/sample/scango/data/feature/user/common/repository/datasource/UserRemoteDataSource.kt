@@ -7,6 +7,5 @@ import com.basket.sample.scango.domain.common.model.UserId
 import com.basket.sample.scango.domain.error.GetUserError
 
 interface UserRemoteDataSource {
-
     suspend fun getUserById(userId: UserId): Result<User, FailureResult<GetUserError>>
 }

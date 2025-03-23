@@ -9,15 +9,14 @@ class BasketRequestTimeoutException(
     val throwable: Throwable,
 ) : Exception()
 
-fun BasketRequestTimeoutException.toError() =
-    ErrorResult(
-        error =
-            ErrorDto(
-                problem =
-                    ProblemDto(
-                        code = HttpStatusCode.RequestTimeout.value.toString(),
-                        message = "Server not responding, try again later.",
-                    ),
-            ),
-        throwable = this,
-    )
+fun BasketRequestTimeoutException.toError() = ErrorResult(
+    error =
+    ErrorDto(
+        problem =
+        ProblemDto(
+            code = HttpStatusCode.RequestTimeout.value.toString(),
+            message = "Server not responding, try again later.",
+        ),
+    ),
+    throwable = this,
+)

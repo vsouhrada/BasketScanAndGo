@@ -6,7 +6,6 @@ import androidx.compose.runtime.Composable
  * @author vsouhrada
  */
 interface Screen {
-
     @Composable
     fun Render()
 }

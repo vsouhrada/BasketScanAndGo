@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
-import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.annotation.KoinExperimentalAPI
 
 /**
  * Returns a [ViewModel] scoped to the parent of the current [NavBackStackEntry].
@@ -15,12 +15,11 @@ import org.koin.compose.viewmodel.koinViewModel
  */
 @OptIn(KoinExperimentalAPI::class)
 @Composable
-inline fun <reified T : ViewModel> NavBackStackEntry.sharedViewModel(
-    navController: NavHostController,
-): T {
+inline fun <reified T : ViewModel> NavBackStackEntry.sharedViewModel(navController: NavHostController): T {
     val navGraphRoute = destination.parent?.route ?: return viewModel()
-    val parentEntry = remember(this) {
-        navController.getBackStackEntry(navGraphRoute)
-    }
+    val parentEntry =
+        remember(this) {
+            navController.getBackStackEntry(navGraphRoute)
+        }
     return koinViewModel(viewModelStoreOwner = parentEntry)
 }

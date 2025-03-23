@@ -11,7 +11,8 @@ fun main() = application {
     Window(
         onCloseRequest = ::exitApplication,
         title = "Basket Scan&Go",
-        state = rememberWindowState(
+        state =
+        rememberWindowState(
             position = WindowPosition.Aligned(Alignment.Center),
             width = 1200.dp,
             height = 700.dp,

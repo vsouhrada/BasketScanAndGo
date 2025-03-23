@@ -19,16 +19,17 @@ fun HomeScreenNav(logout: () -> Unit) {
     NavHost(
         startDestination = HomeScreenNavigation.Home.route,
         navController = navigator,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         composable(route = HomeScreenNavigation.Home.route) {
             val viewModel: HomeViewModel = koinInject()
             HomeScreen(
-                state = viewModel.state.collectAsStateWithLifecycle(
-                    lifecycleOwner = LocalLifecycleOwner.current
+                state =
+                viewModel.state.collectAsStateWithLifecycle(
+                    lifecycleOwner = LocalLifecycleOwner.current,
                 ),
                 onSendEvent = viewModel::sendScreenEvent,
-                actionState = viewModel.actionState
+                actionState = viewModel.actionState,
             ).Render()
         }
 

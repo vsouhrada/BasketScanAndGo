@@ -4,13 +4,12 @@ import com.basket.sample.scango.data.feature.authorization.token.repository.data
 import com.basket.sample.scango.domain.common.model.User
 
 class UserDtoToDoMapperImpl : UserDtoToDoMapper {
-
     override fun mapUserDto(dto: UserDto) = User(
         id = dto.userId,
         username = dto.username,
         email = dto.email,
         firstName = dto.firstName,
         lastName = dto.lastName,
-        profilePictureUrl = dto.profilePictureUrl
+        profilePictureUrl = dto.profilePictureUrl,
     )
 }

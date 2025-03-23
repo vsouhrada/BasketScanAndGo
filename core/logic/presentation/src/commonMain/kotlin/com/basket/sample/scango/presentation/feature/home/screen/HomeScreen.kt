@@ -31,22 +31,20 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 class HomeScreen(
     state: State<HomeScreenState>,
     onSendEvent: (HomeScreenEvent) -> Unit,
-    actionState: SharedFlow<HomeScreenActionState>
+    actionState: SharedFlow<HomeScreenActionState>,
 ) : Screen {
-
     @Composable
     override fun Render() {
         Column(modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
             Column(
-                modifier = Modifier.fillMaxWidth().padding(16.dp)
+                modifier = Modifier.fillMaxWidth().padding(16.dp),
             ) {
-
                 Spacer_8dp()
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Column {
                         // TODO Store
@@ -55,16 +53,14 @@ class HomeScreen(
             }
 
             Column(modifier = Modifier.background(MaterialTheme.colorScheme.surface)) {
-
-
                 Row(
                     modifier = Modifier.fillMaxWidth().padding(16.dp),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Start
+                    horizontalArrangement = Arrangement.Start,
                 ) {
                     Text(
                         stringResource(Res.string.main_home_special_for_you),
-                        style = MaterialTheme.typography.titleLarge
+                        style = MaterialTheme.typography.titleLarge,
                     )
                 }
             }
@@ -78,5 +74,4 @@ class HomeScreen(
             Render()
         }
     }
-
 }

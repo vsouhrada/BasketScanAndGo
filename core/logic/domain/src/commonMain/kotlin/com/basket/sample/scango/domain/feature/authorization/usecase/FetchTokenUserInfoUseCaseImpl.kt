@@ -6,9 +6,8 @@ import com.basket.sample.scango.domain.error.FetchTokenInfoError
 import com.basket.sample.scango.domain.feature.authorization.repository.TokenRepository
 
 class FetchTokenUserInfoUseCaseImpl(
-    private val tokenRepository: TokenRepository
+    private val tokenRepository: TokenRepository,
 ) : FetchTokenInfoUseCase() {
-
     override suspend fun doWork(params: Unit): Result<FetchTokenInfoResponse, FailureResult<FetchTokenInfoError>> {
         return tokenRepository.refreshAccessToken().chainResult {
             FetchTokenInfoResponse(tokenInfo = it)

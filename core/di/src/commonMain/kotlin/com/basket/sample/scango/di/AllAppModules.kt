@@ -7,10 +7,11 @@ import com.basket.sample.scango.di.dashboard.scango.allScanGoModules
 import com.basket.sample.scango.di.login.loginModule
 import commonModule
 
-val allAppModules = listOf(
-    loginModule,
-    userModule,
-    commonModule,
-    networkModule,
-    basketModule,
-) + allDashboardModules + allScanGoModules
+val allAppModules =
+    listOf(
+        loginModule,
+        userModule,
+        commonModule,
+        networkModule,
+        basketModule,
+    ) + allDashboardModules + allScanGoModules

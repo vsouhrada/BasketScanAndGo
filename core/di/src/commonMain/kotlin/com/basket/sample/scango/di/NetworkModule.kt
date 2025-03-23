@@ -18,32 +18,35 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
-val networkModule = module {
+val networkModule =
+    module {
 
-    single {
-        ApiConfig(
-            enableNetworkLogs = false,
-            logger = ApiLogger.Simple,
-            logLevel = ApiLogLevel.All,
-            userAgent = "Scan&Go - ${getPlatform().name}",
-            customHeaders = CustomHeaders(
-                headers = mapOf(
-                    "X-BASKET-SDK-CLIENT" to "Basket Scan&Go"
-                )
+        single {
+            ApiConfig(
+                enableNetworkLogs = false,
+                logger = ApiLogger.Simple,
+                logLevel = ApiLogLevel.All,
+                userAgent = "Scan&Go - ${getPlatform().name}",
+                customHeaders =
+                CustomHeaders(
+                    headers =
+                    mapOf(
+                        "X-BASKET-SDK-CLIENT" to "Basket Scan&Go",
+                    ),
+                ),
             )
-        )
+        }
+
+        singleOf(::TokenAuthProviderImpl) bind TokenAuthProvider::class
+
+        singleOf(::BasketApiServerPathProviderImpl) bind ServerPathProvider::class
+
+        factoryOf(::TokenApiImpl) bind TokenApi::class
+
+        single<HttpClient> {
+            KtorClientFactory(
+                tokenAuthProvider = get(),
+                serverPathProvider = get(),
+            ).build(apiConfig = get())
+        }
     }
-
-    singleOf(::TokenAuthProviderImpl) bind TokenAuthProvider::class
-
-    singleOf(::BasketApiServerPathProviderImpl) bind ServerPathProvider::class
-
-    factoryOf(::TokenApiImpl) bind TokenApi::class
-
-    single< HttpClient> {
-        KtorClientFactory(
-            tokenAuthProvider = get(),
-            serverPathProvider = get(),
-        ).build(apiConfig = get())
-    }
-}

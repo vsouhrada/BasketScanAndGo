@@ -21,7 +21,7 @@ fun BasketNavGraph(basketId: String) {
     NavHost(
         startDestination = BasketNavigation.BasketOverview,
         navController = navigator,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         composable<BasketNavigation.BasketOverview> {
             val viewModel: BasketViewModel = koinInject()
@@ -30,14 +30,15 @@ fun BasketNavGraph(basketId: String) {
             }
 
             BasketScreen(
-                state = viewModel.state.collectAsStateWithLifecycle(
-                    lifecycleOwner = LocalLifecycleOwner.current
+                state =
+                viewModel.state.collectAsStateWithLifecycle(
+                    lifecycleOwner = LocalLifecycleOwner.current,
                 ),
                 onSendEvent = viewModel::sendScreenEvent,
                 actionState = viewModel.actionState,
                 onNavigateToCheckout = {
                     TODO()
-                }
+                },
             ).Render()
         }
     }

@@ -12,7 +12,6 @@ import kotlin.test.assertEquals
  * @author vsouhrada (v.souhrada@gmail.com)
  */
 class OffsetDateTimeTest {
-
     @Test
     fun testStringParser() {
         val offsetDateTime = OffsetDateTime.parse(DATETIME_ISO)

@@ -6,7 +6,6 @@ sealed class HomeScreenNavigation(
     override val route: String,
     // override val arguments: List<NamedNavArgument>
 ) : ScreenNavigation {
-
     data object Home : HomeScreenNavigation(route = "Home")
 
     data object Settings : HomeScreenNavigation(route = "Settings")

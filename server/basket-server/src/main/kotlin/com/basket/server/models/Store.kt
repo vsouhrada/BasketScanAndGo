@@ -8,7 +8,7 @@ data class Store(
     val name: String,
     val address: String,
     val imageUrl: String,
-    val openingHours: OpeningHours
+    val openingHours: OpeningHours,
 )
 
 @Serializable
@@ -19,5 +19,5 @@ data class OpeningHours(
     val thursday: String,
     val friday: String,
     val saturday: String,
-    val sunday: String
+    val sunday: String,
 )

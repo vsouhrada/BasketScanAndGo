@@ -10,29 +10,29 @@ data class Basket(
     val customerId: String,
     val sharedBasket: Boolean,
     val createdAt: Instant = Clock.System.now(),
-    val items: List<BasketItem> = emptyList()
+    val items: List<BasketItem> = emptyList(),
 )
 
 @Serializable
 data class BasketItem(
     val productId: String,
     val quantity: Int,
-    val price: Double
+    val price: Double,
 )
 
 @Serializable
 data class CreateBasketRequest(
     val customerId: String,
-    val sharedBasket: Boolean
+    val sharedBasket: Boolean,
 )
 
 @Serializable
 data class CreateBasketResponse(
-    val basket: Basket
+    val basket: Basket,
 )
 
 @Serializable
 data class AddItemRequest(
     val productId: String,
-    val quantity: Int
+    val quantity: Int,
 )

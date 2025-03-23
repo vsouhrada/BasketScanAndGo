@@ -41,90 +41,88 @@ open class KtorClientFactory(
 ) {
     private var bearerTokenStorage: BearerTokens? = null
 
-    fun build(apiConfig: ApiConfig) =
-        HttpClient {
-            expectSuccess = true
+    fun build(apiConfig: ApiConfig) = HttpClient {
+        expectSuccess = true
 
-            HttpResponseValidator {
-                handleResponseExceptionWithRequest { exception, _ ->
-                    when (exception) {
-                        is ClientRequestException -> { // Handle 4xx errors
-                            parseError(exception.response.bodyAsText())?.let {
-                                throw BasketRequestException(
-                                    errorCode = exception.response.status.value,
-                                    errorData = it,
-                                )
-                            }
-                        }
-
-                        is ConnectTimeoutException,
-                        is SocketTimeoutException,
-                        is HttpRequestTimeoutException,
-                            -> {
-                            throw BasketRequestTimeoutException(exception)
-                        }
-
-                        else -> return@handleResponseExceptionWithRequest
-                    }
-                }
-            }
-
-            defaultRequest {
-                with(apiConfig) {
-                    val serverPathInfo = serverPathProvider.provideServerPath()
-                    url("${serverPathInfo.basePath}${serverPathInfo.contextPath}")
-                    headers.appendIfNameAbsent(HttpHeaders.Accept, "application/json;Format=Plain")
-                    headers.appendIfNameAbsent(HttpHeaders.Connection, "keep-alive")
-                    headers.appendIfNameAbsent(HttpHeaders.UserAgent, userAgent)
-                    headers.appendIfNameAbsent(HttpHeaders.ContentType, contentType)
-                    if (customHeaders.headers.isNotEmpty()) {
-                        customHeaders.headers.forEach { entry ->
-                            headers.appendIfNameAbsent(entry.key, entry.value)
+        HttpResponseValidator {
+            handleResponseExceptionWithRequest { exception, _ ->
+                when (exception) {
+                    is ClientRequestException -> { // Handle 4xx errors
+                        parseError(exception.response.bodyAsText())?.let {
+                            throw BasketRequestException(
+                                errorCode = exception.response.status.value,
+                                errorData = it,
+                            )
                         }
                     }
-                }
-            }
 
-            install(Auth) {
-                bearer {
-                    loadTokens {
-                        if (bearerTokenStorage == null) {
-                            tokenAuthProvider.getAccessToken().run {
-                                bearerTokenStorage =
-                                    BearerTokens(accessToken = accessToken, refreshToken = refreshToken)
-                            }
-                        }
-                        bearerTokenStorage
+                    is ConnectTimeoutException,
+                    is SocketTimeoutException,
+                    is HttpRequestTimeoutException,
+                    -> {
+                        throw BasketRequestTimeoutException(exception)
                     }
 
-                    refreshTokens {
-                        tokenAuthProvider.refreshToken().run {
-                            bearerTokenStorage = BearerTokens(accessToken = accessToken, refreshToken = refreshToken)
-                        }
-                        bearerTokenStorage
-                    }
+                    else -> return@handleResponseExceptionWithRequest
                 }
             }
-
-            install(ContentNegotiation) {
-                json(jsonObject)
-            }
-
-            if (apiConfig.enableNetworkLogs) {
-                install(Logging) {
-                    logger = getLoggerType(apiConfig.logger)
-                    level = getLoggerLevel(apiConfig.logLevel)
-                }
-            }
-
-            install(HttpTimeout) {
-                val timeout = 30000L
-                connectTimeoutMillis = timeout
-                requestTimeoutMillis = timeout
-                socketTimeoutMillis = timeout
-            }
-
         }
+
+        defaultRequest {
+            with(apiConfig) {
+                val serverPathInfo = serverPathProvider.provideServerPath()
+                url("${serverPathInfo.basePath}${serverPathInfo.contextPath}")
+                headers.appendIfNameAbsent(HttpHeaders.Accept, "application/json;Format=Plain")
+                headers.appendIfNameAbsent(HttpHeaders.Connection, "keep-alive")
+                headers.appendIfNameAbsent(HttpHeaders.UserAgent, userAgent)
+                headers.appendIfNameAbsent(HttpHeaders.ContentType, contentType)
+                if (customHeaders.headers.isNotEmpty()) {
+                    customHeaders.headers.forEach { entry ->
+                        headers.appendIfNameAbsent(entry.key, entry.value)
+                    }
+                }
+            }
+        }
+
+        install(Auth) {
+            bearer {
+                loadTokens {
+                    if (bearerTokenStorage == null) {
+                        tokenAuthProvider.getAccessToken().run {
+                            bearerTokenStorage =
+                                BearerTokens(accessToken = accessToken, refreshToken = refreshToken)
+                        }
+                    }
+                    bearerTokenStorage
+                }
+
+                refreshTokens {
+                    tokenAuthProvider.refreshToken().run {
+                        bearerTokenStorage = BearerTokens(accessToken = accessToken, refreshToken = refreshToken)
+                    }
+                    bearerTokenStorage
+                }
+            }
+        }
+
+        install(ContentNegotiation) {
+            json(jsonObject)
+        }
+
+        if (apiConfig.enableNetworkLogs) {
+            install(Logging) {
+                logger = getLoggerType(apiConfig.logger)
+                level = getLoggerLevel(apiConfig.logLevel)
+            }
+        }
+
+        install(HttpTimeout) {
+            val timeout = 30000L
+            connectTimeoutMillis = timeout
+            requestTimeoutMillis = timeout
+            socketTimeoutMillis = timeout
+        }
+    }
 
     @OptIn(ExperimentalSerializationApi::class)
     private val jsonObject =
@@ -167,18 +165,16 @@ open class KtorClientFactory(
         return null
     }
 
-    private fun getLoggerLevel(logLevel: ApiLogLevel) =
-        when (logLevel) {
-            ApiLogLevel.All -> LogLevel.ALL
-            ApiLogLevel.Body -> LogLevel.BODY
-            ApiLogLevel.Headers -> LogLevel.HEADERS
-            ApiLogLevel.Info -> LogLevel.INFO
-            ApiLogLevel.None -> LogLevel.NONE
-        }
+    private fun getLoggerLevel(logLevel: ApiLogLevel) = when (logLevel) {
+        ApiLogLevel.All -> LogLevel.ALL
+        ApiLogLevel.Body -> LogLevel.BODY
+        ApiLogLevel.Headers -> LogLevel.HEADERS
+        ApiLogLevel.Info -> LogLevel.INFO
+        ApiLogLevel.None -> LogLevel.NONE
+    }
 
-    private fun getLoggerType(logger: ApiLogger) =
-        when (logger) {
-            ApiLogger.Default -> Logger.DEFAULT
-            ApiLogger.Simple -> Logger.SIMPLE
-        }
+    private fun getLoggerType(logger: ApiLogger) = when (logger) {
+        ApiLogger.Default -> Logger.DEFAULT
+        ApiLogger.Simple -> Logger.SIMPLE
+    }
 }
