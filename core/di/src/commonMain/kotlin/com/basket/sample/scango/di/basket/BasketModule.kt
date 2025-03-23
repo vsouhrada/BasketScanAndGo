@@ -1,10 +1,14 @@
 package com.basket.sample.scango.di.basket
 
+import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.v1.BasketApi
+import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.v1.BasketApiImpl
 import com.basket.sample.scango.data.feature.basket.repository.BasketRepositoryImpl
 import com.basket.sample.scango.data.feature.basket.repository.datasource.BasketLocalDataSource
 import com.basket.sample.scango.data.feature.basket.repository.datasource.BasketLocalDataSourceImpl
 import com.basket.sample.scango.data.feature.basket.repository.datasource.BasketRemoteDataSource
 import com.basket.sample.scango.data.feature.basket.repository.datasource.BasketRemoteDataSourceImpl
+import com.basket.sample.scango.data.feature.basket.repository.datasource.mapper.BasketMapper
+import com.basket.sample.scango.data.feature.basket.repository.datasource.mapper.BasketMapperImpl
 import com.basket.sample.scango.domain.feature.basket.active.GetActiveBasketUseCase
 import com.basket.sample.scango.domain.feature.basket.active.GetActiveBasketUseCaseImpl
 import com.basket.sample.scango.domain.feature.basket.active.ObserveActiveBasketUseCase
@@ -30,4 +34,8 @@ val basketModule =
         factoryOf(::GetActiveBasketUseCaseImpl) bind GetActiveBasketUseCase::class
         factoryOf(::ObserveActiveBasketUseCaseImpl) bind ObserveActiveBasketUseCase::class
         factoryOf(::CreateBasketUseCaseImpl) bind CreateBasketUseCase::class
+
+        factoryOf(::BasketMapperImpl) bind BasketMapper::class
+
+        singleOf(::BasketApiImpl) bind BasketApi::class
     }

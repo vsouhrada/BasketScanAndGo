@@ -1,10 +1,17 @@
 package com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.v1
 
+import com.basket.core.common.result.ErrorResult
 import com.basket.core.common.result.Result
 import com.basket.sample.scango.data.core.api.rest.BaseApi
+import com.basket.sample.scango.data.core.api.rest.ktor.networkCall
+import com.basket.sample.scango.data.core.api.rest.model.ErrorDto
 import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.v1.dto.CreateBasketRequestDto
 import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.api.v1.dto.CreateBasketResponseDto
 import io.ktor.client.HttpClient
+import io.ktor.client.request.post
+import io.ktor.client.request.setBody
+import io.ktor.http.encodedPath
+import io.ktor.http.path
 
 class BasketApiImpl(
     override val client: HttpClient,
@@ -17,7 +24,18 @@ class BasketApiImpl(
      *         or an error [Throwable] if the operation fails.
      * @since 1.0.0
      */
-    override suspend fun createBasket(request: CreateBasketRequestDto): Result<CreateBasketResponseDto, Throwable> {
-        TODO("Not yet implemented")
+    override suspend fun createBasket(request: CreateBasketRequestDto): Result<CreateBasketResponseDto, ErrorResult<ErrorDto>> {
+        return networkCall {
+            client.post {
+                url {
+                    encodedPath =
+                        encodedPath.let { startingPath ->
+                            path("/baskets")
+                            "$startingPath${encodedPath.substring(1)}"
+                        }
+                }
+                setBody(request)
+            }
+        }
     }
 }

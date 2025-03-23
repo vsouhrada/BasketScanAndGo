@@ -5,7 +5,7 @@ import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Basket(
+data class BasketDto(
     val id: String,
     val customerId: String,
     val sharedBasket: Boolean,
@@ -28,7 +28,7 @@ data class CreateBasketRequest(
 
 @Serializable
 data class CreateBasketResponse(
-    val basket: Basket,
+    val basket: BasketDto,
 )
 
 @Serializable

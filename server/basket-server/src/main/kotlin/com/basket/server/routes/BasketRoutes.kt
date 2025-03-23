@@ -1,7 +1,7 @@
 package com.basket.server.routes
 
 import com.basket.server.models.AddItemRequest
-import com.basket.server.models.Basket
+import com.basket.server.models.BasketDto
 import com.basket.server.models.BasketItem
 import com.basket.server.models.CreateBasketRequest
 import com.basket.server.models.CreateBasketResponse
@@ -18,7 +18,7 @@ import java.util.UUID
 import java.util.concurrent.ConcurrentHashMap
 
 // In-memory storage for baskets (in a real app, this would be a database)
-private val baskets = ConcurrentHashMap<String, Basket>()
+private val baskets = ConcurrentHashMap<String, BasketDto>()
 
 fun Route.basketRoutes() {
     route("/baskets") {
@@ -31,7 +31,7 @@ fun Route.basketRoutes() {
 
             // Create the basket
             val basket =
-                Basket(
+                BasketDto(
                     id = basketId,
                     customerId = request.customerId,
                     sharedBasket = request.sharedBasket,
