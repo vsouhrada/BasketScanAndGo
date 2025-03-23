@@ -16,10 +16,10 @@ fun main() {
 }
 
 fun Application.module() {
+    configureHTTP()
     configureRouting()
     configureSerialization()
     configureSecurity()
     configureMonitoring()
-    configureHTTP()
     configureExceptionHandling()
 }

@@ -8,15 +8,40 @@ import io.ktor.server.plugins.cors.routing.CORS
 
 fun Application.configureHTTP() {
     install(CORS) {
+        // Allow specific origin instead of any host
+        // anyHost()
+        allowHeadersPrefixed("X-")
+        allowHeadersPrefixed("x-")
+        allowHost("localhost:8081")
+        allowHost("localhost:8080")
+        allowHost("0.0.0.0:8081")
+        allowHost("0.0.0.0:8080")
+        allowHost("127.0.0.1:8081")
+        allowHost("127.0.0.1:8080")
+
+        // Allow methods
         allowMethod(HttpMethod.Options)
         allowMethod(HttpMethod.Get)
         allowMethod(HttpMethod.Post)
         allowMethod(HttpMethod.Put)
         allowMethod(HttpMethod.Delete)
         allowMethod(HttpMethod.Patch)
+
+        // Allow headers
+        allowHeader(HttpHeaders.Allow)
         allowHeader(HttpHeaders.Authorization)
         allowHeader(HttpHeaders.ContentType)
         allowHeader(HttpHeaders.Accept)
-        anyHost() // For development, you should restrict this in production
+        allowHeader(HttpHeaders.AccessControlAllowOrigin)
+        allowHeader(HttpHeaders.Origin)
+
+        // Allow credentials
+        allowCredentials = true
+
+        // Explicitly set the headers to be exposed in the response
+        exposeHeader(HttpHeaders.AccessControlAllowOrigin)
+        exposeHeader(HttpHeaders.AccessControlAllowMethods)
+        exposeHeader(HttpHeaders.AccessControlAllowHeaders)
+        exposeHeader(HttpHeaders.AccessControlAllowCredentials)
     }
 }
