@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+    <configuration default="false" name="androidApp" type="AndroidRunConfigurationType" factoryName="Android App">
+        <module name="BasketScanAndGo.composeApp" />
+        <method v="2" />
+    </configuration>
+</component>

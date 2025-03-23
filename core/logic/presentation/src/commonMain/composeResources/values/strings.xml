@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Basket Scan&amp;Go</string>
+
+    <string name="sign_in">Sign In</string>
+    <string name="welcome_title">Hi! Welcome back to Basket Scan&amp;Go</string>
+    <string name="email">Email</string>
+    <string name="or_sign_in_with">Or sign in with</string>
+    <string name="or_sign_up_with">Or sign up with</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="password">Password</string>
+    <string name="name">Name</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="dont_have_an_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign Up</string>
+    <!-- Main Dashboard-->
+    <string name="main_home_special_for_you">Special for You</string>
+    <string name="main_profile_title">Profile</string>
+    <string name="main_scango_title">Scan&amp;Go</string>
+    <string name="main_catalog_title">Catalog</string>
+    <string name="main_home_title">Home</string>
+    <string name="main_scango_start_info">Get ready for the best shopping experience!\nFind everything you need easily.</string>
+    <string name="main_scango_start_begin">Begin shopping</string>
+    <string name="main_scango_basket_create_info">Create your Basket and start shopping now! Find everything you need in one place and enjoy a fun shopping experience.</string>
+    <string name="main_scango_basket_create_button">Create Basket</string>
+    <string name="error_something_wrong">Something went wrong!</string>
+
+</resources>

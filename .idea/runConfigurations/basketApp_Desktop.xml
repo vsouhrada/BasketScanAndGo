@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+    <configuration default="false" name="basketApp [Desktop]" type="GradleRunConfiguration" factoryName="Gradle">
+        <ExternalSystemSettings>
+            <option name="executionName" value="" />
+            <option name="externalProjectPath" value="$PROJECT_DIR$/composeApp" />
+            <option name="externalSystemIdString" value="GRADLE" />
+            <option name="scriptParameters" value="-DmainClass=com.basket.sample.scango.DesktopAppKt --quiet" />
+            <option name="taskNames">
+                <list>
+                    <option value="desktopRun" />
+                </list>
+            </option>
+        </ExternalSystemSettings>
+        <method v="2" />
+    </configuration>
+</component>

@@ -1,0 +1,65 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="250dp"
+    android:height="100dp"
+    android:viewportWidth="250"
+    android:viewportHeight="100">
+  
+  <!-- Background -->
+  <path
+      android:pathData="M0,0h250v100h-250z"
+      android:fillColor="#f5f5f5"/>
+      
+  <!-- Shopping basket body - centered and scaled -->
+  <path
+      android:pathData="M75,40L175,40L165,85L85,85Z"
+      android:fillColor="#1c1c59"/>
+  
+  <!-- Basket handle -->
+  <path
+      android:pathData="M85,40C85,25 115,25 125,25C135,25 165,25 165,40"
+      android:strokeWidth="4"
+      android:strokeColor="#1c1c59"
+      android:fillColor="#00000000"/>
+  
+  <!-- Items in basket -->
+  <path
+      android:pathData="M100,55m-8,0a8,8 0,1 1,16 0a8,8 0,1 1,-16 0"
+      android:fillColor="#41cd9d"/>
+  <path
+      android:pathData="M125,55m-8,0a8,8 0,1 1,16 0a8,8 0,1 1,-16 0"
+      android:fillColor="#a97fcd"/>
+  <path
+      android:pathData="M150,55m-8,0a8,8 0,1 1,16 0a8,8 0,1 1,-16 0"
+      android:fillColor="#e55c3a"/>
+  
+  <!-- Basket details -->
+  <path
+      android:pathData="M85,55L165,55"
+      android:strokeWidth="2"
+      android:strokeColor="#ffffff"
+      android:fillColor="#00000000"/>
+  <path
+      android:pathData="M90,70L160,70"
+      android:strokeWidth="2"
+      android:strokeColor="#ffffff"
+      android:fillColor="#00000000"/>
+      
+  <!-- Text -->
+  <path
+      android:pathData="M60,15L190,15"
+      android:strokeWidth="2"
+      android:strokeColor="#1c1c59"
+      android:fillColor="#00000000"/>
+      
+  <path
+      android:pathData="M70,15L70,25"
+      android:strokeWidth="2"
+      android:strokeColor="#1c1c59"
+      android:fillColor="#00000000"/>
+      
+  <path
+      android:pathData="M180,15L180,25"
+      android:strokeWidth="2"
+      android:strokeColor="#1c1c59"
+      android:fillColor="#00000000"/>
+</vector>

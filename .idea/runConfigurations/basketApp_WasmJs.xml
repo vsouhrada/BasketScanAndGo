@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+    <configuration default="false" name="basketApp [WasmJs]" type="GradleRunConfiguration" factoryName="Gradle">
+        <ExternalSystemSettings>
+            <option name="executionName" value="" />
+            <option name="externalProjectPath" value="$PROJECT_DIR$/composeApp" />
+            <option name="externalSystemIdString" value="GRADLE" />
+            <option name="taskNames">
+                <list>
+                    <option value="wasmJsBrowserDevelopmentRun" />
+                </list>
+            </option>
+        </ExternalSystemSettings>
+        <method v="2" />
+    </configuration>
+</component>

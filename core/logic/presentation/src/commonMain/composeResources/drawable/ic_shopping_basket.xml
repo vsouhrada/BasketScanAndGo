@@ -1,0 +1,37 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="80dp"
+    android:height="31.38dp"
+    android:viewportWidth="80"
+    android:viewportHeight="31.38">
+  <!-- Shopping basket body -->
+  <path
+      android:pathData="M20,10L60,10L55,25L25,25Z"
+      android:fillColor="#1c1c59"/>
+  <!-- Basket handle -->
+  <path
+      android:pathData="M25,10C25,5 35,5 40,5C45,5 55,5 55,10"
+      android:strokeWidth="2"
+      android:strokeColor="#1c1c59"
+      android:fillColor="#00000000"/>
+  <!-- Items in basket -->
+  <path
+      android:pathData="M30,15m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"
+      android:fillColor="#41cd9d"/>
+  <path
+      android:pathData="M40,15m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"
+      android:fillColor="#a97fcd"/>
+  <path
+      android:pathData="M50,15m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"
+      android:fillColor="#e55c3a"/>
+  <!-- Basket details -->
+  <path
+      android:pathData="M25,15L55,15"
+      android:strokeWidth="1"
+      android:strokeColor="#ffffff"
+      android:fillColor="#00000000"/>
+  <path
+      android:pathData="M27,20L53,20"
+      android:strokeWidth="1"
+      android:strokeColor="#ffffff"
+      android:fillColor="#00000000"/>
+</vector>

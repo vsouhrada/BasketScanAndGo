@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+    <configuration default="false" name="iosApp" type="XcodeRunConfiguration">
+        <XcodeSettings>
+            <option name="project" value="iosApp" />
+            <option name="target" value="iosApp" />
+            <option name="configuration" value="Debug" />
+        </XcodeSettings>
+        <method v="2" />
+    </configuration>
+</component>

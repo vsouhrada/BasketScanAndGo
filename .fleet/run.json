@@ -1,0 +1,43 @@
+{
+    "configurations": [
+
+        {
+            "name": "basketApp [Desktop]",
+            "type": "gradle",
+            "workingDir": "$PROJECT_DIR$",
+            "tasks": ["desktopRun"],
+            "args": ["-DmainClass=com.basket.sample.scango.DesktopAppKt", "--quiet", "-p", "$PROJECT_DIR$/composeApp"],
+            "initScripts": {
+                "flmapper": "ext.mapPath = { path -> path }"
+            }
+        },
+        {
+            "name": "basketApp [WasmJs]",
+            "type": "gradle",
+            "workingDir": "$PROJECT_DIR$",
+            "tasks": ["wasmJsBrowserDevelopmentRun"],
+            "args": ["-p", "$PROJECT_DIR$/composeApp"],
+            "initScripts": {
+                "flmapper": "ext.mapPath = { path -> path }"
+            }
+        },
+        {
+            "name": "iosApp",
+            "type": "xcode-app",
+            "workingDir": "$PROJECT_DIR$",
+            "allowParallelRun": true,
+            "buildTarget": {
+                "project": "iosApp",
+                "target": "iosApp"
+            },
+            "configuration": "Debug"
+        },
+        {
+            "name": "androidApp",
+            "type": "android-app",
+            "workingDir": "$PROJECT_DIR$",
+            "allowParallelRun": true,
+            "module": "BasketScanAndGo.composeApp"
+        }
+    ]
+}
