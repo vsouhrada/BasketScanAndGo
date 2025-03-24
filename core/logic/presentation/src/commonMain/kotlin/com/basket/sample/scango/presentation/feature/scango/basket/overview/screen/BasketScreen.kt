@@ -80,12 +80,12 @@ class BasketScreen(
               Spacer_32dp()
               BasketScreen()
           }*/
-        BasketScreen()
+        RenderBasketScreen()
     }
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun BasketScreen() {
+    fun RenderBasketScreen() {
         val basketItems =
             remember {
                 mutableStateListOf(
