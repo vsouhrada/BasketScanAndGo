@@ -1,8 +1,9 @@
 package com.basket.sample.scango.presentation.core.platform
 
 import platform.UIKit.UIDevice
-import kotlin.native.Platform
+import kotlin.experimental.ExperimentalNativeApi
 
+@OptIn(ExperimentalNativeApi::class)
 class IOSPlatform : Platform {
     override val name: String = UIDevice.currentDevice.systemName() + " " + UIDevice.currentDevice.systemVersion
 }

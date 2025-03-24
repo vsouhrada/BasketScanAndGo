@@ -47,6 +47,22 @@ fun Route.basketRoutes() {
             )
         }
 
+        // Get all baskets
+        get {
+            val baskets = baskets.values.map { basket ->
+                BasketDto(
+                    id = basket.id,
+                    customerId = basket.customerId,
+                    sharedBasket = basket.sharedBasket,
+                    items = basket.items,
+                    createdAt = basket.createdAt
+                )
+            }
+
+            // Return the basket
+            call.respond(HttpStatusCode.OK, baskets)
+        }
+
         // Get a basket by ID
         get("/{id}") {
             val basketId =
