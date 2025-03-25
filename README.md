@@ -166,7 +166,8 @@ The following diagram shows a more detailed view of module dependencies in the p
 | (iOS-specific code) |     | (Dependency         |     | (Use Cases, Models) |
 |                     |     |  Injection)         |     |                     |
 | :basket-server      |     |                     |     | :data               |
-| (Backend server)    |     |                     |     | (Repositories,      |
+| (Ktor-based backend |     |                     |     | (Repositories,      |
+| server)             |     |                     |     |                     |
 |                     |     |                     |     |  Data Sources)      |
 +---------------------+     +---------------------+     +---------------------+
         |  |                       |   |                      |   |   |
@@ -236,7 +237,7 @@ The arrows indicate dependencies between modules, showing how they rely on each 
 3. **Platform-Specific Modules**:
    - **composeApp**: Shared UI implementation
    - **iosApp**: iOS-specific code
-   - **server**: Backend server implementation
+   - **server**: Ktor-based backend server implementation ([documentation](doc/basket-server.md))
 
 ## Commit Analysis and User Impact Summary
 
@@ -289,8 +290,17 @@ The Basket Scan and Go application provides significant benefits to users:
 ```
 
 ## Showcase
-TBD
+
+Below are screenshots of the Basket Scan and Go application running on different platforms.
+
 ### Android
+<img alt="Android App Screenshot" src="artwork/android.png" width="300" />
+
 ### iOS
+<img alt="iOS App Screenshot" src="artwork/ios.png" width="300" />
+
 ### Desktop
+<img alt="Desktop App Screenshot" src="artwork/desktop.png" width="600" />
+
 ### Web (Js & WasmJs)
+<img alt="Web App Screenshot" src="artwork/web.png" width="600" />
