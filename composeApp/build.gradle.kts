@@ -129,8 +129,23 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.basket.sample.scango"
+            packageName = "Basket Scan-Go"
             packageVersion = "1.0.0"
+
+            macOS {
+                iconFile.set(project.file("src/desktopMain/composeResources/drawable/ic_launcher.icns"))
+                bundleID = "com.basket.sample.scango"
+                // Optional: Set app name metadata (won’t affect .app name, but helps in Info.plist)
+                dockName = "Basket Scan&Go"
+            }
+
+            windows {
+                iconFile.set(project.file("src/desktopMain/composeResources/drawable/ic_launcher.ico"))
+            }
+
+            linux {
+                iconFile.set(project.file("src/desktopMain/composeResources/drawable/ic_launcher.png"))
+            }
         }
     }
 }
