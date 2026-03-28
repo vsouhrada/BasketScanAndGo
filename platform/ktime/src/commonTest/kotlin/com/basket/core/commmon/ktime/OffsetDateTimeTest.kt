@@ -1,7 +1,7 @@
 package com.basket.core.commmon.ktime
 
 import com.basket.core.common.ktime.OffsetDateTime
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json

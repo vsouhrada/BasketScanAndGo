@@ -8,6 +8,7 @@ import com.basket.sample.scango.data.feature.authorization.token.repository.data
 import com.basket.sample.scango.domain.error.FetchTokenInfoError
 import com.basket.sample.scango.domain.feature.authorization.model.TokenInfo
 import com.basket.sample.scango.domain.feature.authorization.repository.TokenRepository
+import com.basket.sample.scango.domain.feature.authorization.usecase.FetchTokenInfoRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -17,23 +18,18 @@ class TokenRepositoryImpl(
 ) : TokenRepository {
     private val logger = getKLogger { }
 
-    override suspend fun refreshAccessToken(): Result<TokenInfo, FailureResult<FetchTokenInfoError>> {
+    override suspend fun refreshAccessToken(params: FetchTokenInfoRequest): Result<TokenInfo, FailureResult<FetchTokenInfoError>> {
         return withContext(Dispatchers.Default) {
-            val localTokenResult = tokenLocalDataSource.getTokenInfo()
-            if (localTokenResult.getOrNull() == null) {
-                when (val tokenRemoteResult = tokenRemoteDataSource.fetchTokenInfo()) {
-                    is Result.Success -> {
-                        tokenLocalDataSource.setTokenInfo(tokenRemoteResult.data)
-                        tokenRemoteResult
-                    }
-
-                    is Result.Failure -> {
-                        logger.error { tokenRemoteResult }
-                        tokenRemoteResult
-                    }
+            when (val tokenRemoteResult = tokenRemoteDataSource.fetchTokenInfo(params = params)) {
+                is Result.Success -> {
+                    tokenLocalDataSource.setTokenInfo(tokenRemoteResult.data)
+                    tokenRemoteResult
                 }
-            } else {
-                localTokenResult
+
+                is Result.Failure -> {
+                    logger.error { tokenRemoteResult }
+                    tokenRemoteResult
+                }
             }
         }
     }

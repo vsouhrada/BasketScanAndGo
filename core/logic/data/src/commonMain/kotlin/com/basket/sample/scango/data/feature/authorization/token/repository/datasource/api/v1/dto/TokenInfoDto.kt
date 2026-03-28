@@ -9,4 +9,6 @@ data class TokenInfoDto(
     val accessToken: String,
     @SerialName("refresh_token")
     val refreshToken: String,
+    @SerialName("user_id")
+    val userId: String,
 )

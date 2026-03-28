@@ -16,9 +16,9 @@ class TokenAuthProviderImpl(/*private val fetchTokenInfo: FetchTokenInfoUseCase*
             is Result.Success -> result.data.tokenInfo
             is Result.Failure -> {
                 // TODO() - add error here
-                TokenInfo(accessToken = "", refreshToken = "")
+                TokenInfo(accessToken = "", refreshToken = "", userId = "")
             }
         }*/
-        return TokenInfo(accessToken = "", refreshToken = "")
+        return TokenInfo(accessToken = "", refreshToken = "", userId = "")
     }
 }

@@ -1,7 +1,6 @@
 package com.basket.sample.scango.presentation.feature.login.screen.state
 
 import com.basket.core.common.designSystem.uikit.screen.UIState
-import com.basket.sample.scango.domain.common.model.UserId
 import com.basket.sample.scango.presentation.feature.login.model.LoginVo
 
 data class LoginScreenState(
@@ -17,6 +16,6 @@ sealed class LoginScreenErrorState {
     ) : LoginScreenErrorState()
 
     data class InvalidUserCredentials(
-        val userId: UserId,
+        val username: String,
     ) : LoginScreenErrorState()
 }

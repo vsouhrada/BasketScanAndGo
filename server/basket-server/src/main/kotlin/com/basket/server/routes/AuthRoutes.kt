@@ -40,6 +40,7 @@ fun Route.authRoutes() {
                     TokenResponse(
                         accessToken = accessToken,
                         refreshToken = refreshToken,
+                        userId = user.id,
                     ),
                 )
             } else {
@@ -64,6 +65,7 @@ fun Route.authRoutes() {
                 TokenResponse(
                     accessToken = accessToken,
                     refreshToken = refreshToken,
+                    userId = userId,
                 ),
             )
         }

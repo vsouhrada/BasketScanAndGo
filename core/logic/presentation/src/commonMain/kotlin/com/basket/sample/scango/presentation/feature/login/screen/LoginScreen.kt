@@ -153,7 +153,7 @@ class LoginScreen(
                             LoginScreenEvent.AuthorizeUser(
                                 userCredentials =
                                 UserCredentials(
-                                    userId = inputValueID.value,
+                                    username = inputValueID.value,
                                     password = inputValuePass.value,
                                 ),
                             ),

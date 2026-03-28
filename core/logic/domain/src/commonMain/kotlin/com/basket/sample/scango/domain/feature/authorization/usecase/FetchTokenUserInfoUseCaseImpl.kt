@@ -8,8 +8,8 @@ import com.basket.sample.scango.domain.feature.authorization.repository.TokenRep
 class FetchTokenUserInfoUseCaseImpl(
     private val tokenRepository: TokenRepository,
 ) : FetchTokenInfoUseCase() {
-    override suspend fun doWork(params: Unit): Result<FetchTokenInfoResponse, FailureResult<FetchTokenInfoError>> {
-        return tokenRepository.refreshAccessToken().chainResult {
+    override suspend fun doWork(params: FetchTokenInfoRequest): Result<FetchTokenInfoResponse, FailureResult<FetchTokenInfoError>> {
+        return tokenRepository.refreshAccessToken(params = params).chainResult {
             FetchTokenInfoResponse(tokenInfo = it)
         }
     }

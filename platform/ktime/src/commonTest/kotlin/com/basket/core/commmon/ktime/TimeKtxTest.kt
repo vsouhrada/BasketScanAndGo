@@ -10,7 +10,7 @@ import com.basket.core.common.ktime.formatddMMYY
 import com.basket.core.common.ktime.parseFromEpochMillis
 import com.basket.core.common.ktime.parseYYYYeMMeDDTHHiMMiSSoSSS
 import com.basket.core.common.ktime.parseYYYYeMMeDDTHHiMMiSSoSSSZ
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import kotlin.jvm.JvmName

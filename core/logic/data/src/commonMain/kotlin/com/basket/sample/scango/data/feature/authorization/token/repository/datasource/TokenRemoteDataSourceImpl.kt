@@ -7,10 +7,11 @@ import com.basket.sample.scango.data.feature.authorization.token.repository.data
 import com.basket.sample.scango.data.feature.authorization.token.repository.datasource.mapper.toDomain
 import com.basket.sample.scango.domain.error.FetchTokenInfoError
 import com.basket.sample.scango.domain.feature.authorization.model.TokenInfo
+import com.basket.sample.scango.domain.feature.authorization.usecase.FetchTokenInfoRequest
 
 class TokenRemoteDataSourceImpl(private val tokenApi: TokenApi) : TokenRemoteDataSource {
-    override suspend fun fetchTokenInfo(): Result<TokenInfo, FailureResult<FetchTokenInfoError>> {
-        return when (val result = tokenApi.refreshToken()) {
+    override suspend fun fetchTokenInfo(params: FetchTokenInfoRequest): Result<TokenInfo, FailureResult<FetchTokenInfoError>> {
+        return when (val result = tokenApi.refreshToken(params = params)) {
             is Result.Success -> result.data.toDomain().toSuccess()
             is Result.Failure -> result
         }

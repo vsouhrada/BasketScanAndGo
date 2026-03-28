@@ -1,7 +1,7 @@
 package com.basket.core.common.klogger
 
 import io.github.oshai.kotlinlogging.KLogger
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
 
 private val LOGGER = getKLogger {}
 

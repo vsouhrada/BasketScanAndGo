@@ -5,6 +5,8 @@ import com.basket.core.common.klogger.getKLogger
 import com.basket.core.common.klogger.logDebug
 import com.basket.core.common.result.chain
 import com.basket.core.common.result.failure.FailureResult
+import com.basket.sample.scango.domain.feature.authorization.usecase.FetchTokenInfoRequest
+import com.basket.sample.scango.domain.feature.authorization.usecase.FetchTokenInfoUseCase
 import com.basket.sample.scango.domain.feature.user.getUser.usecase.GetUserRequest
 import com.basket.sample.scango.domain.feature.user.getUser.usecase.GetUserUseCase
 import com.basket.sample.scango.domain.feature.user.saveActiveUser.usecase.SaveActiveUserRequest
@@ -20,6 +22,7 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.cancellation.CancellationException
 
 class LoginViewModel(
+    private val fetchTokenInfo: FetchTokenInfoUseCase,
     private val getUser: GetUserUseCase,
     private val saveActiveUser: SaveActiveUserUseCase,
 ) : BaseViewModel<LoginScreenState, LoginScreenEvent, LoginScreenActionState>(initialState = LoginScreenState()) {
@@ -46,27 +49,35 @@ class LoginViewModel(
     }
 
     private fun authorizeUser(userCredentials: UserCredentials) {
-        logger.logDebug { "Authorization of user=${userCredentials.userId}" }
+        logger.logDebug { "Authorization of user=${userCredentials.username}" }
         viewModelScope.launch {
             emitLoadingState(isLoading = true)
 
-            getUser(
+            fetchTokenInfo(
                 params =
-                GetUserRequest(
-                    userId = userCredentials.userId,
+                FetchTokenInfoRequest(
+                    username = userCredentials.username,
+                    password = userCredentials.password,
                 ),
-            ).chain { getUserResponse ->
-                saveActiveUser(
+            ).chain { fetchTokenInfoResponse ->
+                getUser(
                     params =
-                    SaveActiveUserRequest(
-                        currentUser = getUserResponse.user,
+                    GetUserRequest(
+                        userId = fetchTokenInfoResponse.tokenInfo.userId,
                     ),
-                ).onSuccess { saveActiveUserResponse ->
-                    logger.logDebug { "Successfully saved activeUser=$saveActiveUser" }
-                    emitScreenAction(LoginScreenActionState.UserAuthorized)
+                ).chain { getUserResponse ->
+                    saveActiveUser(
+                        params =
+                        SaveActiveUserRequest(
+                            currentUser = getUserResponse.user,
+                        ),
+                    ).onSuccess {
+                        logger.logDebug { "Successfully saved active user=${getUserResponse.user.id}" }
+                        emitScreenAction(LoginScreenActionState.UserAuthorized)
+                    }
                 }
             }.onFailure { failure ->
-                logger.error { "Failed to send authorization to user=${userCredentials.userId}, failure: $failure" }
+                logger.error { "Failed to authorize user=${userCredentials.username}, failure: $failure" }
                 emitErrorState(
                     errorState = mapErrorState(
                         userCredentials = userCredentials,
@@ -88,7 +99,7 @@ class LoginViewModel(
             )
         }
 
-        return LoginScreenErrorState.InvalidUserCredentials(userId = userCredentials.userId)
+        return LoginScreenErrorState.InvalidUserCredentials(username = userCredentials.username)
     }
 
     private fun isConnectionFailure(failure: FailureResult<*>): Boolean {
