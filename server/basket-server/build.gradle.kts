@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.serialization)
     application
-    id("io.ktor.plugin") version "3.1.1"
+    id("io.ktor.plugin") version "3.4.1"
 }
 
 group = "com.basket.server"
@@ -14,34 +14,34 @@ repositories {
 
 dependencies {
     // Ktor server
-    implementation("io.ktor:ktor-server-core:3.1.1")
-    implementation("io.ktor:ktor-server-netty:3.1.1")
-    implementation("io.ktor:ktor-server-content-negotiation:3.1.1")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:3.1.1")
-    implementation("io.ktor:ktor-server-auth:3.1.1")
-    implementation("io.ktor:ktor-server-auth-jwt:3.1.1")
-    implementation("io.ktor:ktor-server-cors:3.1.1")
-    implementation("io.ktor:ktor-server-call-logging:3.1.1")
-    implementation("io.ktor:ktor-server-status-pages:3.1.1")
+    implementation(libs.ktor.server.core)
+    implementation(libs.ktor.server.netty)
+    implementation(libs.ktor.server.content.negotiation)
+    implementation(libs.ktor.serialization.json)
+    implementation(libs.ktor.server.auth)
+    implementation(libs.ktor.server.auth.jwt)
+    implementation(libs.ktor.server.cors)
+    implementation(libs.ktor.server.call.logging)
+    implementation(libs.ktor.server.status.pages)
 
     // Logging
-    implementation("ch.qos.logback:logback-classic:1.5.3")
+    implementation("ch.qos.logback:logback-classic:1.5.12")
 
     // Kotlin serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.0")
+    implementation(libs.kotlinx.serialization.json)
 
     // Kotlin coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
+    implementation(libs.kotlinx.coroutines.core)
 
     // Kotlin datetime
-    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
+    implementation(libs.kotlinx.datetime)
 
     // JWT
     implementation("com.auth0:java-jwt:4.4.0")
 
     // Testing
-    testImplementation("io.ktor:ktor-server-test-host:3.1.1")
-    testImplementation("org.jetbrains.kotlin:kotlin-test:2.1.10")
+    testImplementation(libs.ktor.server.test.host)
+    testImplementation(libs.kotlin.test)
 }
 
 application {
