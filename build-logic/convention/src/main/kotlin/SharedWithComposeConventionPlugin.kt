@@ -36,10 +36,21 @@ class SharedWithComposeConventionPlugin : Plugin<Project> {
 //                        implementation(libs.findLibrary("ktor.mock").get())
                         implementation(libs.findLibrary("coroutines.test").get())
 //                        implementation(libs.findLibrary("turbine.turbine").get())
-                        implementation(libs.findLibrary("mockk.io").get())
 
                         @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                         implementation(composeDeps.uiTest)
+                    }
+                }
+
+                jvmTest {
+                    dependencies {
+                        implementation(libs.findLibrary("mockk.io").get())
+                    }
+                }
+
+                androidUnitTest {
+                    dependencies {
+                        implementation(libs.findLibrary("mockk.io").get())
                     }
                 }
 

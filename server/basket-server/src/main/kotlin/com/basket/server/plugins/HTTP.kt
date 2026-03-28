@@ -21,6 +21,7 @@ fun Application.configureHTTP() {
         allowHost("192.168.1.100:8080")
         allowHost("192.168.1.129:8080")
         allowHost("192.168.1.175:8080")
+        allowHost("192.168.0.106:8080")
         // Allow Android emulator special IP
         allowHost("10.0.2.2:8080")
         allowHost("10.0.2.2:8081")

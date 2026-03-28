@@ -12,7 +12,6 @@ import io.ktor.server.routing.application
 import io.ktor.server.routing.post
 import io.ktor.server.routing.route
 import kotlinx.serialization.json.Json
-import java.io.File
 import java.util.UUID
 
 fun Route.authRoutes() {
@@ -21,8 +20,7 @@ fun Route.authRoutes() {
             val loginRequest = call.receive<LoginRequest>()
 
             // Read users from the JSON file
-            val usersFile = File("server/resources/users.json")
-            val usersJson = usersFile.readText()
+            val usersJson = readResourceText("users.json")
             val users = Json.decodeFromString<List<User>>(usersJson)
 
             // Find the user with the matching username and password

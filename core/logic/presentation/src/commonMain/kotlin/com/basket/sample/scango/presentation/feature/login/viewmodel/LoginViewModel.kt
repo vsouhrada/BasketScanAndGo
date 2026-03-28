@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.basket.core.common.klogger.getKLogger
 import com.basket.core.common.klogger.logDebug
 import com.basket.core.common.result.chain
+import com.basket.core.common.result.failure.FailureResult
 import com.basket.sample.scango.domain.feature.user.getUser.usecase.GetUserRequest
 import com.basket.sample.scango.domain.feature.user.getUser.usecase.GetUserUseCase
 import com.basket.sample.scango.domain.feature.user.saveActiveUser.usecase.SaveActiveUserRequest
@@ -64,13 +65,40 @@ class LoginViewModel(
                     logger.logDebug { "Successfully saved activeUser=$saveActiveUser" }
                     emitScreenAction(LoginScreenActionState.UserAuthorized)
                 }
-            }.onFailure {
-                logger.error { "Failed to send authorization to user=${userCredentials.userId}, failure: $it" }
+            }.onFailure { failure ->
+                logger.error { "Failed to send authorization to user=${userCredentials.userId}, failure: $failure" }
                 emitErrorState(
-                    errorState = LoginScreenErrorState.InvalidUserCredentials(userId = userCredentials.userId),
+                    errorState = mapErrorState(
+                        userCredentials = userCredentials,
+                        failure = failure,
+                    ),
                 )
             }
         }
+    }
+
+    private fun mapErrorState(
+        userCredentials: UserCredentials,
+        failure: FailureResult<*>,
+    ): LoginScreenErrorState {
+        if (isConnectionFailure(failure = failure)) {
+            return LoginScreenErrorState.UnexpectedError(
+                title = "Server not reachable",
+                message = "Unable to connect to backend server. Check Wi-Fi and server availability.",
+            )
+        }
+
+        return LoginScreenErrorState.InvalidUserCredentials(userId = userCredentials.userId)
+    }
+
+    private fun isConnectionFailure(failure: FailureResult<*>): Boolean {
+        val diagnostic = failure.diagnosticMessage.orEmpty()
+        val throwableText = failure.throwable?.toString().orEmpty()
+        val combinedMessage = "$diagnostic $throwableText".lowercase()
+
+        return combinedMessage.contains("failed to connect") ||
+            combinedMessage.contains("connectexception") ||
+            combinedMessage.contains("timeout")
     }
 
     private fun emitScreenState(newState: LoginScreenState) {

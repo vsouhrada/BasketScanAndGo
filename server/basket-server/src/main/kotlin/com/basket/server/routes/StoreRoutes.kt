@@ -7,15 +7,13 @@ import io.ktor.server.routing.Route
 import io.ktor.server.routing.get
 import io.ktor.server.routing.route
 import kotlinx.serialization.json.Json
-import java.io.File
 
 fun Route.storeRoutes() {
     route("/stores") {
         // Get all stores
         get {
             // Read stores from the JSON file
-            val storesFile = File("server/resources/stores.json")
-            val storesJson = storesFile.readText()
+            val storesJson = readResourceText("stores.json")
             val stores = Json.decodeFromString<List<Store>>(storesJson)
 
             // Return the stores
@@ -27,8 +25,7 @@ fun Route.storeRoutes() {
             val storeId = call.parameters["id"] ?: return@get call.respond(HttpStatusCode.BadRequest, "Missing store ID")
 
             // Read stores from the JSON file
-            val storesFile = File("server/resources/stores.json")
-            val storesJson = storesFile.readText()
+            val storesJson = readResourceText("stores.json")
             val stores = Json.decodeFromString<List<Store>>(storesJson)
 
             // Find the store

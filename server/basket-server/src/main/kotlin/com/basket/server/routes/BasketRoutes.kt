@@ -5,8 +5,8 @@ import com.basket.server.models.BasketDto
 import com.basket.server.models.BasketItem
 import com.basket.server.models.CreateBasketRequest
 import com.basket.server.models.CreateBasketResponse
+import com.basket.server.models.ErrorResponse
 import com.basket.server.models.Product
-import com.basket.server.plugins.ErrorResponse
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.request.receive
 import io.ktor.server.response.respond
@@ -72,7 +72,10 @@ fun Route.basketRoutes() {
             val basket =
                 baskets[basketId] ?: return@get call.respond(
                     HttpStatusCode.NotFound,
-                    ErrorResponse(status = HttpStatusCode.NotFound.value, message = "Basket not found"),
+                    ErrorResponse(
+                        status = HttpStatusCode.NotFound.value,
+                        message = "Basket not found",
+                    ),
                 )
 
             // Return the basket
@@ -89,8 +92,7 @@ fun Route.basketRoutes() {
             val basket = baskets[basketId] ?: return@post call.respond(HttpStatusCode.NotFound, "Basket not found")
 
             // Read products from the JSON file to get the price
-            val productsFile = java.io.File("server/resources/product.json")
-            val productsJson = productsFile.readText()
+            val productsJson = readResourceText("product.json")
             val products = kotlinx.serialization.json.Json.decodeFromString<List<Product>>(productsJson)
 
             // Find the product

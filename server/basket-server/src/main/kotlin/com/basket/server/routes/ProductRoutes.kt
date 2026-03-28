@@ -7,15 +7,13 @@ import io.ktor.server.routing.Route
 import io.ktor.server.routing.get
 import io.ktor.server.routing.route
 import kotlinx.serialization.json.Json
-import java.io.File
 
 fun Route.productRoutes() {
     route("/products") {
         // Get all products
         get {
             // Read products from the JSON file
-            val productsFile = File("server/resources/product.json")
-            val productsJson = productsFile.readText()
+            val productsJson = readResourceText("product.json")
             val products = Json.decodeFromString<List<Product>>(productsJson)
 
             // Return the products
@@ -28,8 +26,7 @@ fun Route.productRoutes() {
                 call.parameters["id"] ?: return@get call.respond(HttpStatusCode.BadRequest, "Missing product ID")
 
             // Read products from the JSON file
-            val productsFile = File("server/resources/product.json")
-            val productsJson = productsFile.readText()
+            val productsJson = readResourceText("product.json")
             val products = Json.decodeFromString<List<Product>>(productsJson)
 
             // Find the product

@@ -8,15 +8,13 @@ import io.ktor.server.routing.Route
 import io.ktor.server.routing.get
 import io.ktor.server.routing.route
 import kotlinx.serialization.json.Json
-import java.io.File
 
 fun Route.userRoutes() {
     route("/users") {
         // Get all users
         get {
             // Read users from the JSON file
-            val usersFile = File("server/resources/users.json")
-            val usersJson = usersFile.readText()
+            val usersJson = readResourceText("users.json")
             val users = Json.decodeFromString<List<User>>(usersJson)
 
             // Convert to UserResponse to exclude passwords
@@ -43,8 +41,7 @@ fun Route.userRoutes() {
             val userId = call.parameters["id"] ?: return@get call.respond(HttpStatusCode.BadRequest, "Missing user ID")
 
             // Read users from the JSON file
-            val usersFile = File("server/resources/users.json")
-            val usersJson = usersFile.readText()
+            val usersJson = readResourceText("users.json")
             val users = Json.decodeFromString<List<User>>(usersJson)
 
             // Find the user
