@@ -31,8 +31,11 @@ dependencyResolutionManagement {
 
 includeBuild("build-logic")
 
-include(":basketApp")
-include(":composeApp")
+// Apps
+include(":apps:shared")
+include(":apps:androidApp")
+include(":apps:desktopApp")
+include(":apps:webApp")
 
 include(":ktime")
 project(":ktime").projectDir = file("platform/ktime")
@@ -61,8 +64,8 @@ project(":di").projectDir = file("core/di")
 // include(":androidApp")
 // include(":shared")
 
-include(":iosApp")
-project(":iosApp").projectDir = file("iosApp")
+// iOS app is built from Xcode using the shared framework
+// include(":iosApp")
 
 include(":basket-server")
 project(":basket-server").projectDir = file("server/basket-server")

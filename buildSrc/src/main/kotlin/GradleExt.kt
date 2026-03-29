@@ -2,12 +2,14 @@ import java.io.ByteArrayOutputStream
 import org.apache.tools.ant.taskdefs.condition.Os
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
+import org.gradle.process.ExecOperations
+import javax.inject.Inject
 
 inline fun <reified T> Project.findPropertyOrNull(name: String): T? = findProperty(name) as T?
 
 inline fun <reified T> Project.getProperty(name: String): T = property(name) as T
 
-inline fun <reified T> Project.getPropertyOrDefaultValue(propertyName: String, defaultValue: Any) =
+inline fun <reified T : Any> Project.getPropertyOrDefaultValue(propertyName: String, defaultValue: T): T =
     findPropertyOrNull(propertyName)
         ?: defaultValue
 
@@ -20,12 +22,14 @@ inline fun <reified T> Project.getPropertyOrDefaultValue(propertyName: String, d
  */
 fun Project.getGitCommits(vararg paths: String): Int {
     val stdout = ByteArrayOutputStream()
-    exec {
-        commandLine = if (paths.isNotEmpty()) {
-            listOf("git", "rev-list", "--count", "HEAD", "--", paths.joinToString(separator = " "))
-        } else {
-            listOf("git", "rev-list", "--count", "HEAD")
-        }
+    providers.exec {
+        commandLine(
+            if (paths.isNotEmpty()) {
+                listOf("git", "rev-list", "--count", "HEAD", "--", paths.joinToString(separator = " "))
+            } else {
+                listOf("git", "rev-list", "--count", "HEAD")
+            }
+        )
         standardOutput = stdout
     }
     return try {
@@ -51,6 +55,6 @@ fun Project.isMacOs(): Boolean {
     return Os.isFamily(Os.FAMILY_MAC)
 }
 
-infix fun <T> Property<T>.by(value: T) {
+infix fun <T : Any> Property<T>.by(value: T) {
     set(value)
 }
