@@ -12,15 +12,31 @@
 
 ## Project Overview
 
-Basket Scan and Go is a cross-platform shopping application that allows customers to scan products, add them to a virtual basket, and check out without waiting in line. The application is built using Kotlin Multiplatform and Compose Multiplatform, enabling a shared codebase across Android, iOS, Desktop, and Web platforms.
+**Basket Scan and Go** is a modern cross-platform shopping application that revolutionizes the in-store shopping experience. Customers can scan product barcodes using their mobile device, add items to a virtual basket, and complete checkout without waiting in traditional checkout lines.
+
+The application is built using **Kotlin Multiplatform (KMP)** and **Compose Multiplatform**, enabling a shared codebase across Android, iOS, Desktop, and Web (WasmJS) platforms. This approach maximizes code reuse while delivering native performance and user experience on each platform.
 
 ### Key Features
 
-- **Product Scanning**: Scan product barcodes to add items to your basket
-- **Basket Management**: Create, view, and modify shopping baskets
-- **User Authentication**: Secure login and user management
-- **Shared Baskets**: Option to share baskets with other users
-- **Cross-Platform**: Works on Android, iOS, Desktop, and Web
+- **Product Scanning**: Scan product barcodes using the device camera to instantly add items to your basket
+- **Basket Management**: Create, view, modify, and delete shopping baskets with real-time price calculations
+- **User Authentication**: Secure login and registration with session management
+- **Shared Baskets**: Collaborate with family or friends by sharing baskets across devices
+- **Cross-Platform**: Single codebase runs on Android, iOS, Desktop (JVM), and Web (WasmJS)
+- **Offline Support**: Continue shopping even with intermittent connectivity
+- **Backend Server**: Ktor-based REST API server for data persistence and synchronization
+
+### Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| **UI Framework** | Compose Multiplatform |
+| **Language** | Kotlin 2.x |
+| **Networking** | Ktor Client |
+| **Serialization** | Kotlinx Serialization |
+| **DI** | Koin |
+| **Backend** | Ktor Server (Netty) |
+| **Architecture** | Clean Architecture + MVI |
 
 ## Libraries used
 - 🧩 [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform); for shared UI
@@ -297,56 +313,6 @@ The arrows indicate dependencies between modules, showing how they rely on each 
 
 5. **iOS App** (`iosApp/`):
    - Native iOS app using the shared framework from `apps:shared`
-
-## Commit Analysis and User Impact Summary
-
-### Recent Development Activity
-
-```
-┌────────────────────────────────────────────────────────────┐
-│                                                            │
-│  Commit Frequency                                          │
-│                                                            │
-│  15 ┼                                 ╭─╮                  │
-│     │                                 │ │                  │
-│  12 ┼                                 │ │                  │
-│     │                                 │ │                  │
-│   9 ┼                        ╭────╮   │ │                  │
-│     │                        │    │   │ │                  │
-│   6 ┼              ╭─╮       │    │   │ │    ╭─╮          │
-│     │              │ │       │    │   │ │    │ │          │
-│   3 ┼        ╭─╮   │ │   ╭─╮ │    │   │ │    │ │    ╭─╮   │
-│     │        │ │   │ │   │ │ │    │   │ │    │ │    │ │   │
-│   0 ┼────────┴─┴───┴─┴───┴─┴─┴────┴───┴─┴────┴─┴────┴─┴───│
-│       Jan     Feb   Mar   Apr  May  Jun   Jul   Aug   Sep  │
-│                                                            │
-└────────────────────────────────────────────────────────────┘
-```
-
-### User Impact Analysis
-
-The Basket Scan and Go application provides significant benefits to users:
-
-1. **Time Savings**: Users can scan products as they shop and skip checkout lines
-2. **Convenience**: Easy basket management and sharing capabilities
-3. **Cross-Platform Access**: Use the same application across different devices
-4. **Real-time Updates**: Immediate product and price information
-
-### Development Focus Areas
-
-```
-┌──────────────────────────────────────────────────────────┐
-│                                                          │
-│  Feature Development Distribution                        │
-│                                                          │
-│  UI/UX Improvements ███████████████████████ 35%          │
-│  Basket Management  ██████████████████ 27%               │
-│  Authentication     ███████████ 16%                      │
-│  Cross-Platform     ████████ 12%                         │
-│  Performance        ██████ 10%                           │
-│                                                          │
-└──────────────────────────────────────────────────────────┘
-```
 
 ## Showcase
 
