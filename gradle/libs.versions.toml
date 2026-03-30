@@ -5,7 +5,7 @@ android-minSdk = "24"
 android-targetSdk = "34"
 android-version-code = "1"
 android-version-name = "1.0"
-agp = "8.13.2"
+agp = "9.0.0"
 ktlint = "12.2.0"
 androidx-activityCompose = "1.13.0"
 androidx-appcompat = "1.7.1"
@@ -126,6 +126,7 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
+android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 # JetBrains
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
@@ -140,7 +141,9 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
 
 # Plugins defined by this project
-basket-sharedWithCompose = { id = "com.basket.sample.scango.sharedWithCompose", version = "unspecified" }
-basket-kotlinMultiplatform = { id = "com.basket.sample.scango.kotlinMultiplatform", version = "unspecified" }
-basket-kotlinMultiplatformBase = { id = "com.basket.sample.scango.kotlinMultiplatformBase", version = "unspecified" }
-basket-androidApp = { id = "com.basket.sample.scango.androidApp", version = "unspecified" }
+basket-kmpLibrary = { id = "com.basket.sample.scango.kmp.library", version = "unspecified" }
+basket-kmpCompose = { id = "com.basket.sample.scango.kmp.compose", version = "unspecified" }
+basket-appAndroid = { id = "com.basket.sample.scango.app.android", version = "unspecified" }
+basket-appDesktop = { id = "com.basket.sample.scango.app.desktop", version = "unspecified" }
+basket-appWasm = { id = "com.basket.sample.scango.app.wasm", version = "unspecified" }
+basket-appIos = { id = "com.basket.sample.scango.app.ios", version = "unspecified" }

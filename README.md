@@ -1,12 +1,13 @@
 # Basket Scan and Go
 
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.10-blue.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.3.10-blue.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+[![Compose Multiplatform](https://img.shields.io/badge/Compose%20Multiplatform-1.10.3-blue.svg?style=flat)](https://www.jetbrains.com/lp/compose-multiplatform/)
+[![AGP](https://img.shields.io/badge/AGP-9.0.0-green.svg?style=flat)](https://developer.android.com/build)
+[![Gradle](https://img.shields.io/badge/Gradle-9.1.0-blue.svg?style=flat&logo=gradle)](https://gradle.org)
 
 ![badge-android](http://img.shields.io/badge/platform-android-6EDB8D.svg?style=flat)
-![badge-wearos](http://img.shields.io/badge/platform-wearos-8ECDA0.svg?style=flat)
 ![badge-desktop](http://img.shields.io/badge/platform-desktop-4D76CD.svg?style=flat)
-![badge-desktop](http://img.shields.io/badge/platform-ios-EAEAEA.svg?style=flat)
-![badge-browser-js](https://img.shields.io/badge/platform-js-F8DB5D.svg?style=flat)
+![badge-ios](http://img.shields.io/badge/platform-ios-EAEAEA.svg?style=flat)
 ![badge-browser-wasm](https://img.shields.io/badge/platform-wasm-F8DB5D.svg?style=flat)
 
 ## Project Overview
@@ -30,7 +31,21 @@ Basket Scan and Go is a cross-platform shopping application that allows customer
 - 🔄 [Kotlin Coroutines](https://github.com/Kotlin/kotlinx.coroutines); for asynchronous programming
 - 💉 [Koin](https://insert-koin.io/); for dependency injection
 
-## Run instructions
+## Run Instructions
+
+### IntelliJ IDEA / Android Studio
+
+The project includes pre-configured run configurations in `.idea/runConfigurations/`. After opening the project, you'll find these configurations in the Run/Debug dropdown:
+
+| Configuration | Task | Description |
+|---------------|------|-------------|
+| **Android App** | `:apps:androidApp:installDebug` | Run Android app on device/emulator |
+| **Desktop App** | `:apps:desktopApp:run` | Run desktop JVM application |
+| **Web WASM App** | `:apps:webApp:wasmJsBrowserDevelopmentRun` | Run WasmJS app in browser |
+| **Build All** | `build` | Build all modules |
+| **Ktlint Check** | `ktlintCheck` | Run ktlint code style check |
+| **iOS Framework** | `:apps:shared:embedAndSignAppleFrameworkForXcode` | Build iOS framework for Xcode |
+| **Server** | `:basket-server:run` | Run the Ktor backend server |
 
 ### Fleet
 
@@ -38,18 +53,16 @@ Open Run Config action:
 <img alt="run-config.png" src="artwork/run-config.png" />
 or you can run it from file `.fleet/run.json`
 
+### Gradle Commands
 
-### IntelliJ IDEA
-TBD
-
-### Gradle
-| platform | gradle command                                                                                                                      |
-|----------|-------------------------------------------------------------------------------------------------------------------------------------|
-| android  | `TBD`                                                                                                 |
-| ios      | `/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project app/ios/ios.xcodeproj -scheme ComposeApp -configuration Debug` |
-| desktop  | `./gradlew :composeApp:desktopRun -DmainClass=com.basket.sample.scango.DesktopAppKt`                                                                                                        |
-| js       | `./gradlew :composeApp:jsBrowserDevelopmentRun`                                                                                        |
-| wasm     | `./gradlew :composeApp:wasmJsBrowserDevelopmentRun`
+| Platform | Gradle Command |
+|----------|----------------|
+| Android | `./gradlew :apps:androidApp:installDebug` |
+| Desktop | `./gradlew :apps:desktopApp:run` |
+| Web (WasmJS) | `./gradlew :apps:webApp:wasmJsBrowserDevelopmentRun` |
+| iOS Framework | `./gradlew :apps:shared:linkDebugFrameworkIosSimulatorArm64` |
+| Server | `./gradlew :basket-server:run` |
+| Build All | `./gradlew assemble` |
 
 ## Code Quality
 
@@ -119,35 +132,49 @@ The application follows Clean Architecture principles with a clear separation of
 ### Module Dependencies
 
 ```
-composeApp (UI Implementation)
-    │
-    ├── core/designSystem (UI Components)
-    │
-    ├── core/di (Dependency Injection)
-    │   ├── core/logic/presentation
+apps/
+├── shared (KMP Shared Code - Compose UI)
+│   ├── core/presentation
+│   └── core/di
+│
+├── androidApp (Android Application)
+│   └── apps/shared
+│
+├── desktopApp (Desktop JVM Application)
+│   └── apps/shared
+│
+└── webApp (WasmJS Web Application)
+    └── apps/shared
+
+core/
+├── designSystem (UI Components & Theme)
+│
+├── di (Dependency Injection)
+│   ├── core/logic/presentation
+│   ├── core/logic/data
+│   └── platform/ktime
+│
+└── logic/
+    ├── presentation (ViewModels, States)
+    │   ├── core/logic/domain
     │   ├── core/logic/data
-    │   └── platform/ktime
+    │   ├── core/designSystem
+    │   └── platform/klogger
     │
-    └── core/logic/presentation (ViewModels, States)
-            │
-            ├── core/logic/domain (Use Cases, Models)
-            │       │
-            │       ├── platform/result
-            │       │       │
-            │       │       └── platform/ktime
-            │       │
-            │       └── platform/klogger
-            │               │
-            │               └── platform/ktime
-            │
-            ├── core/logic/data (Repositories, Data Sources)
-            │       │
-            │       ├── core/logic/domain
-            │       └── platform/klogger
-            │
-            ├── core/designSystem
-            │
-            └── platform/klogger
+    ├── domain (Use Cases, Models)
+    │   ├── platform/result
+    │   └── platform/klogger
+    │
+    └── data (Repositories, Data Sources)
+        ├── core/logic/domain
+        └── platform/klogger
+
+platform/
+├── klogger (Logging utilities)
+│   └── platform/ktime
+├── ktime (Date and time utilities)
+└── result (Result monad for error handling)
+    └── platform/ktime
 ```
 
 ### Detailed Module Dependency Map
@@ -156,34 +183,34 @@ The following diagram shows a more detailed view of module dependencies in the p
 
 ```
 +---------------------+     +---------------------+     +---------------------+
-|     APPLICATION     |     |        CORE         |     |        LOGIC        |
+|        APPS         |     |        CORE         |     |        LOGIC        |
 |       MODULES       |     |       MODULES       |     |       MODULES       |
 +---------------------+     +---------------------+     +---------------------+
-| :composeApp         |     | :designSystem       |     | :presentation       |
-| (UI Implementation) |     | (UI Components)     |     | (ViewModels, States)|
+| :apps:shared        |     | :designSystem       |     | :presentation       |
+| (KMP Shared UI)     |     | (UI Components)     |     | (ViewModels, States)|
 |                     |     |                     |     |                     |
-| :iosApp             |     | :di                 |     | :domain             |
-| (iOS-specific code) |     | (Dependency         |     | (Use Cases, Models) |
+| :apps:androidApp    |     | :di                 |     | :domain             |
+| (Android App)       |     | (Dependency         |     | (Use Cases, Models) |
 |                     |     |  Injection)         |     |                     |
-| :basket-server      |     |                     |     | :data               |
-| (Ktor-based backend |     |                     |     | (Repositories,      |
-| server)             |     |                     |     |                     |
+| :apps:desktopApp    |     |                     |     | :data               |
+| (Desktop JVM App)   |     |                     |     | (Repositories,      |
 |                     |     |                     |     |  Data Sources)      |
+| :apps:webApp        |     |                     |     |                     |
+| (WasmJS Web App)    |     |                     |     |                     |
+|                     |     |                     |     |                     |
+| :basket-server      |     |                     |     |                     |
+| (Ktor Backend)      |     |                     |     |                     |
 +---------------------+     +---------------------+     +---------------------+
-        |  |                       |   |                      |   |   |
         |  |                       |   |                      |   |   |
         |  |                       |   |                      |   |   |
         |  +---------------------->+   |                      |   |   |
         |                          |   |                      |   |   |
         |  +---------------------->+   |                      |   |   |
-        |  |                       |   |                      |   |   |
         |  |                       |   +--------------------->+   |   |
         |  |                       |                          |   |   |
         |  |                       +------------------------->+   |   |
         |  |                                                  |   |   |
         +--+------------------------------------------------->+   |   |
-           |                                                  |   |   |
-           |                                                  |   |   |
            |                                                  v   v   v
            |                                          +---------------------+
            |                                          |      PLATFORM       |
@@ -202,7 +229,10 @@ The following diagram shows a more detailed view of module dependencies in the p
                                                       +---------------------+
 
 Dependencies:
-- composeApp -> presentation, di
+- apps:androidApp -> apps:shared
+- apps:desktopApp -> apps:shared
+- apps:webApp -> apps:shared
+- apps:shared -> presentation, di
 - di -> presentation, data, ktime
 - presentation -> domain, data, designSystem, klogger
 - domain -> result, klogger
@@ -212,7 +242,7 @@ Dependencies:
 ```
 
 This diagram illustrates:
-1. **Application Modules**: The main entry points for different platforms
+1. **Apps Modules**: Platform-specific entry points (Android, Desktop, Web) depending on shared KMP code
 2. **Core Modules**: Shared UI components and dependency injection
 3. **Logic Modules**: Business logic implementation following Clean Architecture
 4. **Platform Modules**: Utility modules used across the application
@@ -221,23 +251,30 @@ The arrows indicate dependencies between modules, showing how they rely on each 
 
 ### Key Components
 
-1. **Core Modules**:
+1. **Apps Modules** (`apps/`):
+   - **shared**: KMP module with shared Compose UI code for all platforms
+   - **androidApp**: Android application entry point
+   - **desktopApp**: Desktop JVM application entry point
+   - **webApp**: WasmJS web application entry point
+
+2. **Core Modules** (`core/`):
    - **designSystem**: UI components and styling
-   - **di**: Dependency injection setup
+   - **di**: Dependency injection setup with Koin
    - **logic**: Business logic implementation
-     - **data**: Repositories and data sources
+     - **data**: Repositories and data sources (Ktor client)
      - **domain**: Use cases and domain models
      - **presentation**: ViewModels and UI state management
 
-2. **Platform Modules**:
+3. **Platform Modules** (`platform/`):
    - **klogger**: Logging utilities
    - **ktime**: Date and time utilities
    - **result**: Result monad for error handling
 
-3. **Platform-Specific Modules**:
-   - **composeApp**: Shared UI implementation
-   - **iosApp**: iOS-specific code
-   - **server**: Ktor-based backend server implementation ([documentation](doc/basket-server.md))
+4. **Server Module** (`server/`):
+   - **basket-server**: Ktor-based backend server implementation ([documentation](doc/basket-server.md))
+
+5. **iOS App** (`iosApp/`):
+   - Native iOS app using the shared framework from `apps:shared`
 
 ## Commit Analysis and User Impact Summary
 

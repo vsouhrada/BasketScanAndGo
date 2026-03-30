@@ -1,49 +1,18 @@
 plugins {
-    alias(libs.plugins.basket.kotlinMultiplatform)
+    alias(libs.plugins.basket.kmpLibrary)
 }
 
 kotlin {
-
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64(),
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "presentation"
-            isStatic = true
-        }
-    }
-
     sourceSets {
-
-        commonTest {
-            dependencies {
-            }
-        }
         commonMain {
             dependencies {
                 implementation(project(":presentation"))
                 implementation(project(":ktime"))
                 implementation(project(":data"))
+                api(libs.koin.core)
+                api(libs.koin.compose)
+                api(libs.koin.compose.viewModel)
             }
-        }
-
-        androidMain {
-            dependencies {
-            }
-        }
-        iosMain {
-            dependencies {
-            }
-        }
-
-        wasmJsMain {
-            dependencies { }
-        }
-
-        desktopMain {
-            dependencies {}
         }
     }
 }

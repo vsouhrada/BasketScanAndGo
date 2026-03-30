@@ -1,21 +1,8 @@
 plugins {
-    alias(libs.plugins.basket.kotlinMultiplatform)
+    alias(libs.plugins.basket.kmpLibrary)
 }
 
 kotlin {
-
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64(),
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "data"
-            isStatic = true
-            export(project(":domain"))
-        }
-    }
-
     sourceSets {
         commonMain {
             dependencies {
