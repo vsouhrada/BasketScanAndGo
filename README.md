@@ -31,6 +31,28 @@ Basket Scan and Go is a cross-platform shopping application that allows customer
 - 🔄 [Kotlin Coroutines](https://github.com/Kotlin/kotlinx.coroutines); for asynchronous programming
 - 💉 [Koin](https://insert-koin.io/); for dependency injection
 
+## Development Setup
+
+### Server IP Configuration
+
+When developing with a mobile device or switching networks, you need to update the server IP address in the client configuration. Helper scripts are provided in the `scripts/` folder to automate this:
+
+**macOS/Linux:**
+```bash
+./scripts/update-server-ip.sh
+```
+
+**Windows:**
+```cmd
+scripts\update-server-ip.bat
+```
+
+These scripts will:
+1. Auto-detect your machine's current IP address
+2. Update the client configuration file (`BasketApiServerPathProviderImpl.kt`)
+
+> **Note:** The server is configured to listen on `0.0.0.0` (all network interfaces), so it's accessible from any device on the same network.
+
 ## Run Instructions
 
 ### IntelliJ IDEA / Android Studio

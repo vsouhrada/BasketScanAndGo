@@ -4,7 +4,7 @@ import com.basket.sample.scango.data.common.api.providers.model.ServerPath
 
 class BasketApiServerPathProviderImpl : BasketApiServerPathProvider {
     private companion object {
-        private const val SERVER_BASE_PATH = "http://192.168.0.106:8080"
+        private const val SERVER_BASE_PATH = "http://192.168.1.138:8080"
     }
 
     override fun provideServerPath(): ServerPath {
