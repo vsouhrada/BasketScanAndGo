@@ -1,6 +1,7 @@
 package com.basket.sample.scango.presentation.feature.dashboard
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -33,9 +34,12 @@ import org.jetbrains.compose.resources.stringResource
 fun DashboardScreenNav(logout: () -> Unit) {
     val navBottomBarController = rememberNavController()
     // ChangeStatusBarColors(Color.White)
-    Scaffold(bottomBar = {
-        BottomNavigationUI(navController = navBottomBarController)
-    }) { innerPadding ->
+    Scaffold(
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
+        bottomBar = {
+            BottomNavigationUI(navController = navBottomBarController)
+        },
+    ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
             NavHost(
                 startDestination = DashboardNavigation.Overview.route,

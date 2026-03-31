@@ -17,6 +17,11 @@ compose.desktop {
     application {
         mainClass = "com.basket.sample.scango.DesktopAppKt"
 
+        jvmArgs += listOf(
+            "-Xdock:name=Basket Scan&Go",
+            "-Xdock:icon=${project.file("src/desktopMain/resources/basket_icon.png").absolutePath}",
+        )
+
         nativeDistributions {
             packageName = "Basket Scan-Go"
             packageVersion = "1.0.0"
@@ -24,6 +29,7 @@ compose.desktop {
             macOS {
                 bundleID = "com.basket.sample.scango"
                 dockName = "Basket Scan&Go"
+                iconFile.set(project.file("src/desktopMain/resources/basket_icon.icns"))
             }
         }
     }
