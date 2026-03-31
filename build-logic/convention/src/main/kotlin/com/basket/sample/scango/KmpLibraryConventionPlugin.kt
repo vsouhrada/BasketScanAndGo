@@ -86,6 +86,7 @@ class KmpLibraryConventionPlugin : Plugin<Project> {
                 extension.compileSdk = libs.androidCompileSdk
                 extension.minSdk = libs.androidMinSdk
                 extension.namespace = deriveNamespace()
+                extension.androidResources.enable = true
                 extension.packaging.resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
             }
         }

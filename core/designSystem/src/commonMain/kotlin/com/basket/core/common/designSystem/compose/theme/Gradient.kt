@@ -19,3 +19,11 @@ fun buttonGradientBackground() = Brush.linearGradient(
         Color(0xFFE60B41),
     ),
 )
+
+fun headerGradientBackground() = Brush.horizontalGradient(
+    listOf(
+        ColorPalette.blue900,
+        ColorPalette.blue400,
+        ColorPalette.petrol800,
+    ),
+)
