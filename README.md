@@ -319,13 +319,16 @@ The arrows indicate dependencies between modules, showing how they rely on each 
 Below are screenshots of the Basket Scan and Go application running on different platforms.
 
 ### Android
-<img alt="Android App Screenshot" src="artwork/android.png" width="300" />
+<img alt="iOS App Screenshot" src="artwork/android/login.png" width="300" />
+<img alt="iOS App Screenshot" src="artwork/android/basket-screen-with-items.png" width="300" />
 
 ### iOS
-<img alt="iOS App Screenshot" src="artwork/ios.png" width="300" />
+<img alt="iOS App Screenshot" src="artwork/ios/login.png" width="300" />
+<img alt="iOS App Screenshot" src="artwork/ios/basket-screen-with-items.png" width="300" />
+
 
 ### Desktop
-<img alt="Desktop App Screenshot" src="artwork/desktop.png" width="600" />
+<img alt="iOS App Screenshot" src="artwork/desktop/login.png" width="300" />
+<img alt="iOS App Screenshot" src="artwork/desktop/basket-screen-with-items.png" width="300" />
 
 ### Web (Js & WasmJs)
-<img alt="Web App Screenshot" src="artwork/web.png" width="600" />

@@ -3,6 +3,12 @@ package com.basket.sample.scango.presentation.feature.dashboard
 import basketscanandgo.presentation.generated.resources.Res
 import basketscanandgo.presentation.generated.resources.home
 import basketscanandgo.presentation.generated.resources.home_border
+import basketscanandgo.presentation.generated.resources.ic_nav_basket
+import basketscanandgo.presentation.generated.resources.ic_nav_basket_border
+import basketscanandgo.presentation.generated.resources.ic_nav_catalog
+import basketscanandgo.presentation.generated.resources.ic_nav_catalog_border
+import basketscanandgo.presentation.generated.resources.ic_nav_profile
+import basketscanandgo.presentation.generated.resources.ic_nav_profile_border
 import basketscanandgo.presentation.generated.resources.main_catalog_title
 import basketscanandgo.presentation.generated.resources.main_home_title
 import basketscanandgo.presentation.generated.resources.main_profile_title
@@ -26,21 +32,21 @@ sealed class DashboardNavigation(
     data object Catalog : DashboardNavigation(
         route = "Catalog",
         title = Res.string.main_catalog_title,
-        selectedIcon = Res.drawable.home,
-        unSelectedIcon = Res.drawable.home_border,
+        selectedIcon = Res.drawable.ic_nav_catalog,
+        unSelectedIcon = Res.drawable.ic_nav_catalog_border,
     )
 
     data object ScanGo : DashboardNavigation(
         route = "ScanGo",
         title = Res.string.main_scango_title,
-        selectedIcon = Res.drawable.home,
-        unSelectedIcon = Res.drawable.home_border,
+        selectedIcon = Res.drawable.ic_nav_basket,
+        unSelectedIcon = Res.drawable.ic_nav_basket_border,
     )
 
     data object Profile : DashboardNavigation(
         route = "Profile",
         title = Res.string.main_profile_title,
-        selectedIcon = Res.drawable.home,
-        unSelectedIcon = Res.drawable.home_border,
+        selectedIcon = Res.drawable.ic_nav_profile,
+        unSelectedIcon = Res.drawable.ic_nav_profile_border,
     )
 }
